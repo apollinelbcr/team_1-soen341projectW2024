@@ -1,7 +1,10 @@
 
-<div class="my-3 p-8 w-full">
-    <h3 class="text-3xl p-4">Your Recent Search</h3>
-    <div class="mt-3 flex flex-row space-x-5 overflow-x-auto no-scrollbar">
+
+<div class="absolute bottom-2 right-28 w-1/4 h-1/2 rounded-3xl bg-white ">
+
+    <h3 class="text-3xl pl-6 pr-4 pt-6 ">Upcoming Bookings</h3>
+    <div class="mt-0 flex-column p-4 space-y-2 overflow-x-auto no-scrollbar">
         <slot/>
     </div>
+
 </div>
