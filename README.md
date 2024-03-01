@@ -183,6 +183,7 @@ The frontend can then be access @  http://localhost:5173
    ```
    yarn start:dev
    ```
+The frontend can then be access @  http://localhost:3000
 
 ### Database Records
 They will be exported in a csv file and added to the wiki in the database section
