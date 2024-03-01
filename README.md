@@ -169,14 +169,23 @@ npm run dev
 The frontend can then be access @  http://localhost:5173
 
 4. Install the backend dependecies
+   ### Navigate into backend folder
+   ```
+   yarn install
+   ```
+   ### Install TypeORM
+   ```
+   yarn global add typeorm
+   ```
 
-   Yet to be implemented
+6. Run the backend
 
-5. Run the backend
+   ```
+   yarn start:dev
+   ```
 
-  Yet to be implemented
-
-  
+### Database Records
+They will be exported in a csv file and added to the wiki in the database section
 
 ### Extensions used
 
