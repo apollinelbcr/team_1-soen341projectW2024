@@ -35,6 +35,11 @@ export class VehiclesService {
 
     //3. Read All Vehicles 
 
+    async getAllvehicles() : Promise<Vehicle[]> {
+        const found = await this.vehicleRepository.find();
+        return found;
+    }
+
     //4. Update Vehicle Status
     async updateVehicleStatus(id: string, status: VehicleStatus) : Promise<Vehicle> {
          const vehicle = await this.getVehicleById(id);

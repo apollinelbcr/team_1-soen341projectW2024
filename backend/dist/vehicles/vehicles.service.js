@@ -38,6 +38,10 @@ let VehiclesService = class VehiclesService {
         }
         return found;
     }
+    async getAllvehicles() {
+        const found = await this.vehicleRepository.find();
+        return found;
+    }
     async updateVehicleStatus(id, status) {
         const vehicle = await this.getVehicleById(id);
         vehicle.status = status;

@@ -24,17 +24,21 @@ export class VehiclesController {
     }
 
     //3. Read All Vehicles 
+    @Get()
+    getAllvehicles() : Promise<Vehicle[]>{
+        return this.vehiclesService.getAllvehicles();
+    }
 
     //4. Update Vehicle Status
     @Patch('/:id/status')
-    updateTaskStatus(@Param('id') id: string, @Body() updateVehicleStatusDto: UpdateVehicleStatusDto) : Promise<Vehicle>{
+    updateVehicleStatus(@Param('id') id: string, @Body() updateVehicleStatusDto: UpdateVehicleStatusDto) : Promise<Vehicle>{
         const { status } = updateVehicleStatusDto;
         return this.vehiclesService.updateVehicleStatus(id, status);
      }
 
     //5. Delete Vehicle
     @Delete('/:id')
-    deleteTask(@Param('id') id: string) : Promise<void> {
+    deleteVehicle(@Param('id') id: string) : Promise<void> {
          return this.vehiclesService.deleteVehicle(id);
      }
 

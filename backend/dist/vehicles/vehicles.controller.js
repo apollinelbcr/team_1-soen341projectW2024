@@ -27,11 +27,14 @@ let VehiclesController = class VehiclesController {
     getVehicleById(id) {
         return this.vehiclesService.getVehicleById(id);
     }
-    updateTaskStatus(id, updateVehicleStatusDto) {
+    getAllvehicles() {
+        return this.vehiclesService.getAllvehicles();
+    }
+    updateVehicleStatus(id, updateVehicleStatusDto) {
         const { status } = updateVehicleStatusDto;
         return this.vehiclesService.updateVehicleStatus(id, status);
     }
-    deleteTask(id) {
+    deleteVehicle(id) {
         return this.vehiclesService.deleteVehicle(id);
     }
 };
@@ -51,20 +54,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], VehiclesController.prototype, "getVehicleById", null);
 __decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], VehiclesController.prototype, "getAllvehicles", null);
+__decorate([
     (0, common_1.Patch)('/:id/status'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_vehicle_status_dto_1.UpdateVehicleStatusDto]),
     __metadata("design:returntype", Promise)
-], VehiclesController.prototype, "updateTaskStatus", null);
+], VehiclesController.prototype, "updateVehicleStatus", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], VehiclesController.prototype, "deleteTask", null);
+], VehiclesController.prototype, "deleteVehicle", null);
 exports.VehiclesController = VehiclesController = __decorate([
     (0, common_1.Controller)('vehicles'),
     __metadata("design:paramtypes", [vehicles_service_1.VehiclesService])

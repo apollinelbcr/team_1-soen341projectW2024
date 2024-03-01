@@ -7,6 +7,7 @@ export declare class VehiclesController {
     constructor(vehiclesService: VehiclesService);
     createTask(createVehicleDto: CreateVehicleDto): Promise<Vehicle>;
     getVehicleById(id: string): Promise<Vehicle>;
-    updateTaskStatus(id: string, updateVehicleStatusDto: UpdateVehicleStatusDto): Promise<Vehicle>;
-    deleteTask(id: string): Promise<void>;
+    getAllvehicles(): Promise<Vehicle[]>;
+    updateVehicleStatus(id: string, updateVehicleStatusDto: UpdateVehicleStatusDto): Promise<Vehicle>;
+    deleteVehicle(id: string): Promise<void>;
 }

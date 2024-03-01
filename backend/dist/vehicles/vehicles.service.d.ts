@@ -7,6 +7,7 @@ export declare class VehiclesService {
     constructor(vehicleRepository: MongoRepository<Vehicle>);
     createTask(createVehicleDto: CreateVehicleDto): Promise<Vehicle>;
     getVehicleById(id: string): Promise<Vehicle>;
+    getAllvehicles(): Promise<Vehicle[]>;
     updateVehicleStatus(id: string, status: VehicleStatus): Promise<Vehicle>;
     deleteVehicle(id: string): Promise<void>;
 }
