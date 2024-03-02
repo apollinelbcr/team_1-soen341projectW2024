@@ -3,5 +3,9 @@ export enum VehicleCategories {
     STANDARD = 'STANDARD',
     INTERMEDIATE = 'INTERMEDIATE',
     ELECTRIC = 'ELECTRIC',
-    HYBRID = 'HYBRID'
+    HYBRID = 'HYBRID',
+    CLASS_1 = 'CLASS 1',
+    CLASS_2 = 'CLASS 2',
+    MINI = 'MINI',
+    LARGE = 'LARGE'
 }

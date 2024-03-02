@@ -8,5 +8,9 @@ var VehicleCategories;
     VehicleCategories["INTERMEDIATE"] = "INTERMEDIATE";
     VehicleCategories["ELECTRIC"] = "ELECTRIC";
     VehicleCategories["HYBRID"] = "HYBRID";
+    VehicleCategories["CLASS_1"] = "CLASS 1";
+    VehicleCategories["CLASS_2"] = "CLASS 2";
+    VehicleCategories["MINI"] = "MINI";
+    VehicleCategories["LARGE"] = "LARGE";
 })(VehicleCategories || (exports.VehicleCategories = VehicleCategories = {}));
 //# sourceMappingURL=vehicle-categories.enum.js.map
