@@ -6,7 +6,7 @@
             href: "/faq",
             label: "FAQ",
         }, {
-            href: "/explore",
+            href: "/search",
             label: "Explore",
         }, {
             href: "/support",
