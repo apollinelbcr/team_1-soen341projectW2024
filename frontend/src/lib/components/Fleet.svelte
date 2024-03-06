@@ -8,7 +8,7 @@
 
 <div class=" w-1/4 absolute top-42 right-28 h-52 space-y-4">
 
-<a href={href} class=" w-full h-20 rounded-3xl bg-white justify-left flex flex-row ">
+<a href={href} class=" w-full h-20 rounded-3xl bg-white justify-left flex flex-row border border-grey-800">
     <div class="text-xl p-2"></div>
     <div class="pl-4 pt-2">
         <h2 class="text-wrap text-2xl " > Available Vehicules: </h2>
@@ -21,7 +21,7 @@
 
 </a>    
 
-<a href={href} class=" w-full h-20 rounded-3xl bg-white justify-left flex flex-row ">
+<a href={href} class=" w-full h-20 rounded-3xl bg-white justify-left flex flex-row border border-grey-800 ">
     
     <div class="text-xl p-2"></div>
     <div class="pl-4 pt-2">

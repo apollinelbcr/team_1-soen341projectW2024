@@ -3,3 +3,4 @@
 </script>
 
 <slot />
+<a href="/">Home</a>
