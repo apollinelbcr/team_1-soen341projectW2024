@@ -3,7 +3,7 @@
     import Title from "$lib/components/Title.svelte";
     import Fleet from "$lib/components/Fleet.svelte";
     import RecentUser from "$lib/components/RecentUser.svelte";
-    import Users from "$lib/components/Users.svelte";
+    import UsersAdmin from "$lib/components/UsersAdmin.svelte";
     import ManageUsersWrap from "$lib/components/ManageUsersWrap.svelte";
 
 </script>
@@ -21,10 +21,10 @@
     <Fleet available="18" booked="10" href="/" />
 
     <ManageUsersWrap>
-        <Users name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <Users name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <Users name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <Users name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <Users name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
     </ManageUsersWrap>
 </main>

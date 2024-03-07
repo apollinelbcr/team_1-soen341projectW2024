@@ -3,7 +3,7 @@
     import Title from "$lib/components/Title.svelte";
     import MyBookings from "$lib/components/MyBookings.svelte";
     import BookWrep from "$lib/components/BookWrep.svelte";
-    import Users from "$lib/components/Users.svelte";
+    
     import UserInfo from "$lib/components/UserInfo.svelte";
 
 </script>
@@ -16,6 +16,5 @@
     <MyBookings date="Apr 15 – Apr 23" bookingref="#0001" cartype="SUV" Pickloc="21 Main st" Droploc="13 Smith ave" />
 </BookWrep>
 <UserInfo name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-
 
 </main>

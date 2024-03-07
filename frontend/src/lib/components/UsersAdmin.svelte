@@ -7,7 +7,6 @@
    
 </script>
 
-
 <a href="/user/Id" class="space-x-2 flex flex-row justify-left items-center ">
     
     <h2 class="text-wrap text-orange-700 font-bold pl-2">{Id} </h2>
