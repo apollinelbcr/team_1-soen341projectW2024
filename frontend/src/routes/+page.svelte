@@ -3,7 +3,7 @@
     import { navigate } from 'svelte-routing';
     import { goto } from '$app/navigation';
     function navigateToEditPage() {
-        goto('/Edit'); // Navigate to the Edit.svelte component
+        goto('/Edit'); // Navigate to the component.svelte component
     }
 
     //showDiv(part) function will just show the appropriate div and hide the rest
@@ -120,7 +120,9 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
-                <button on:click={navigateToEditPage}>Edit</button>
+                <button>Edit
+                    <a href="./Edit.svelte">Edit</a>
+                </button>
             </div>
             <div class="child" id="Contact" style="display: none;">
                 <h1 style="font-size: 30px;">Contact Information</h1>

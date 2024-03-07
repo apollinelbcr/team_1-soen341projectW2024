@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/lib/Edit/Edit.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/lib/Edit/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/Edit/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/component/Edit.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/Edit/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/component/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +27,7 @@
         <option value="+page" />
         <option value="TypeScript File" />
         <option value="Edit" />
+        <option value="app" />
       </list>
     </option>
   </component>
