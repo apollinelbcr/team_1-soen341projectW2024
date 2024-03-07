@@ -10,7 +10,7 @@
 
 <main class="md:px-20">
 
-<Title title="Admin Dashboard"/>
+<Title title="Admin Dashboard" title2="Manage Users"/>
 
     <RecentUserWraper>
         <RecentUser name="Amanda Smith" text="Mar 1 – Mar 8" bookingref="#0003" cartype="Sedan" href="/"/>

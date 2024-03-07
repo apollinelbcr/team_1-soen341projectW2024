@@ -27,6 +27,8 @@
   <a href="/dashboardAdmin" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
 {:else if username==='user@gmail.com'&& password==='user'}
   <a href="/dashboardUser" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
+{:else if username==='admin@gmail.com'&& password!=='admin'}
+  <h2 class="text text-xl text-orange-700 pl-2">Incorect Admin Password, Try Again</h2>
 {/if}
     
     <a href="/SignUp" class=" px-3 h-12 text-xl  justify-right rounded-2xl">No account ?  Sign Up</a>

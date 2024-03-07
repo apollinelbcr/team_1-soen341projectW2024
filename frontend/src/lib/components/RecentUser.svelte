@@ -1,7 +1,7 @@
 <script lang="ts">
 
     export let name: string;
-    export let text: string;
+    export let date: string;
     export let bookingref: string;
     export let cartype: string
     export let href: string;
@@ -11,7 +11,7 @@
     <div class="text-xl p-2"></div>
     <div class="p-2">
         <h2 class="text-wrap font-bold"> {name}  </h2>
-        <p class="mt-2 text-wrap text-md"> {text}</p>
+        <p class="mt-2 text-wrap text-md"> {date}</p>
     </div>
     <div class="text-xl p-2"></div>
     <div class="p-2">
