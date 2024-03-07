@@ -1,5 +1,10 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { navigate } from 'svelte-routing';
+    import { goto } from '$app/navigation';
+    function navigateToEditPage() {
+        goto('/Edit'); // Navigate to the Edit.svelte component
+    }
 
     //showDiv(part) function will just show the appropriate div and hide the rest
     function showDiv(part: string) {
@@ -115,7 +120,7 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
-                <button  >Edit</button>
+                <button on:click={navigateToEditPage}>Edit</button>
             </div>
             <div class="child" id="Contact" style="display: none;">
                 <h1 style="font-size: 30px;">Contact Information</h1>
