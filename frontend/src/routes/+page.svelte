@@ -1,10 +1,9 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { navigate } from 'svelte-routing';
+    import { Link } from 'svelte-routing';
+
     import { goto } from '$app/navigation';
-    function navigateToEditPage() {
-        goto('/Edit'); // Navigate to the component.svelte component
-    }
+
 
     //showDiv(part) function will just show the appropriate div and hide the rest
     function showDiv(part: string) {
@@ -120,8 +119,9 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
+                <Link to="/edit">Go to Edit Page</Link>
                 <button>Edit
-                    <a href="./Edit.svelte">Edit</a>
+
                 </button>
             </div>
             <div class="child" id="Contact" style="display: none;">
@@ -186,6 +186,7 @@
 
                 </div>
                 <br>
+
                 <button >Edit</button>
             </div>
             <div class="child" id="Review" style="display: none;">

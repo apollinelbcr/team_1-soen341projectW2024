@@ -1,14 +1,11 @@
 <script>
-    import { Router, Route} from 'svelte-routing';
-    import Account from '/+page.svelte';
-    import Edit from '/Edit.svelte';
-
+    import { Router, Route } from 'svelte-routing';
+    import Edit from './routes/Edit/+page.svelte';
+    import PlusPage from './+page.svelte';
   import "../app.css";
 </script>
 <Router>
-    <Route path="/" Component={Account}/>
-    <Route path="/edit" Component={Edit}/>
-
+    <Route path="/edit" component={Edit} />
+    <Route path="/plus-page" component={PlusPage} />
 </Router>
-
 <slot />

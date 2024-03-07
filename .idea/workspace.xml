@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/lib/Edit/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/component/Edit.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/lib/Edit/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/component/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/component/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/Edit/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/component/index.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,7 @@
         <option value="TypeScript File" />
         <option value="Edit" />
         <option value="app" />
+        <option value="Edit.svelte" />
       </list>
     </option>
   </component>
@@ -63,11 +64,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes\Edit" />
+      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\lib\components\Edit" />
+      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\lib\Edit" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\lib" />
-      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes" />
-      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\node_modules" />
-      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
