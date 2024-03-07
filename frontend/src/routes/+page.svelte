@@ -1,8 +1,5 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { Link } from 'svelte-routing';
-
-    import { goto } from '$app/navigation';
 
 
     //showDiv(part) function will just show the appropriate div and hide the rest
@@ -120,6 +117,7 @@
                 </div>
                 <br>
                 <button>Edit
+                    <a href="Edit">Edit</a>
 
                 </button>
             </div>
@@ -265,13 +263,13 @@
     .sidebar {
         width: 250px;
         padding: 15px;
-        background-color: lightgray;
+        background-color: #f5f5f5;
         margin-top: 50px;
         border-radius: 8px;
     }
     .sidebar header {
         font-size: 20px;
-        color: white;
+        color: #2f373d;
         text-align: center;
         line-height: 70px;
     }
@@ -286,7 +284,7 @@
         box-sizing: border-box;
         text-decoration: none;
         transition: .4s;
-        color: white;
+        color: #2f373d;
     }
     .sidebar ul li:hover a {
         padding-left: 50px;

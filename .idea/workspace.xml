@@ -5,35 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/routes/Edit/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit/+page.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/CODE_OF_CONDUCT.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Link.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Route.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Router.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/contexts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/history.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Link.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Route.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Router.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/RouterContext.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/ambient.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/contexts.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/functions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/index.d.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,10 +23,10 @@
         <option value="App" />
         <option value="+page" />
         <option value="TypeScript File" />
-        <option value="Edit" />
         <option value="app" />
         <option value="Edit.svelte" />
         <option value="JavaScript File" />
+        <option value="Edit" />
       </list>
     </option>
   </component>
@@ -70,21 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;US-2&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zineb/WebstormProjects/user-story2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\zineb\\Documents\\GitHub\\team_1-soen341projectW2024\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "US-2",
+    "last_opened_file_path": "C:/Users/zineb/WebstormProjects/useraccountFinal",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\zineb\\Documents\\GitHub\\team_1-soen341projectW2024\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes\Edit" />
@@ -106,6 +81,7 @@
       <workItem from="1709516304073" duration="4755000" />
       <workItem from="1709740369292" duration="205000" />
       <workItem from="1709769964284" duration="298000" />
+      <workItem from="1709827066165" duration="2655000" />
     </task>
     <servers />
   </component>
