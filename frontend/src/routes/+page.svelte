@@ -116,7 +116,7 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
-                <button>Edit
+                <button>
                     <a href="Edit">Edit</a>
 
                 </button>
@@ -143,7 +143,10 @@
                     <p>xxx st. abcdefgh</p>
                 </div>
                 <br>
-                <button >Edit</button>
+                <button>
+                    <a href="Edit">Edit</a>
+
+                </button>
             </div>
             <div class="child" id="Payment" style="display: none;">
                 <h1 style="font-size: 30px;">Payment Information</h1>
@@ -184,7 +187,10 @@
                 </div>
                 <br>
 
-                <button >Edit</button>
+                <button>
+                    <a href="Edit">Edit</a>
+
+                </button>
             </div>
             <div class="child" id="Review" style="display: none;">
                 <h1 style="font-size: 30px;">Review</h1>
@@ -294,7 +300,7 @@
         border-radius: 8px;
     }
 
-    .child-info button{
+    .child-info button , .child-info a{
         border: none;
         background: none;
         font-size: 15px;
@@ -307,7 +313,7 @@
         margin: -5px;
 
     }
-    .child-info button:hover{
+    .child-info button:hover , .child-info a:hover{
         background: dodgerblue;
         opacity: 0.2;
         font-size: 15px;

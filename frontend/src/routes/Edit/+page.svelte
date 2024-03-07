@@ -2,20 +2,22 @@
 
 </script>
 <main>
-    <button id="exit">x</button>
+    <button id="exit">
+        <a href="/">x</a>
+    </button>
     <div class="form-edit">
         <div class="profile-form">
             <form id="profile-form">
                 <p style="font-weight: bold; font-size: 20px;">Full name:</p>
                 <br>
                 <div class="user-name">
-                    <label for="fname">First Name:</label>
+                    <label for="fname">First:</label>
                     <input type="text" id="fname" name="fname" value="Zineb">
                 </div>
                 <br>
                 <br>
                 <div class="user-name">
-                    <label for="lname">Last Name:</label>
+                    <label for="lname">Last:</label>
                     <input type="text" id="lname" name="lname" value="Bamouh">
                 </div>
                 <br>
@@ -54,7 +56,7 @@
                     <p style="font-weight: bold; font-size: 20px;">Phone Number:</p>
                     <br>
                     <div class="user-phone">
-                        <label for="phone">Phone:</label>
+                        <label for="phone">Tel:</label>
                         <input type="text" id="phone" name="phone" value="111 111 1111">
                     </div>
                     <br>
@@ -68,7 +70,7 @@
                     <p style="font-weight: bold; font-size: 20px;">Home Address:</p>
                     <br>
                     <div class="user-address">
-                        <label for="address">Home Address:</label>
+                        <label for="address">Address:</label>
                         <input type="text" id="address" name="address" value="xxx st. abcdefgh">
                     </div>
                 </form>
@@ -80,7 +82,7 @@
                     <p style="font-weight: bold; font-size: 20px;">Card Number:</p>
                     <br>
                     <div class="user-number">
-                        <label for="number">Card Number:</label>
+                        <label for="number">Number:</label>
                         <input type="text" id="number" name="number" value="0000 0000 0000">
                     </div>
                     <br>
@@ -170,13 +172,12 @@
         height: 60px;
         width: 100px;
         border: 1px solid darkgrey;
-        padding-top: 3px;
         padding-left: 10px;
     }
     .user-expire , .user-code {
         width: 150px;
     }
-    #exit {
+    a {
         position: fixed;
         border: none;
         background: none;
@@ -189,7 +190,7 @@
         text-align: center;
         margin: 10px;
     }
-    #exit:hover {
+    a:hover {
         background: dodgerblue;
         opacity: 0.2;
         font-size: 20px;
@@ -206,7 +207,6 @@
         width: 350px;
         border-radius: 8px;
         border: 1px solid darkgray;
-        padding-top: 3px;
         padding-left: 10px;
     }
     .container-user-card {
@@ -215,5 +215,6 @@
         max-width: 500px;
         justify-content: space-between;
     }
+
 
 </style>
