@@ -13,7 +13,7 @@
     <h2 class="text text-xl pt-3 pl-2">Email: {email}</h2>
     <h2 class="text text-xl pt-3 pl-2">Phone #: {phone}</h2>
     <div class="text text-xl justify-right pr-2 pt-6 h-6">
-    <a href="/enter" class="p-2 px-3 h-12 text-xl text-white bg-orange-700 rounded-2xl">Delete</a>
+    <a href="/user/Id/delete/success" class="p-2 px-3 h-12 text-xl text-white bg-orange-700 rounded-2xl">Delete</a>
  </div>
  </div>
 </div>

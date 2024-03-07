@@ -7,7 +7,7 @@
    
 </script>
 
-<a href="/user/Id" class="space-x-2 w-full md:w-full lg:w-full flex flex-row justify-left items-center ">
+<a href="/user/Id" class="space-x-2 flex flex-row justify-left items-center ">
     
     <h2 class="text-wrap text-orange-700 font-bold pl-2">{Id} </h2>
     <h2 class="text-wrap font-bold"> {name} </h2>

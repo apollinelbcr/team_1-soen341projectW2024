@@ -1,7 +1,9 @@
 <script>
 	let username = '';
     let password = '';
+    
 </script>
+
 
 <div class="my-4 p-4 pt-40 w-full h-screen rounded-3xl bg-white flex justify-center">
 
@@ -18,10 +20,17 @@
     <div class="text text-xl py-3 pl-2 h-6">
     </div>
     <div class="text text-xl h-12 space-x-4 flex flex-row justify-center">
-    <a href="/enter" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
-    <a href="/SignUp" class="p-2 px-3 h-12 text-xl  justify-right rounded-2xl">No account ?  Sign Up</a>
-      </div>
+
+{#if password==='' || username===''}
+  <h2 class="text text-xl text-orange-700 pl-2">Make sure to fill all the fields</h2>
+{:else if username==='admin@gmail.com' && password==='admin'}
+  <a href="/dashboardAdmin" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
+{:else if username==='user@gmail.com'&& password==='user'}
+  <a href="/dashboardUser" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
+{/if}
     
+    <a href="/SignUp" class=" px-3 h-12 text-xl  justify-right rounded-2xl">No account ?  Sign Up</a>
+      </div>
         <slot/>
     </div>
 

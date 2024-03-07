@@ -6,7 +6,6 @@
 <main class="md:px-20">
 <SignUp>
 
-
 </SignUp>
 
 

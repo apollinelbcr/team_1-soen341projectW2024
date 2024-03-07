@@ -1,4 +1,4 @@
- <div class="text text-xl h-12 space-x-4 flex flex-column justify-left">
+ <div class="text text-xl p-6 h-12 space-x-4 flex flex-column justify-left">
     <a href="/login">Login</a>
     <a href="/dashboardUser">User Dashboard</a>
     <a href="/dashboardAdmin">Admin Dashboard</a>

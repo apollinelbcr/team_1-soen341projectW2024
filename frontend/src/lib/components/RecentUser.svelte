@@ -7,7 +7,7 @@
     export let href: string;
 </script>
 
-<a href={href} class="w-full md:w-full lg:w-full shrink-0 p-2 flex flex-row justify-left items-center border border-grey-800 rounded-3xl">
+<a href={href} class="w-full md:w-full lg:w-full p-2 flex flex-row justify-left items-center border border-grey-800 rounded-3xl">
     <div class="text-xl p-2"></div>
     <div class="p-2">
         <h2 class="text-wrap font-bold"> {name}  </h2>

@@ -1,0 +1,1 @@
+<h3 class="text-orange-700 text-3xl  flex pt-40 justify-center">Account Successfully Deleted </h3>

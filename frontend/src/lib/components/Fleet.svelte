@@ -6,7 +6,7 @@
     export let href: string;
 </script>
 
-<div class=" w-1/4 absolute top-42 right-28 h-52 space-y-4">
+<div class=" w-1/4 absolute top-48 right-28 h-52 space-y-4">
 
 <a href={href} class=" w-full h-20 rounded-3xl bg-white justify-left flex flex-row border border-grey-800">
     <div class="text-xl p-2"></div>
