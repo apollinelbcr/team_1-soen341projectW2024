@@ -119,7 +119,6 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
-                <Link to="/edit">Go to Edit Page</Link>
                 <button>Edit
 
                 </button>

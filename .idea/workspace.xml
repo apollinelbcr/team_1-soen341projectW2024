@@ -6,11 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/lib/component/Edit.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/Edit/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/lib/component/index.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+layout.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/Edit/+page.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/CODE_OF_CONDUCT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Link.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Route.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/Router.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/actions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/contexts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/history.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/src/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Link.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Route.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/Router.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/RouterContext.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/actions.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/ambient.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/contexts.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/functions.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/svelte-routing/types/index.d.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +44,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="account.svelte" />
-        <option value="JavaScript File" />
         <option value="edit" />
         <option value="App" />
         <option value="+page" />
@@ -29,6 +51,7 @@
         <option value="Edit" />
         <option value="app" />
         <option value="Edit.svelte" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
