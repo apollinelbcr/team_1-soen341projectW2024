@@ -17,19 +17,19 @@
 
 
 <div class="flex flex-col w-auto flex-1 " >
-    <table  class="border-collapse ">
-        <tr>
-            <td  class=" border w-2/3 border-slate-300">
+    <table  class="<border-collapse >">
+        <tr class="radius">
+            <td  class=" border w-2/3 border-slate-200 ">
                 <CarDetails details={{
-                            name:"Tesla",
-                            type: "S",
+                            name:"Nissan",
+                            type: "Rogue",
                             category:"Category unknown",
                             capacity:"2",
-                            transmission:"Manual",
+                            transmission:"Automatic",
                         }} src={"nissan rogue.png"}/>
             </td>
 
-            <td class="border w-1/3 border-slate-300 mt-20">
+            <td class="border w-1/3 border-slate-200 mt-20">
                 <div  class="w-full align-top p-5">
                     <table class="w-full">
                         <tr>
@@ -67,9 +67,9 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="border border-slate-300">
-                <div class="flex justify center p-5">
-                    <div class="w-1/3 border-r-2">
+            <td colspan="2" class="border border-slate-200">
+                <div class="flex justify-between p-5">
+                    <div class="">
                         <div class="font-bold text-base">Adds-on:</div>
                         <form id="extra">
                             <div class="extra">
@@ -99,35 +99,37 @@
 
 
 
-                    <div class="w-1/3 pl-5">
+                    <div class="pl-5" >
                         <div class="font-bold text-base">Price:</div>
                         <p>Base Price: {$resDetails.price}</p>
                         <div id="extras">
-                            <p class="ml-3">Windshield Washer:</p>
-                            <p class="ml-6">+10$</p>
-                            <p class="ml-3">Jump Starter:</p>
-                            <p class="ml-6">+20$</p>
+                            <p class="ml-3 text-gray-500">Windshield Washer: 10$</p>
+                            <p class="ml-3 text-gray-500">Jump Starter: 20$</p>
+
                         </div>
                         <p>Updated Price: 145$</p>
-                        <p class="ml-3">TPS (5%): 7.25$</p>
-                        <p class="ml-3">TVQ (9.975%): 14.46$</p>
+                        <p class="ml-3 text-gray-500">TPS (5%): 7.25$</p>
+                        <p class="ml-3 text-gray-500">TVQ (9.975%): 14.46$</p>
                         <p>Final Price: 166.71$</p>
-                        
 
 
 
                     </div>
+                    <div class="items-center">
+
+                        <button on:click={()=>confirm("Would you like to proceed with the booking")} class=" w-44 text-center py-2 bg-gray-300 hover:bg-gray-400 rounded ">Book Reservation</button>
+                    </div>
+
 
                 </div>
+
             </td>
         </tr>
 
     </table>
     <br>
-    <div class="items-center justify-between flex">
-        <p class=" text-xs ">**Prices may differ based on reservations and extras.</p>
-        <button on:click={()=>confirm("are you sure?")} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Book Reservation</button>
-    </div>
+    <p class=" text-xs ">**Prices may differ based on reservations and extras.</p>
+
 
 
 </div>
@@ -137,8 +139,6 @@
 
 <style>
     * {
-        box-sizing: border-box;
-        color: #2f373d;
         scroll-behavior: smooth;
         text-align: justify;
         list-style: none;
