@@ -1,1 +1,8 @@
-<h2>Hello</h2>
+<script>
+	import Content from '../components/Content.svelte';
+</script>
+
+<svelte:head>
+  <title>Rentify</title>
+</svelte:head>
+<Content title="Dashboard"/>
