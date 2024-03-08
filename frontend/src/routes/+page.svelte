@@ -6,8 +6,6 @@
     import MainFilter from "$lib/components/MainSearchBar.svelte";
 </script>
 
-
-
     <MainFilter/>
 
     <RecentSearch>

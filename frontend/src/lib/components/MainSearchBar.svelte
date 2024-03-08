@@ -15,35 +15,37 @@
 
     <form class="flex flex-col" action="/search">
         <div class="grid grid-cols-6 gap-4 lg:grid-cols-4">
-            <input type="text" placeholder="Pick-up"
+            <input name="pickup_location"
+                    type="text" placeholder="Pick-up"
                    class="focus:outline-none focus:border-blue-500 border rounded p-2 col-span-6 md:col-span-3 lg:col-span-2 h-12 border-gray-500"
                    bind:value={pickupLocation}/>
-            <input type="text" placeholder="Drop-off"
+            <input name="dropoff_location"
+                   type="text" placeholder="Drop-off"
                    class="focus:outline-none focus:border-blue-500 border rounded p-2 col-span-6 md:col-span-3 lg:col-span-2 h-12 border-gray-500"
                    value={dropOffLocation}/>
 
             <div class="border rounded p-2 col-span-3  lg:col-span-1 h-14 border-gray-500 relative">
                 <div class="absolute top-0">
-                    <span class="text-xs text-gray-600">Pick-up location</span>
-                    <SveltyPicker clearBtn={false} bind:value={pickupDate} inputClasses="w-full h-full"/>
+                    <span class="text-xs text-gray-600">Pick-up Date</span>
+                    <SveltyPicker clearBtn={false} mode="date" name="start_date" bind:value={pickupDate} inputClasses="w-full h-full"/>
                 </div>
             </div>
             <div class="border border-gray-500 rounded p-2 col-span-3  lg:col-span-1 h-14 relative">
                 <div class="absolute top-0">
-                    <span class="text-xs text-gray-600">Pick-up location</span>
-                    <SveltyPicker clearBtn={false} bind:value={dropOffDate} inputClasses="w-full h-full"/>
-                </div>
-            </div>
-            <div class="border border-gray-500 rounded p-2 col-span-3  lg:col-span-1 h-14 relative">
-                <div class="absolute top-0">
-                    <span class="text-xs text-gray-600">Pick-up time</span>
-                    <SveltyPicker clearBtn={false} mode="time" format="hh:ii" bind:value={pickupTime} inputClasses="w-full h-full"/>
+                    <span class="text-xs text-gray-600">Drop-off Date</span>
+                    <SveltyPicker clearBtn={false} mode="date" name="end_date" bind:value={dropOffDate} inputClasses="w-full h-full"/>
                 </div>
             </div>
             <div class="border border-gray-500 rounded p-2 col-span-3  lg:col-span-1 h-14 relative">
                 <div class="absolute top-0">
                     <span class="text-xs text-gray-600">Pick-up time</span>
-                    <SveltyPicker clearBtn={false} mode="time" format="hh:ii" bind:value={dropOffTime} inputClasses="w-full h-full"/>
+                    <SveltyPicker clearBtn={false} mode="time" name="start_time" format="hh:ii" bind:value={pickupTime} inputClasses="w-full h-full"/>
+                </div>
+            </div>
+            <div class="border border-gray-500 rounded p-2 col-span-3  lg:col-span-1 h-14 relative">
+                <div class="absolute top-0">
+                    <span class="text-xs text-gray-600">Drop-off time</span>
+                    <SveltyPicker clearBtn={false} mode="time" name="end_time" format="hh:ii" bind:value={dropOffTime} inputClasses="w-full h-full"/>
                 </div>
             </div>
         </div>

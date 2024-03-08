@@ -10,6 +10,9 @@
     import {type Car} from "$lib/model/Car";
     import {toast} from "svelte-sonner";
     import {writable} from "svelte/store";
+    import {repo} from "$lib/repo";
+    import {onMount} from "svelte";
+    import {page} from "$app/stores";
 
     const limit = 20;
     let hasMore = true;
@@ -20,10 +23,21 @@
     const selectedTransmission = writable<string[]>([]);
     const selectedTotalPrice = writable<string[]>([]);
     const sortBy = writable<string>('');
+    let isMounted = false;
+
+    const nullable = (arr: string[]) => (arr.length === 0 ? null : arr);
+
+    $: filters = {
+        type: nullable($selectedCarType),
+        capacity: nullable($selectedCapacity),
+        transmission: nullable($selectedTransmission),
+        price: nullable($selectedTotalPrice),
+        sortBy: $sortBy,
+    };
 
     const fetchCars = async (reset = false) => {
         try {
-            const data = [];//request to db
+            const data = await repo.getVehicles(limit, reset ? 0 : offset, filters);
             if (reset) {
                 cars = data;
                 offset = limit; // Reset offset if it's a fresh fetch
@@ -37,8 +51,17 @@
         }
     };
 
+     onMount(() => {
+        fetchCars(true);
+        isMounted = true;
+    });
+
+     $: if (isMounted && ($selectedCarType.length > 0 || $selectedCapacity.length > 0 || $selectedTransmission.length > 0 || $selectedTotalPrice.length > 0 || $sortBy !== '')) {
+        fetchCars(true);
+    }
+
     const fetchMore = async () => {
-        const batch = []; //request to db
+        const batch = await repo.getVehicles(limit, offset, filters);
 
         if (!batch?.length) {
             hasMore = false;
