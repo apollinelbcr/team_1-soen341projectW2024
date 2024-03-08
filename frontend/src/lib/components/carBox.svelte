@@ -1,8 +1,13 @@
 <script lang="ts">
 
-    export let price: number;
-    export let type: string;
-    export let category: string;
-    export let src: string;
-    export let href: string;
 </script>
+<main>
+    <div class="carInfo">
+        <p style="font-size: 25px;">Nissan Rogue</p>
+        <p style="font-weight: 15px">Standard SUV</p>
+    </div>
+    <
+</main>
+
+
+
