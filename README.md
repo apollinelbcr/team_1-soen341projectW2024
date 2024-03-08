@@ -3,12 +3,13 @@
 ## Summary
 
 * [About the project](#about-the-project)
+* [Team Members](#team-members)
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [Prerequisite](#prerequisites)
 * [Running](#running)
 * [Utilisation](#utilisation)
-* [Team Members](#team-members)
+
 
 
 ## About the project
@@ -21,11 +22,24 @@ available for rent, complete with descriptions, photos, and detailed specificati
 it offers a range of services to both users and rental providers, enhancing the rental experience and simplifying the 
 transaction process.
 
-It implements different services for users and renters:
+## Team Members and roles
 
-#### Lists of services clients/renters
+- Asma Aimade: asmaaimade0@gmail.com - full stack for User story 3 (customer)
+- Zineb Bamouh: zineb.bamouh@gmail.com - full stack for User story 2 (customer)
+- Mohamed Gueye: mohamed.gueye88@gmail.com - full stack for User story 4 (customer/admin)
+- Apolline Leboucher: apolline.leb@gmail.com - full stack for User story 6 (admin/user)
+- Beaudelaire Tsoungui Nzodoumkouo: beaudelaire@tutamail.com - full stack for User story 1 (customer)
+- Kaoutar El Azzab: kaoutar.elazzab@gmail.com - full stack for User story 5 (all users)
 
-The user is most often a business looking to rent vehicles:
+## Project Approach
+[Link to the project's approach document](https://docs.google.com/document/d/1U6NiEDSAmT1NGRBFCFDgL9N2u6lD7lsj/edit)
+
+## List of functionnalities/services that the app offers
+
+#### Clients/Renters
+
+This application implements different services for users and renters. The user can be a business or just a regular person looking to rent a vehicle(s):
+
 * Sign-up page
   ![Status][s-todo]
 * Login (not required to view the homepage)
@@ -69,6 +83,19 @@ The user is most often a business looking to rent vehicles:
 * Calculation of invoices for each client of the current month
   ![Status][s-todo] ![Role][s-renter]
 
+#### Customer Service Representatives
+A customer service role is to:
+* Creates a reservation fur customer who didn't make one
+  ![Status][s-todo] ![Role][s-renter]
+* Confirms the already made reservation 
+  ![Status][s-todo] ![Role][s-renter]
+* Process and review the rental agreement review
+  ![Status][s-todo] ![Role][s-renter]
+* Process the payment 
+  ![Status][s-todo] ![Role][s-renter]
+* Confirms the return
+  ![Status][s-todo] ![Role][s-renter]
+
 #### Administrator
 An Administrator role is also implemented:
 * Administration panel
@@ -84,7 +111,7 @@ An Administrator role is also implemented:
 * Option to set a renter account as a user account
   ![Status][s-todo] ![Role][s-admin]
 
-#### Security
+## Security Considerations
 The application relies on a robust structure to ensure security:
 * Secure authentication with login token
   ![Status][s-todo]
@@ -105,7 +132,6 @@ This web application uses certain technologies and frameworks:
 ### Back-end
 * [Nestjs](https://nestjs.com)
 
-
 <!-- Installation -->
 ## Installation
 
@@ -113,7 +139,7 @@ Here's how to set up the application in your development environment
 
 ### Prerequisites
 
-[NodeJs](https://nodejs.org/en/download)
+[Node](https://nodejs.org/en/download)
 
 After you install Node.js, verify NodeJs and NPM installation by writing the following command in terminal or command prompt.
 
@@ -136,17 +162,20 @@ cd frontend
 npm i
 ```
 
-2. Install the backend dependecies
+3. Run de frontend
+```
+npm run dev
+```
+The frontend can then be access @  http://localhost:5173
+
+4. Install the backend dependecies
 
    Yet to be implemented
 
-3. Run the backend and frontend
+5. Run the backend
 
-- backend
-  (Yet to be implemented)
+  Yet to be implemented
 
-- frontend
-  (Yet to be implemented)
   
 
 ### Extensions used
@@ -157,15 +186,6 @@ Work In Progress
 ## Utilisation
 
 Documentation of the features offered by our application! (see the project wiki)![Status][s-todo]
-
-## Team Members
-
-Asma Aimade: asmaaimade0@gmail.com - full stack for User story 3 (customer)
-- Zineb Bamouh: zineb.bamouh@gmail.com - full stack for User story 2 (customer)
-- Mohamed Gueye: mohamed.gueye88@gmail.com - full stack for User story 4 (customer/admin)
-- Apolline Leboucher: apolline.leb@gmail.com - full stack for User story 6 (admin/user)
-- Beaudelaire Tsoungui Nzodoumkouo: beaudelaire@tutamail.com - full stack for User story 1 (customer)
-- Kaoutar El Azzab: kaoutar.elazzab@gmail.com - full stack for User story 5 (all users)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
