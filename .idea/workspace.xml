@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/lib/components/InformationPage/carInfo.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/static/nissan rogue.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/lib/components/carBox.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/components/carBox.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/components/InformationPage/carInfo.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/components/InformationPage/carInfo.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/routes/Information/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/Information/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "US-2",
-    "last_opened_file_path": "C:/Users/zineb/Documents/GitHub/team_1-soen341projectW2024/frontend/static",
+    "last_opened_file_path": "C:/Users/zineb/WebstormProjects/user-story2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -91,6 +88,7 @@
       <workItem from="1709740369292" duration="205000" />
       <workItem from="1709769964284" duration="298000" />
       <workItem from="1709827066165" duration="14391000" />
+      <workItem from="1709921583967" duration="5372000" />
     </task>
     <servers />
   </component>
