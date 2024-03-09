@@ -78,30 +78,32 @@
 
 
 
-<div class="flex px-12 py-16">
+<div class="flex w-[95%] m-auto">
     
-    <div class=" fixed p-4 w-60 bg-gray-300 mr-2">
-        <div class="pt-5 pb-5">
-            <a href="">Dashboard</a>
-        </div>
-        <hr>
-        <div class="pt-5 pb-5">
-            <a href="/manage">My Account</a>
-        </div>
-        <hr>
-        <div class="pt-5 pb-5">
-            <a href="">Reviews</a>
-        </div>
-        <hr> 
-        <div class="pt-5 pb-5">
-            <a href="/">My Reservations</a>
-        </div>
-        <hr>
-        <div class="pt-5 pb-5">
-            <a href="">Settings</a>
-        </div>
+    <div class=" min-w-[300px]">
+            <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, Zineb!</header>
+                <ul>
+                    <li>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
+                    </li>
+                    <li>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="contactLink">Contact</a>
+                    </li>
+                    <li>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="paymentLink">Payment</a>
+                    </li>
+                    <li>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="reviewLink">Review</a>
+                    </li>
+                    <li>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes">My Reservation</a>
+                    </li>
+                </ul>
+            </div>
+        
     </div>
-    <div class="flex flex-col w-auto ml-64 flex-1">
+    <div class=" mt-[50px] rounded-lg">
         <table class="border-collapse">
             <tr>
                 <td class=" border w-2/3 border-slate-300">
