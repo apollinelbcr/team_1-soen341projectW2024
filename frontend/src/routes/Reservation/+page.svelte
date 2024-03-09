@@ -22,17 +22,17 @@
 
 
 </script>
-<section class="flex justify-center items-center h-screen ">
+<section class="flex justify-center items-center h-screen">
 
     <div class="  ">
         <div class=" bg-white ">
             <!-- Content -->
-            <div class="flex items-center ">
+            <div class="flex justify-between items-center ">
                 <!-- Image -->
                 <div>
                     <img class="w-1/2 h-auto" src="{$details.src}" alt="car">
                 </div>
-                <div class="ml-4">
+                <div>
                     <h3 class="mb-2 text-2xl font-bold md:text-3xl">{$details.name} {$details.type}</h3>
                     <h4 class="mb-2 text-2xl md:text-4xl">{$details.category}</h4>
                     <p style="font-weight: 15px">Standard SUV</p>
@@ -40,6 +40,7 @@
                     <p style="font-weight: 15px">{$details.transmission}</p>
 
                 </div>
+
 
             </div>
             <br>
@@ -114,16 +115,54 @@
 
 
                 </div>
+            <br>
+
+            <div class="items-center">
+
+                <button on:click={()=>confirm("Would you like to proceed with the booking")} class=" w-44 text-center py-2 bg-gray-300 hover:bg-gray-400 rounded ">Book Reservation</button>
+            </div>
         </div>
         <br>
-        <div class="items-center">
 
-            <button on:click={()=>confirm("Would you like to proceed with the booking")} class=" w-44 text-center py-2 bg-gray-300 hover:bg-gray-400 rounded ">Book Reservation</button>
-        </div>
-        <p class="mb-6 text-sm text-[#636262] sm:text-base lg:mb-8">Egestas consectetur a cras aliquam tincidunt tellus quam. Quis faucibus tincidunt etiam sed</p>
-        <p class="text-sm text-[#636262]">Zero spam. Only quality pixels.</p>
+
+        <p class="text-sm">Prices may differ based on reservations and extras.</p>
 
         </div>
 
 
 </section>
+<style>
+    * {
+        scroll-behavior: smooth;
+        list-style: none;
+        text-decoration: none;
+
+    }
+    section {
+        background-color: #F4F4F5;
+        padding: 20px;
+        border: 1px solid gray;
+    }
+    button {
+        background: none;
+        font-size: 15px;
+        color: dodgerblue;
+        font-weight: bold;
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    button:hover {
+        background: dodgerblue;
+        opacity: 0.2;
+        font-size: 15px;
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        border: 1px solid dodgerblue;
+        width: 150px;
+        height: 40px;
+        text-align: center;
+    }
+</style>
