@@ -1,5 +1,5 @@
 <script lang="ts">
-    import CarDetails from "./carDetails.svelte";
+    import CarDetails from "$lib/components/carDetails.svelte";
     import {writable} from "svelte/store";
 
     const resDetails = writable({
