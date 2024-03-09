@@ -3,7 +3,7 @@
 </script>
 <main>
     <button id="exit">
-        <a href="/">x</a>
+        <a href="/Account">x</a>
     </button>
     <div class="form-edit">
         <div class="profile-form">
