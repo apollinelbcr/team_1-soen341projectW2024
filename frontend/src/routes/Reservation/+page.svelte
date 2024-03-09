@@ -25,12 +25,13 @@
 <section class="flex justify-center items-center h-screen">
 
     <div class="  ">
-        <div class=" bg-white ">
+        <div class="p-4">
+        <div class="container">
             <!-- Content -->
-            <div class="flex justify-between items-center ">
+            <div class="container1">
                 <!-- Image -->
                 <div>
-                    <img class="w-1/2 h-auto" src="{$details.src}" alt="car">
+                    <img class=" h-auto" src="{$details.src}" alt="car">
                 </div>
                 <div>
                     <h3 class="mb-2 text-2xl font-bold md:text-3xl">{$details.name} {$details.type}</h3>
@@ -42,9 +43,10 @@
                 </div>
 
 
+
             </div>
             <br>
-            <div class="flex justify-between items-center">
+            <div class="container2">
                 <div>
                     <div class="font-bold text-base">Pick-up information:</div>
                     <div class="">
@@ -67,63 +69,62 @@
                         <br>
                     </div>
                 </div>
+                <div>
+                    <form id="extra-form"  class="relative mb-4">
+                        <div class="extra">
+                            <p class="font-bold">Adds-on</p>
+                            <input type="checkbox" id="baby-seat" name="extra[]" value="Baby Seat">
+                            <label for="baby-seat">Baby Seat</label>
+                            <br>
+                            <input type="checkbox" id="cushion" name="extra[]" value="Cushion">
+                            <label for="cushion">Cushion</label>
+                            <br>
+                            <input type="checkbox" id="GPS" name="extra[]" value="GPS">
+                            <label for="GPS">GPS</label>
+                            <br>
+                            <input type="checkbox" id="umbrella" name="extra[]" value="Umbrella">
+                            <label for="umbrella">Umbrella</label>
+                            <br>
+                            <input type="checkbox" id="key" name="extra[]" value="Extra Set of Key">
+                            <label for="key">Extra Set of Key</label>
+                            <br>
+                            <input type="checkbox" id="windshield" name="extra[]" value="Windshield Washer">
+                            <label for="windshield">Windshield Washer</label>
+                            <br>
+                            <input type="checkbox" id="jump-starter" name="extra[]" value="Jump Starter">
+                            <label for="jump-starter">Jump Starter</label>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <div class="font-bold text-base">Price:</div>
+                    <p>Base Price: {$resDetails.price}</p>
+                    <div id="extras">
+                        <p >Windshield Washer: 10$</p>
+                        <p>Jump Starter: 20$</p>
+                    </div>
+                    <br>
+                    <p>Updated Price: 145$</p>
+                    <p>TPS (5%): 7.25$</p>
+                    <p>TVQ (9.975%): 14.46$</p>
+                    <p>Final Price: 166.71$</p>
+                </div>
             </div>
             <br>
 
 
+
                 <div class="flex justify-between items-center">
-                    <div>
-                        <form id="extra-form"  class="relative mb-4">
-                            <div class="extra">
-                                <p class="font-bold">Adds-on</p>
-                                <input type="checkbox" id="baby-seat" name="extra[]" value="Baby Seat">
-                                <label for="baby-seat">Baby Seat</label>
-                                <br>
-                                <input type="checkbox" id="cushion" name="extra[]" value="Cushion">
-                                <label for="cushion">Cushion</label>
-                                <br>
-                                <input type="checkbox" id="GPS" name="extra[]" value="GPS">
-                                <label for="GPS">GPS</label>
-                                <br>
-                                <input type="checkbox" id="umbrella" name="extra[]" value="Umbrella">
-                                <label for="umbrella">Umbrella</label>
-                                <br>
-                                <input type="checkbox" id="key" name="extra[]" value="Extra Set of Key">
-                                <label for="key">Extra Set of Key</label>
-                                <br>
-                                <input type="checkbox" id="windshield" name="extra[]" value="Windshield Washer">
-                                <label for="windshield">Windshield Washer</label>
-                                <br>
-                                <input type="checkbox" id="jump-starter" name="extra[]" value="Jump Starter">
-                                <label for="jump-starter">Jump Starter</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <div class="font-bold text-base">Price:</div>
-                        <p>Base Price: {$resDetails.price}</p>
-                        <div id="extras">
-                            <p >Windshield Washer: 10$</p>
-                            <p>Jump Starter: 20$</p>
-                        </div>
-                        <br>
-                        <p>Updated Price: 145$</p>
-                        <p>TPS (5%): 7.25$</p>
-                        <p>TVQ (9.975%): 14.46$</p>
-                        <p>Final Price: 166.71$</p>
-                    </div>
+
 
 
                 </div>
             <br>
 
-            <div class="items-center">
 
-                <button on:click={()=>confirm("Would you like to proceed with the booking")} class=" w-44 text-center py-2 bg-gray-300 hover:bg-gray-400 rounded ">Book Reservation</button>
-            </div>
         </div>
         <br>
-
+        </div>
 
         <p class="text-sm">Prices may differ based on reservations and extras.</p>
 
@@ -143,6 +144,7 @@
         padding: 20px;
         border: 1px solid gray;
     }
+
     button {
         background: none;
         font-size: 15px;
@@ -164,5 +166,19 @@
         width: 150px;
         height: 40px;
         text-align: center;
+    }
+    .container {
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        display: flex;
+    }
+    .container1 {
+        display: flex;
+
+
+    }
+    .container2 {
+        display: flex;
     }
 </style>
