@@ -4,26 +4,38 @@
     import FilterToggle from "$lib/components/Filter/FilterToggle.svelte";
     import ExploreFilter from "$lib/components/Filter/ExploreFilter.svelte";
     import Skeleton from "$lib/components/Utils/Skeleton.svelte";
-    import Spinner from "$lib/components/Utils/Spinner.svelte";
-    import InfiniteScroll from 'svelte-infinite-scroll';
     import CarCard from "$lib/components/Card/CarCard.svelte"
-    import {type Car} from "$lib/model/Car";
     import {toast} from "svelte-sonner";
     import {writable} from "svelte/store";
     import {repo} from "$lib/repo";
     import {onMount} from "svelte";
+    import {type Vehicle} from "$lib/model/Vehicle";
     import {page} from "$app/stores";
 
-    const limit = 20;
-    let hasMore = true;
-    let cars: Car[];
-    let offset = limit;
+    let cars: Vehicle[];
     const selectedCarType = writable<string[]>([]);
     const selectedCapacity = writable<string[]>([]);
     const selectedTransmission = writable<string[]>([]);
     const selectedTotalPrice = writable<string[]>([]);
     const sortBy = writable<string>('');
     let isMounted = false;
+    let previousState = '';
+
+    const pickupLocation = writable('');
+    const dropOffLocation = writable('');
+    const pickupDate = writable('');
+    const dropOffDate = writable('');
+    const pickupTime = writable('');
+    const dropOffTime = writable('');
+
+    $: if ($page.url.searchParams) {
+        pickupLocation.set($page.url.searchParams.get('pickup_location'));
+        dropOffLocation.set($page.url.searchParams.get('dropoff_location'));
+        pickupDate.set($page.url.searchParams.get('start_date'));
+        dropOffDate.set($page.url.searchParams.get('end_date'));
+        pickupTime.set($page.url.searchParams.get('start_time'));
+        dropOffTime.set($page.url.searchParams.get('end_time'));
+    }
 
     const nullable = (arr: string[]) => (arr.length === 0 ? null : arr);
 
@@ -35,43 +47,36 @@
         sortBy: $sortBy,
     };
 
-    const fetchCars = async (reset = false) => {
+    const fetchCars = async () => {
         try {
-            const data = await repo.getVehicles(limit, reset ? 0 : offset, filters);
-            if (reset) {
-                cars = data;
-                offset = limit; // Reset offset if it's a fresh fetch
-            } else {
-                cars = [...cars, ...data];
-                offset += limit;
-            }
-            hasMore = true;
+            cars = await repo.getVehicles();
         } catch (error) {
             toast.error('Failed to fetch cars. Please try again later.');
         }
     };
 
-     onMount(() => {
-        fetchCars(true);
+    onMount(() => {
+        fetchCars();
         isMounted = true;
     });
 
-     $: if (isMounted && ($selectedCarType.length > 0 || $selectedCapacity.length > 0 || $selectedTransmission.length > 0 || $selectedTotalPrice.length > 0 || $sortBy !== '')) {
-        fetchCars(true);
+    function filterCars(filters: any) {
+
     }
 
-    const fetchMore = async () => {
-        const batch = await repo.getVehicles(limit, offset, filters);
+    $: {
+        const currentState = JSON.stringify([$selectedCarType, $selectedCapacity, $selectedTransmission, $selectedTotalPrice, $sortBy]);
 
-        if (!batch?.length) {
-            hasMore = false;
-        } else {
-            cars = [...cars, ...batch];
-            offset = offset + limit;
+        if (isMounted && (currentState !== previousState)) {
+            filterCars(filters);
+            previousState = currentState;
         }
-    };
+    }
+
 </script>
-<SearchFilter/>
+<SearchFilter pickupLocation={$pickupLocation} dropOffLocation={$dropOffLocation} pickupDate={new Date($pickupDate).toISOString().slice(0, 10)}
+dropOffDate={new Date($pickupDate).toISOString().slice(0, 10)} pickupTime={$pickupTime}  dropOffTime={$dropOffTime}
+/>
 <div class='flex flex-col items-center py-8'>
     <div class='relative flex w-full max-w-xl flex-col lg:max-w-6xl lg:flex-row lg:justify-center'>
         <div class='sm:mx-2 lg:hidden'>
@@ -102,8 +107,6 @@
                     {#each cars as car}
                         <CarCard {...car}/>
                     {/each}
-                    <InfiniteScroll hasMore={hasMore} threshold={cars?.length || 20} window={true}
-                                    on:loadMore={() => fetchMore()}/>
                 {:else }
                     <div class='mx-2 text-gray-50'>
                         <Skeleton className='mb-2 rounded-lg first:mt-2'
@@ -111,18 +114,12 @@
                     </div>
                 {/if}
 
-                {#if !hasMore}
-                    {#if cars?.length}
-                        <div class='mx-auto mt-4 text-center'>
-                            <p class='text-gray-500 dark:text-gray-400'>
-                                No more cars to show
-                            </p>
-                        </div>
-                    {:else }
-                        <div class='mt-4 text-center'>
-                            <Spinner/>
-                        </div>
-                    {/if}
+                {#if cars?.length}
+                    <div class='mx-auto mt-4 text-center'>
+                        <p class='text-gray-500 dark:text-gray-400'>
+                            No more cars to show
+                        </p>
+                    </div>
                 {/if}
             </div>
         </div>
