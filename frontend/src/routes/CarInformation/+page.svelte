@@ -73,6 +73,7 @@
                     <form id="extra-form"  class="relative mb-4">
                         <div class="extra">
                             <p class="font-bold">Adds-on</p>
+                            <p>Extra equipments are 10$ each</p>
                             <input type="checkbox" id="baby-seat" name="extra[]" value="Baby Seat">
                             <label for="baby-seat">Baby Seat</label>
                             <br>
@@ -82,14 +83,17 @@
                             <input type="checkbox" id="GPS" name="extra[]" value="GPS">
                             <label for="GPS">GPS</label>
                             <br>
-                            <input type="checkbox" id="umbrella" name="extra[]" value="Umbrella">
-                            <label for="umbrella">Umbrella</label>
+                            <input type="checkbox" id="roof" name="extra[]" value="Roof Boxes">
+                            <label for="roof">Roof Boxes</label>
                             <br>
                             <input type="checkbox" id="key" name="extra[]" value="Extra Set of Key">
                             <label for="key">Extra Set of Key</label>
                             <br>
                             <input type="checkbox" id="windshield" name="extra[]" value="Windshield Washer">
                             <label for="windshield">Windshield Washer</label>
+                            <br>
+                            <input type="checkbox" id="wifi" name="extra[]" value="Wifi Hotspot">
+                            <label for="wifi">Wifi Hotspot</label>
                             <br>
                             <input type="checkbox" id="jump-starter" name="extra[]" value="Jump Starter">
                             <label for="jump-starter">Jump Starter</label>
@@ -103,14 +107,15 @@
                     <div class="font-bold text-base">Price:</div>
                     <p>Base Price: {$resDetails.price}</p>
                     <div id="extras">
-                        <p >Windshield Washer: 10$</p>
-                        <p>Jump Starter: 20$</p>
+                        <p><span id="num">2</span> Extra</p>
                     </div>
                     <br>
                     <p>Updated Price: 145$</p>
                     <p>TPS (5%): 7.25$</p>
                     <p>TVQ (9.975%): 14.46$</p>
                     <p>Final Price: 166.71$</p>
+                    <br>
+                    <br>
                     <br>
                     <input type="submit" value="Book">
                 </div>
