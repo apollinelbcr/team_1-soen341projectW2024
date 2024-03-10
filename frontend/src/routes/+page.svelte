@@ -22,4 +22,3 @@
         <CarCard type="Sedan" category="Electric" price={100} src="/images/tesla.png" href="/"/>
         <CarCard type="Sedan" category="Electric" price={100} src="/images/tesla.png" href="/"/>
     </CarCardWrapper>
-
