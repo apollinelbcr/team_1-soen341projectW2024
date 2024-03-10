@@ -4,12 +4,12 @@ import { UpdateVehicleStatusDto } from './dto/update-vehicle-status.dto';
 import { Vehicle } from './vehicles.entity';
 import { VehiclesService } from './vehicles.service';
 
-@Controller('vehicles')
+@Controller('api/v1/vehicles')
 export class VehiclesController {
 
     constructor(private vehiclesService: VehiclesService){}
 
-    // -> URL to use http://localhost:3000/vehicles/
+    // -> URL to use http://localhost:3002/vehicles/
 
     //1. Create vehicle
     @Post()

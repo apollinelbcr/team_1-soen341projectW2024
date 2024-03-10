@@ -7,6 +7,7 @@
     import {writable} from 'svelte/store';
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
+    import Vehicle from "$lib/components/Card/VehicleCard.svelte";
 
     const recentSearches = writable([]);
 

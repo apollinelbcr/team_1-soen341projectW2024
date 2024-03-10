@@ -11,6 +11,7 @@
     import {onMount} from "svelte";
     import {type Vehicle} from "$lib/model/Vehicle";
     import {page} from "$app/stores";
+    import VehicleCard from "$lib/components/Card/VehicleCard.svelte";
 
     let cars: Vehicle[];
     const selectedCarType = writable<string[]>([]);
@@ -107,6 +108,28 @@ dropOffDate={new Date($pickupDate).toISOString().slice(0, 10)} pickupTime={$pick
                     {#each cars as car}
                         <CarCard {...car}/>
                     {/each}
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
+                    <VehicleCard/>
                 {:else }
                     <div class='mx-2 text-gray-50'>
                         <Skeleton className='mb-2 rounded-lg first:mt-2'

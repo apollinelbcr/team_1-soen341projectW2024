@@ -56,7 +56,7 @@ export const repo = {
 
   async getVehicles(): Promise<Vehicle[]> {
     return client.deserialize<Vehicle[]>(
-      'POST',
+      'GET',
       `/vehicles`
     );
   },
