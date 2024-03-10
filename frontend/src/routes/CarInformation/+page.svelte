@@ -20,7 +20,7 @@
     });
 </script>
 <main>
-    <section class="flex justify-center items-center h-screen">
+    <section class="flex justify-center items-center">
         <div class="container12">
             <div class="container">
                 <div class="child1">
@@ -120,6 +120,8 @@
 </main>
 <style>
     * {
+        list-style: none;
+        text-decoration: none;
         scroll-behavior: smooth;
         margin: 0;
         padding: 0;

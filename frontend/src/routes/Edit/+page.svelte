@@ -107,6 +107,7 @@
                     <label for="mastercard">Mastercard</label>
                     <br>
                     <br>
+                    <input type="submit" value="Edit">
                 </form>
             </div>
         </div>
@@ -177,7 +178,7 @@
     .user-expire , .user-code {
         width: 150px;
     }
-    a {
+    a{
         position: fixed;
         border: none;
         background: none;
@@ -214,6 +215,29 @@
         gap: 25px;
         max-width: 500px;
         justify-content: space-between;
+    }
+    input[type=submit] {
+        border: none;
+        background: none;
+        font-size: 15px;
+        color: dodgerblue;
+        font-weight: bold;
+        width: 40px;
+        height: 30px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    input[type=submit]:hover {
+        background: dodgerblue;
+        opacity: 0.2;
+        font-size: 15px;
+        color: white;
+        font-weight: bold;
+        width: 40px;
+        height: 30px;
+        border-radius: 20px;
+        text-align: center;
+        justify-content: center;
     }
 
 
