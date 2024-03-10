@@ -129,7 +129,6 @@
     section {
         background-color: #F4F4F5;
         padding: 20px;
-        border: 1px solid gray;
     }
     .container12 {
         display: flex;
