@@ -1,0 +1,12 @@
+id,name_vehicle,image,vehicle_type,vehicle_category,vehicle_transmission,status
+08af632c-2c2d-4458-a316-25961faebd33,Ford Fusion Red,ford_fusion_2025_red.jpeg,CAR,COMPACT,AUTOMATIC,AVAILABLE
+60c89e9b-49c5-449e-acd8-e84b241cb0e9,Toyota Rav4 Blue,toyota_rav4_2024_blue.jpeg,SUV,STANDARD,AUTOMATIC,AVAILABLE
+6ecf3af6-e3ca-4105-a6a5-dde76d4048b5,Hyundai Tucson Navy,hyundai_tucson_2024.jpeg,SUV,STANDARD,AUTOMATIC,AVAILABLE
+d77e586f-e902-4fe6-adbb-0567353236fe,Toyota Corolla Red,toyota_corolla_2023.jpeg,CAR,COMPACT,AUTOMATIC,AVAILABLE
+1a936659-682d-4575-a49a-b6077e1db845,Toyota Camry Grey,toyota_camry_grey.png,CAR,INTERMEDIATE,AUTOMATIC,AVAILABLE
+c1943bca-53c8-4c6c-ac63-661db7c20f96,Truck 26 foot,truck_class1.png,TRUCK,CLASS 1,MANUAL,AVAILABLE
+35827a75-54c0-4de7-bcd6-de1cb87b5334,Truck 24 foot,truck_class1_24ft.png,TRUCK,CLASS 1,MANUAL,AVAILABLE
+1b853b58-5184-4d0c-b0e5-33cb03f71a61,Ford F-150,ford_F150_2018.jpeg,SUV,COMPACT,AUTOMATIC,AVAILABLE
+7befc065-2e0b-4066-89f6-536bcbea24b4,Chevrolet Malibu Black 2023,chevrolet_malibu_black_2023.jpeg,CAR,COMPACT,AUTOMATIC,AVAILABLE
+5dfdd605-b679-4713-93bf-d3505fe40629,Mitsubishi Mirage White,mitsubishi_mirage_white.jpeg,CAR,COMPACT,AUTOMATIC,AVAILABLE
+69449df2-77d8-415a-85b3-3d9e03626925,Ford Cargo,ford_large_van.png,VAN,LARGE,AUTOMATIC,AVAILABLE
