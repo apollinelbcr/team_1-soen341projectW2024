@@ -193,42 +193,76 @@
                 </button>
             </div>
             <div class="child" id="Review" style="display: none;">
-                <h1 style="font-size: 30px;">Review</h1>
-                <p>Feel free to review any of your old booking.</p>
-                <br>
-                <p style="font-weight: bold">Your review:</p>
-                <br>
-                <div class="card-review">
-                    <div class="review">
-                        <div class="name-car">
-                            <p>Nissan Rogue</p>
-                        </div>
-                        <br>
-                        <div class="rating-car">
-                            <p>75%</p>
-                        </div>
-                    </div>
-                    <div class="review">
-                        <div class="name-car">
-                            <p>Nissan Rogue</p>
-                        </div>
-                        <br>
-                        <div class="rating-car">
-                            <p>75%</p>
-                        </div>
-                    </div>
-                    <div class="review">
-                        <div class="name-car">
-                            <p>Nissan Rogue</p>
-                        </div>
-                        <br>
-                        <div class="rating-car">
-                            <p>75%</p>
-                        </div>
-                    </div>
+                <div class="relative overflow-x-auto bg-gray-100 rounded-lg p-6">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-700">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Reservation
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Review
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price per Day
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-6 font-medium text-gray-900 whitespace-nowrap">
+                                Tesla
+                            </th>
+                            <td class="px-6 py-4 ">
+                                S
+                            </td>
+                            <td class="px-6 py-4">
+                                7/10
+                            </td>
+                            <td class="px-6 py-4">
+                                115$
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                Nissan
+                            </th>
+                            <td class="px-6 py-4">
+                                Rogue
+                            </td>
+                            <td class="px-6 py-4">
+                                5/10
+                            </td>
+                            <td class="px-6 py-4">
+                                115$
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                Toyota
+                            </th>
+                            <td class="px-6 py-4">
+                                Corolla
+                            </td>
+                            <td class="px-6 py-4">
+                                10/10
+                            </td>
+                            <td class="px-6 py-4">
+                                59$
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <br>
-                <button>Add</button>
+                <button>
+                    <a href="../Edit">Add</a>
+
+                </button>
+
             </div>
         </section>
     </section>
