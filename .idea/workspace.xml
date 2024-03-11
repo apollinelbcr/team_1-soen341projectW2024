@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-10_13_11__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-03-10_13_11__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,11 +74,11 @@
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\backend\src\reservations" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes\Account" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\routes" />
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\lib" />
-      <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\src\lib\components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
