@@ -1,5 +1,5 @@
 <script>
-	import CreateVehicle from "../../../../components/vehicles/CreateVehicle.svelte";
+	import CreateVehicle from "../../../../../components/vehicles/CreateVehicle.svelte";
 
 </script>
 <svelte:head>
