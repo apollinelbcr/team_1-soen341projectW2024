@@ -5,4 +5,5 @@ export type Vehicle = {
     vehicle_category: string
     vehicle_transmission: string
     status: string
+    price: number
 }
