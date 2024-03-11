@@ -67,16 +67,18 @@ export class ReservationsService {
             reservation.pickup_date = updateReservationDto.pickup_date.toString();
         }
 
-        if (updateReservationDto.pickup_time !== undefined) {
-            reservation.pickup_date = updateReservationDto.pickup_time;
-        }
 
         if (updateReservationDto.dropoff_date !== undefined) {
             reservation.dropoff_date = updateReservationDto.dropoff_date.toString();
         }
 
+
+        if (updateReservationDto.pickup_time !== undefined) {
+            reservation.pickup_time = updateReservationDto.pickup_time;
+        }
+        
         if (updateReservationDto.dropoff_time !== undefined) {
-            reservation.dropoff_date = updateReservationDto.dropoff_time;
+            reservation.dropoff_time = updateReservationDto.dropoff_time;
         }
 
         if (updateReservationDto.pickup_location !== undefined) {
