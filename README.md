@@ -45,13 +45,11 @@ This application implements different services for users and renters. The user c
 * Login (not required to view the homepage)
   ![Status][s-todo]
 * Homepage displaying the various models offered
-  ![Status][s-todo]
-* 10% discount for monthly payment (from one month onwards)
-  ![Status][s-todo]
+  ![Status][s-finished]
 * Login required for renting
   ![Status][s-todo]
 * Selection of a date range
-  ![Status][s-todo] ![Role][s-customer]
+  ![Status][s-finished] ![Role][s-customer]
 * Option for indefinite monthly payment (renewal each month)
   ![Status][s-todo] ![Role][s-customer]
 * Display of models available for rent according to entered dates
@@ -73,11 +71,11 @@ This application implements different services for users and renters. The user c
 * Table of the latest rentals
   ![Status][s-todo] ![Role][s-renter]
 * Summary page of vehicles with the status of each vehicle
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Vehicle modification page (not rented), with the option to remove the vehicle from stock
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Form to add a new vehicle
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Page of all clients
   ![Status][s-todo] ![Role][s-renter]
 * Calculation of invoices for each client of the current month
@@ -137,7 +135,7 @@ This web application uses certain technologies and frameworks:
 
 Here's how to set up the application in your development environment
 
-### Prerequisites
+### Prerequisites for frontend
 
 [Node](https://nodejs.org/en/download)
 
@@ -168,29 +166,46 @@ npm run dev
 ```
 The frontend can then be access @  http://localhost:5173
 
-4. Install the backend dependecies
-   ### Navigate into backend folder
-   ```
-   yarn install
-   ```
-   ### Install TypeORM
-   ```
-   yarn global add typeorm
-   ```
+### Prerequisites for backend
 
-6. Run the backend
+[Docker][https://www.docker.com/products/docker-desktop/]
+[NestJs]
+```
+$ npm install -g @nestjs/cli
+```
+(should be run on an admin access terminal)
+[pgAdmin][https://www.pgadmin.org/download/]
+(For database configuration)
 
-   ```
-   yarn start:dev
-   ```
-The frontend can then be access @  http://localhost:3000
+#### Server configuration
+```
+docker run --name rentify -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+```
+#### In pgAdmin : Add new server with the information in the docker command above & create a new database called : rentify
+
+#### Navigate into backend folder
+```
+cd backend
+npm i
+```
+
+#### Run the backend
+```
+npm run start:dev
+```
+The backend can then be access @  http://localhost:3000
 
 ### Database Records
-They will be exported in a csv file and added to the wiki in the database section
+They will be exported in a csv file and added to the current Sprint folder (Sprint 2 for now). Then, the file will be imported by developers in the database in pgAdmin (right-click on the table and import > select file csv)
 
 ### Extensions used
 
-Work In Progress
+Class Validators
+Pipes
+Services
+Controllers
+Modules
+TypeORM
 
 <!-- USAGE EXAMPLES -->
 ## Utilisation
