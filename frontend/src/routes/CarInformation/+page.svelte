@@ -20,7 +20,7 @@
     });
 </script>
 <main>
-    <section class="flex justify-center items-center">
+    <section class="flex justify-center items-center h-screen">
         <div class="container12">
             <div class="container">
                 <div class="child1">

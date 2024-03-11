@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="" />
+    <list default="true" id="847bb542-196e-49c2-903f-28167cb560b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/components/InformationPage/carInfo.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/components/carBox.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/components/carBox.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/CarInformation/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/CarInformation/+page.svelte" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
