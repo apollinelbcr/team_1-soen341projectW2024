@@ -4104,6 +4104,11 @@ svelte-preprocess@^5.1.0:
     sorcery "^0.11.0"
     strip-indent "^3.0.0"
 
+svelte-routing@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.npmjs.org/svelte-routing/-/svelte-routing-2.12.0.tgz"
+  integrity sha512-6i4Mncy4P2b7gD7+BOT9JzQvrfGfGXqFra8VXYU5//bpn6AzJ0PLEhH1E/KwY2AxleOiS/8Nm37MGuic2kn15A==
+
 svelte-sonner@^0.3.19:
   version "0.3.19"
   resolved "https://registry.npmjs.org/svelte-sonner/-/svelte-sonner-0.3.19.tgz"
@@ -4141,10 +4146,10 @@ svelty-picker@^5.2.1:
   dependencies:
     "@floating-ui/dom" "^1.4.5"
 
-sweetalert2@^11.10.6:
-  version "11.10.6"
-  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.10.6.tgz"
-  integrity sha512-CINZPLZXZRSZqSOE7H7j1F7X8e8O1kLOiXPmtJn1DYxvXsKBr3d16d90+IcwTTs7dJww20h8r8QIxIwsLGX+6A==
+sweetalert2@^11.6.13:
+  version "11.6.13"
+  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.6.13.tgz"
+  integrity sha512-n5yVF0FNx1lm4XzpPyb1HIaiptzODfVyeCzmB809tpK+1bPdoKoevKOxYjrtId75DV7xuIp4r6cjn8xUAB8dPQ==
 
 tailwind-merge@^2.2.1:
   version "2.2.1"
