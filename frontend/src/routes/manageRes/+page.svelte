@@ -14,6 +14,7 @@
             dropoffTime: "8:00 AM",
             dropoffLoc: "Montreal, QC",
             price: "$210",
+            extra_things:[],
         },
 
         {
@@ -27,6 +28,7 @@
             dropoffTime: "8:00 AM",
             dropoffLoc: "Montreal, QC",
             price: "$210",
+            extra_things: ["baby seat", "Extra keys", "Windshield washer", "Jump Starter"],
         },
 
         {
@@ -40,6 +42,7 @@
             dropoffTime: "8:00 AM",
             dropoffLoc: "Montreal, QC",
             price: "$210",
+            extra_things : ["Cushion", "Extra keys","Jump Starter"],
         }
     ]);
 
@@ -64,7 +67,28 @@
         },
     ]);
 
+    let userDatas = writable([
+        {
+            id: "user007",
+            name: "Asma",
+            email: "asmaaimade@gmail.com",
+            password: "abc123",
+            role: "client",
+            driver_license: "YYYY 9876 5432",
+        },
+        {
+            id: "user882",
+            name: "Zineb",
+            email: "zinebbamouh@gmail.com",
+            password: "abc123",
+            role: "client",
+            driver_license: "XXXX 1234 5678",
+        },
+    ]);
+
     const uid = "user007";
+
+    const extras = ["baby seat", "Cushion", "GPS", "Roof boxes", "Extra keys", "Windshield washer", "Jump Starter"];
 
     function openForm(): void {
         const formChange = document.getElementById("formChange") as HTMLElement;
@@ -140,12 +164,12 @@
 </div>
 
 
-
+{#each $userDatas.filter((userData) => userData.id == uid) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, Zineb!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.name}!</header>
                 <ul>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
@@ -224,23 +248,26 @@
                     <div class="flex justify center p-5">
                         <div class="w-1/3 border-r-2">
                             <div class="font-bold text-base">Adds-on:</div>
-                            Baby chair
+                            {#each resDetail.extra_things as extra_thing, i}
+                            {extra_thing}
                             <br>
-                            Cushion
+                            {:else}
+                            No adds-ons
+                            {/each}
                         </div>
                         
-                        <div class="w-1/3 border-r-2 pl-5 justify-center">
+                        <div class="w-1/3 border-r-2 pl-5 justify-center ">
                             <br>
-                            Umbrella
-                            <br>
-                            GPS
+                            <a class="underline text-blue-800 align-middle" href="" >Add other</a>
+
                         </div>
                         
                         <div class="w-1/3 pl-5">
                             <br>
                             Extra keys
                             <br>
-                            <a class="underline text-blue-800" href="" >Add other</a>
+                            djnjdkn
+                            <br>
             
                         </div>
                     </div>
@@ -309,3 +336,4 @@
         <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded">Submit</button>
     </form>
 </div>
+{/each}
