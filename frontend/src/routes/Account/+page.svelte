@@ -1,7 +1,33 @@
 <script lang="ts">
+    import EditForm from '$lib/components/Account/editForm.svelte';
+    import AddReview from "$lib/components/Account/addReview.svelte";
     import { onMount } from 'svelte';
+    import {writable} from "svelte/store";
+    let formData = writable(
+        {
+            fname: "Zineb",
+            lname: "Bamouh",
+            gender: "female",
+            date: "07",
+            month: "25",
+            year: "2003",
+            phone: "111 111 1111",
+            email: "zineb.bamouh@gmail.com",
+            address: "xxx st. abcdefgh",
+            cardNumber: "0000 0000 0000",
+            expire: "00/00",
+            code: "000",
+            cardType: "Visa"
+        });
 
-
+    let showEditForm = false;
+    let showAddReview = false;
+    function toggleEditForm() {
+        showEditForm = !showEditForm;
+    }
+    function toggleAddEditForm() {
+        showAddReview = !showAddReview;
+    }
     //showDiv(part) function will just show the appropriate div and hide the rest
     function showDiv(part: string) {
         const profile = document.getElementById("Profile");
@@ -116,8 +142,8 @@
                     <p>25/07/2003</p>
                 </div>
                 <br>
-                <button>
-                    <a href="../Edit">Edit</a>
+                <button on:click={toggleEditForm}>
+                    <a href="">Edit</a>
 
                 </button>
             </div>
@@ -143,10 +169,7 @@
                     <p>xxx st. abcdefgh</p>
                 </div>
                 <br>
-                <button>
-                    <a href="../Edit">Edit</a>
 
-                </button>
             </div>
             <div class="child" id="Payment" style="display: none;">
                 <h1 style="font-size: 30px;">Payment Information</h1>
@@ -187,10 +210,7 @@
                 </div>
                 <br>
 
-                <button>
-                    <a href="../Edit">Edit</a>
 
-                </button>
             </div>
             <div class="child" id="Review" style="display: none;">
                 <div class="relative overflow-x-auto bg-gray-100 rounded-lg p-6">
@@ -258,12 +278,18 @@
                     </table>
                 </div>
                 <br>
-                <button>
-                    <a href="../Edit">Add</a>
+                <button on:click={toggleAddEditForm}>
+                    <a href="">Add</a>
 
                 </button>
-
+                {#if showAddReview}
+                    <AddReview />
+                {/if}
             </div>
+            {#if showEditForm}
+                <EditForm />
+            {/if}
+
         </section>
     </section>
 </main>
@@ -389,4 +415,9 @@
         padding: 15px;
         border-radius: 15px;
     }
+
+
+
+
+
 </style>
