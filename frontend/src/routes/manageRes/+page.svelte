@@ -2,14 +2,69 @@
     import CarDetails from "$lib/components/carDetails.svelte";
     import {writable} from "svelte/store";
 
-    const resDetails = writable({
-        pickupDate: "2024-03-15",
-        pickupTime: "16h30",
-        pickupLoc: "Montreal,QC",
-        dropoffDate: "2024-04-01",
-        dropoffTime: "8h00",
-        dropoffLoc: "Montreal,QC",
-    });
+    let resDetails = writable([
+        {
+            id: "101",
+            id_vehicle: "vehi1234",
+            id_user: "user007",
+            pickupDate: "2024-03-15",
+            pickupTime: "7:30 AM",
+            pickupLoc: "Montreal, QC",
+            dropoffDate: "2024-04-01",
+            dropoffTime: "8:00 AM",
+            dropoffLoc: "Montreal, QC",
+            price: "$210",
+        },
+
+        {
+            id: "107",
+            id_vehicle: "vehi1234",
+            id_user: "user882",
+            pickupDate: "2024-02-01",
+            pickupTime: "7:30 AM",
+            pickupLoc: "Montreal, QC",
+            dropoffDate: "2024-02-28",
+            dropoffTime: "8:00 AM",
+            dropoffLoc: "Montreal, QC",
+            price: "$210",
+        },
+
+        {
+            id: "121",
+            id_vehicle: "vehi87438",
+            id_user: "user007",
+            pickupDate: "2024-06-03",
+            pickupTime: "7:30 AM",
+            pickupLoc: "Montreal, QC",
+            dropoffDate: "2024-06-13",
+            dropoffTime: "8:00 AM",
+            dropoffLoc: "Montreal, QC",
+            price: "$210",
+        }
+    ]);
+
+    let carDatas = writable([
+        {
+            id: "vehi1234",
+            name: "Nissan",
+            type: "Rogue",
+            category: "category unknown",
+            capacity: "5",
+            transmission: "automatic",
+            src:"2023-Nissan-Rogue.png"
+        },
+        {
+            id: "vehi87438",
+            name: "Tesla",
+            type: "S",
+            category: "category unknown",
+            capacity: "2",
+            transmission: "automatic",
+            src:"tesla2024s.png"
+        },
+    ]);
+
+    const uid = "user007";
 
     function openForm(): void {
         const formChange = document.getElementById("formChange") as HTMLElement;
@@ -71,6 +126,14 @@
         closeFormDD();
 
     }
+
+    function deleteRes(id_res: any){
+        if (confirm("are you sure?")){
+            resDetails.update(resdets => 
+                resdets.filter(resdet => resdet.id !==id_res));
+
+        }
+    }
 </script>
 <div class="fixed w-100% pt-4 px-16">
     <a href="">Logo here</a>
@@ -104,30 +167,28 @@
         
     </div>
     <div class=" mt-[50px] rounded-lg">
+        {#each $resDetails as resDetail (resDetail.id)}
+        {#if resDetail.id_user == uid}
         <table class="border-collapse">
             <tr>
+                {#each $carDatas.filter((carData) => carData.id == resDetail.id_vehicle) as carData}
                 <td class=" border w-2/3 border-slate-300">
-                        <CarDetails details={{
-                            name:"Tesla",
-                            type: "S",
-                            category:"Category unknown",
-                            capacity:"2",
-                            transmission:"Manual",
-                        }} src={"tesla2024s.png"}/>
+                        <CarDetails details = {carData}/>
                 </td>
-                
+                {/each}
                 <td class="border w-1/3 border-slate-300 mt-20">
                     <div  class="w-full align-top p-5">
+                        
                         <table class="w-full">
                             <tr>
                                 <td>
                                     <div class="font-bold text-base">Pick-up information:</div>
                                     <div class="text-sm">
-                                        {$resDetails.pickupDate}
+                                        {resDetail.pickupDate}
                                         <br>
-                                        {$resDetails.pickupTime}
+                                        {resDetail.pickupTime}
                                         <br>
-                                        {$resDetails.pickupLoc}
+                                        {resDetail.pickupLoc}
                                         <br>
                                     </div>
                                 </td>
@@ -139,11 +200,11 @@
                                 <td>
                                     <div class="font-bold text-base">Drop-off information:</div>
                                     <div class="text-sm">
-                                        {$resDetails.dropoffDate}
+                                        {resDetail.dropoffDate}
                                         <br>
-                                        {$resDetails.dropoffTime}
+                                        {resDetail.dropoffTime}
                                         <br>
-                                        {$resDetails.dropoffLoc}
+                                        {resDetail.dropoffLoc}
                                         <br>
                                     </div>
                                 </td>
@@ -152,6 +213,7 @@
                                 </td>
                             </tr>    
                         </table>
+                        
                         
                     </div>
                     
@@ -189,9 +251,11 @@
         <br>
         <div class="items-center justify-between flex">
             <p class=" text-xs ">**You can cancel at any time your reservation without any charge.</p>
-            <button on:click={()=>confirm("are you sure?")} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Delete Reservation</button> 
+            <button on:click={()=>deleteRes(resDetail.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Delete Reservation</button> 
         </div>
-
+        <br><br>
+        {/if}
+        {/each}
         
     </div>
 </div>

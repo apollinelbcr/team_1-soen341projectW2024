@@ -1,12 +1,14 @@
-<script>
-    export let src="2023-Nissan-Rogue.png"
-    export let details = {
-        name: "Nissan",
-        type: "Rogue",
-        category: "category unknown",
-        capacity: "5",
-        transmission: "automatic"
-    };
+<script lang="ts">
+    export let details = 
+        {
+            id: "vehi1234",
+            name: "Nissan",
+            type: "Rogue",
+            category: "category unknown",
+            capacity: "5",
+            transmission: "automatic",
+            src:"2023-Nissan-Rogue.png"
+        };
     
     
 </script>
@@ -20,7 +22,7 @@
     <div class="table-row">
         <div class="w-1/2 mx-auto table-cell">
         
-            <img src={src} alt="Nissan-Rogue"/>
+            <img src={details.src} alt="Nissan-Rogue"/>
         </div>
     
         <div class=" pl-14 table-cell align-top">
