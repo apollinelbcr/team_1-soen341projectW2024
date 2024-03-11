@@ -10,6 +10,7 @@
     export let storeValue: Writable<T>;
     export let className: string = '';
     export let inputClassName: string = '';
+     export let reset: boolean = false;
 
     let query = writable('');
 
@@ -18,6 +19,10 @@
             return x.toLowerCase().includes($query.toLowerCase());
         })
         : options;
+
+    $: if(reset) {
+        combobox.set({ selected: options[0]});
+    }
 
     $: storeValue.set($combobox.selected)
     const combobox = createCombobox({label: 'Actions', selected: options[0]})

@@ -2,10 +2,11 @@
     import SveltyPicker from 'svelty-picker';
     import {MapPin} from "lucide-svelte";
     import AutocompleteInput from "../../components/AutocompleteInput.svelte";
+    import {clickOutside} from '../clickOutside';
 
     const today: string = new Date().toISOString();
-    let pickupLocation = null;
-    let dropOffLocation = null;
+    let pickupLocation = '';
+    let dropOffLocation = '';
     let pickupDate = today.slice(0, 10);
     let dropOffDate = today.slice(0, 10);
     let pickupTime = "10:30";
@@ -55,28 +56,34 @@
 let pickUpVisible = false;
 let dropOffVisible = false;
 
-    function handlePickUpToggle(e) {
+    function handlePickUpToggle() {
         pickUpVisible = true;
         dropOffVisible = false;
     }
-    function handleDropOffToggle(e) {
+    function handleDropOffToggle() {
         pickUpVisible = false;
         dropOffVisible = true;
     }
+
+    function handleClickOutside() {
+        pickUpVisible = false;
+        dropOffVisible = false;
+    }
+
 </script>
 
 <div class="mt-5 sm:mt-10 sm:mx-10 sm:border border-gray-400 border-solid rounded-3xl p-5">
     <form class="flex flex-col" action="/search" on:submit={handleSubmit}>
         <div class="grid grid-cols-6 gap-4 lg:grid-cols-4">
-            <button on:click={handlePickUpToggle} type="button" class="col-span-6 md:col-span-3 lg:col-span-2 border rounded h-12 border-gray-500 flex {!pickUpVisible ? 'items-center' : ''} gap-3">
+            <button use:clickOutside on:click_outside={handleClickOutside} on:click={handlePickUpToggle} type="button" class="col-span-6 md:col-span-3 lg:col-span-2 border rounded h-12 border-gray-500 flex {!pickUpVisible ? 'items-center' : ''} gap-3">
                 <MapPin class="ml-2 {pickUpVisible ? 'hidden' : 'block'}"/>
-                <span class="{pickUpVisible ? 'hidden' : 'block'}" >{pickupLocation ?? 'Pick-up Location'}</span>
-                <AutocompleteInput bind:value={pickupLocation} {locations} placeholder="Pick-up Location" class="{pickUpVisible ? 'block' : 'hidden'}"/>
+                <span class="{pickUpVisible ? 'hidden' : 'block'}" >{pickupLocation.trim() === '' ? 'Pick-up Location' : pickupLocation}</span>
+                <AutocompleteInput name="pickup_location" bind:value={pickupLocation} {locations} placeholder="Pick-up Location" class="{pickUpVisible ? 'block' : 'hidden'}"/>
             </button>
-            <button on:click={handleDropOffToggle} type="button" class="col-span-6 md:col-span-3 lg:col-span-2 border rounded h-12 border-gray-500 flex {!dropOffVisible ? 'items-center' : ''} gap-3">
+            <button use:clickOutside on:click_outside={handleClickOutside} on:click={handleDropOffToggle} type="button" class="col-span-6 md:col-span-3 lg:col-span-2 border rounded h-12 border-gray-500 flex {!dropOffVisible ? 'items-center' : ''} gap-3">
                 <MapPin class="ml-2 {dropOffVisible ? 'hidden' : 'block'}"/>
-                <span class="{dropOffVisible ? 'hidden' : 'block'}" >{dropOffLocation ?? 'Drop-off Location'}</span>
-                <AutocompleteInput bind:value={dropOffLocation} {locations} placeholder="Drop-off Location" class="{dropOffVisible ? 'block' : 'hidden'}"/>
+                <span class="{dropOffVisible ? 'hidden' : 'block'}" >{dropOffLocation.trim() === '' ? 'Drop-off Location' : dropOffLocation}</span>
+                <AutocompleteInput name="dropoff_location" bind:value={dropOffLocation} {locations} placeholder="Drop-off Location" class="{dropOffVisible ? 'block' : 'hidden'}"/>
             </button>
             <div class="border rounded p-2 col-span-3  lg:col-span-1 h-14 border-gray-500 relative">
                 <div class="absolute top-0">

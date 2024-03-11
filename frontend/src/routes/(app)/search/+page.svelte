@@ -15,11 +15,11 @@
 
     let cars: Vehicle[];
     const selectedCarType = writable<string[]>([]);
-    const selectedCapacity = writable<string[]>([]);
+    const selectedCategory = writable<string[]>([]);
     const selectedTransmission = writable<string[]>([]);
-    const selectedTotalPrice = writable<string[]>([]);
     const sortBy = writable<string>('');
     let isMounted = false;
+    let showingVehicles: Vehicle[];
     let previousState = '';
 
     const pickupLocation = writable('');
@@ -41,16 +41,16 @@
     const nullable = (arr: string[]) => (arr.length === 0 ? null : arr);
 
     $: filters = {
-        type: nullable($selectedCarType),
-        capacity: nullable($selectedCapacity),
-        transmission: nullable($selectedTransmission),
-        price: nullable($selectedTotalPrice),
+        type: nullable($selectedCarType?.map(t => t.toUpperCase())),
+        category: nullable($selectedCategory?.map(t => t.toUpperCase())),
+        transmission: nullable($selectedTransmission?.map(t => t.toUpperCase())),
         sortBy: $sortBy,
     };
 
     const fetchCars = async () => {
         try {
             cars = await repo.getVehicles();
+            showingVehicles = cars
         } catch (error) {
             toast.error('Failed to fetch cars. Please try again later.');
         }
@@ -62,11 +62,38 @@
     });
 
     function filterCars(filters: any) {
+    let filteredCars = cars;
 
+    // Filter by car type if specified
+    if (filters.type && filters.type.length > 0) {
+        filteredCars = filteredCars.filter(car =>
+            filters.type.includes(car.vehicle_type));
+    }
+
+    // Filter by category if specified
+    if (filters.category && filters.category.length > 0) {
+        filteredCars = filteredCars.filter(car =>
+            filters.category.includes(car.vehicle_category));
+    }
+
+    // Filter by transmission if specified
+    if (filters.transmission && filters.transmission.length > 0) {
+        filteredCars = filteredCars.filter(car =>
+            filters.transmission.includes(car.vehicle_transmission));
+    }
+
+    // Sort cars if specified
+    if (filters.sortBy) {
+        if (filters.sortBy === 'Total price') {
+            filteredCars.sort((a, b) => a.price - b.price);
+        }
+    }
+
+    showingVehicles = filteredCars;
     }
 
     $: {
-        const currentState = JSON.stringify([$selectedCarType, $selectedCapacity, $selectedTransmission, $selectedTotalPrice, $sortBy]);
+        const currentState = JSON.stringify([$selectedCarType, $selectedCategory, $selectedTransmission, $sortBy]);
 
         if (isMounted && (currentState !== previousState)) {
             filterCars(filters);
@@ -75,7 +102,7 @@
     }
 
 </script>
-<SearchFilter pickupLocation={$pickupLocation} dropOffLocation={$dropOffLocation} pickupDate={new Date($pickupDate).toISOString().slice(0, 10)}
+<SearchFilter differentDropOff={pickupLocation !== dropOffLocation} pickupLocation={$pickupLocation} dropOffLocation={$dropOffLocation} pickupDate={new Date($pickupDate).toISOString().slice(0, 10)}
 dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pickupTime}  dropOffTime={$dropOffTime}
 />
 <div class='flex flex-col items-center py-8'>
@@ -84,9 +111,8 @@ dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pic
             <FilterToggle>
                 <ExploreFilter
                         {selectedCarType}
-                        {selectedCapacity}
+                        {selectedCategory}
                         {selectedTransmission}
-                        {selectedTotalPrice}
                         {sortBy}
                         variant='mobile'
                 />
@@ -95,9 +121,8 @@ dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pic
         <div class='m-2 mx-4 hidden lg:flex'>
             <ExploreFilter
                     {selectedCarType}
-                    {selectedCapacity}
+                    {selectedCategory}
                     {selectedTransmission}
-                    {selectedTotalPrice}
                     {sortBy}
                     variant='desktop'
             />
@@ -105,31 +130,9 @@ dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pic
         <div class='lg:flex-1'>
             <div class='mr-auto flex w-full max-w-xl flex-col overflow-y-hidden'>
                 {#if cars !== undefined}
-                    {#each cars as car}
-                        <CarCard {...car}/>
+                    {#each showingVehicles as vehicle}
+                        <VehicleCard {vehicle}/>
                     {/each}
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
-                    <VehicleCard/>
                 {:else }
                     <div class='mx-2 text-gray-50'>
                         <Skeleton className='mb-2 rounded-lg first:mt-2'
@@ -137,7 +140,7 @@ dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pic
                     </div>
                 {/if}
 
-                {#if cars?.length}
+                {#if showingVehicles?.length}
                     <div class='mx-auto mt-4 text-center'>
                         <p class='text-gray-500 dark:text-gray-400'>
                             No more cars to show
