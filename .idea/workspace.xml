@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/backend/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/app.module.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/main.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/dto/create-vehicle.dto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/dto/create-vehicle.dto.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/dto/create-vehicle.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/dto/create-vehicle.dto.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/dto/update-vehicle-status.dto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/dto/update-vehicle-status.dto.d.ts" afterDir="false" />
@@ -30,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.module.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.service.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/dist/vehicles/vehicles.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,21 +69,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "US-4",
-    "last_opened_file_path": "C:/Users/zineb/WebstormProjects/user-story2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\zineb\\Documents\\GitHub\\team_1-soen341projectW2024\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;US-4&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zineb/WebstormProjects/user-story2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\zineb\\Documents\\GitHub\\team_1-soen341projectW2024\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zineb\Documents\GitHub\team_1-soen341projectW2024\frontend\static" />
