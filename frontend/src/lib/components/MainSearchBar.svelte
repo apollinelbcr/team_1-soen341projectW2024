@@ -74,6 +74,7 @@ let dropOffVisible = false;
 
 <div class="mt-5 sm:mt-10 sm:mx-10 sm:border border-gray-400 border-solid rounded-3xl p-5">
     <form class="flex flex-col" action="/search" on:submit={handleSubmit}>
+        <div class="w-full bg-red-800 h-full rounded-xl mx-auto mb-2 text-white p-4 hidden">Please correct the errors to continue</div>
         <div class="grid grid-cols-6 gap-4 lg:grid-cols-4">
             <button use:clickOutside on:click_outside={handleClickOutside} on:click={handlePickUpToggle} type="button" class="col-span-6 md:col-span-3 lg:col-span-2 border rounded h-12 border-gray-500 flex {!pickUpVisible ? 'items-center' : ''} gap-3">
                 <MapPin class="ml-2 {pickUpVisible ? 'hidden' : 'block'}"/>
