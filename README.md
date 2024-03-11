@@ -45,13 +45,11 @@ This application implements different services for users and renters. The user c
 * Login (not required to view the homepage)
   ![Status][s-todo]
 * Homepage displaying the various models offered
-  ![Status][s-todo]
-* 10% discount for monthly payment (from one month onwards)
-  ![Status][s-todo]
+  ![Status][s-finished]
 * Login required for renting
   ![Status][s-todo]
 * Selection of a date range
-  ![Status][s-todo] ![Role][s-customer]
+  ![Status][s-finished] ![Role][s-customer]
 * Option for indefinite monthly payment (renewal each month)
   ![Status][s-todo] ![Role][s-customer]
 * Display of models available for rent according to entered dates
@@ -73,11 +71,11 @@ This application implements different services for users and renters. The user c
 * Table of the latest rentals
   ![Status][s-todo] ![Role][s-renter]
 * Summary page of vehicles with the status of each vehicle
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Vehicle modification page (not rented), with the option to remove the vehicle from stock
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Form to add a new vehicle
-  ![Status][s-todo] ![Role][s-renter]
+  ![Status][s-finished] ![Role][s-renter]
 * Page of all clients
   ![Status][s-todo] ![Role][s-renter]
 * Calculation of invoices for each client of the current month
@@ -187,12 +185,13 @@ docker run --name rentify -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
 
 #### Navigate into backend folder
 ```
-yarn install
+cd backend
+npm i
 ```
 
 #### Run the backend
 ```
-yarn start:dev
+npm run start:dev
 ```
 The backend can then be access @  http://localhost:3000
 
