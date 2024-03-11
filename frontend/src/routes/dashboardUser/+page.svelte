@@ -15,6 +15,6 @@
     <MyBookings date="Feb 22 – Feb 28" bookingref="#0002" cartype="Luxury" Pickloc="21 Main st" Droploc="13 Smith ave" />
     <MyBookings date="Apr 15 – Apr 23" bookingref="#0001" cartype="SUV" Pickloc="21 Main st" Droploc="13 Smith ave" />
 </BookWrep>
-<UserInfo name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+<UserInfo name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
 
 </main>

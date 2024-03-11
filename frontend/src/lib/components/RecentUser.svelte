@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    export let name: string;
+    export let name_user: string;
     export let date: string;
     export let bookingref: string;
     export let cartype: string
@@ -10,7 +10,7 @@
 <a href={href} class="w-full md:w-full lg:w-full p-2 flex flex-row justify-left items-center border border-grey-800 rounded-3xl">
     <div class="text-xl p-2"></div>
     <div class="p-2">
-        <h2 class="text-wrap font-bold"> {name}  </h2>
+        <h2 class="text-wrap font-bold"> {name_user}  </h2>
         <p class="mt-2 text-wrap text-md"> {date}</p>
     </div>
     <div class="text-xl p-2"></div>

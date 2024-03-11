@@ -1,6 +1,6 @@
 <script>
-	let username = '';
-    let password = '';
+	let user_email = '';
+    let user_password = '';
     
 </script>
 
@@ -11,23 +11,23 @@
     <h3 class="text-orange-700 text-3xl py-3 pl-2 ">Sign In to Rentify</h3>
     <h2 class="text text-xl pl-2">Username</h2>
     <div class="text text-xl py-3 pl-2 h-12 border border-grey-800 rounded-2xl">
-    <input bind:value={username} placeholder="ex: admin@gmail.com" />
+    <input bind:value={user_email} placeholder="ex: admin@gmail.com" />
     </div>
     <h2 class="text text-xl pt-3 pl-2">Password</h2>
     <div class="text text-xl py-3 pl-2 h-12 border border-grey-800 rounded-2xl">
-    <input bind:value={password} placeholder="ex: admin" />
+    <input bind:value={user_password} placeholder="ex: admin" />
     </div>
     <div class="text text-xl py-3 pl-2 h-6">
     </div>
     <div class="text text-xl h-12 space-x-4 flex flex-row justify-center">
 
-{#if password==='' || username===''}
+{#if user_password==='' || user_email===''}
   <h2 class="text text-xl text-orange-700 pl-2">Make sure to fill all the fields</h2>
-{:else if username==='admin@gmail.com' && password==='admin'}
+{:else if user_email==='admin@gmail.com' && user_password==='admin'}
   <a href="/dashboardAdmin" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
-{:else if username==='user@gmail.com'&& password==='user'}
+{:else if user_email==='user@gmail.com'&& user_password==='user'}
   <a href="/dashboardUser" class="p-2 px-3 h-11 text-xl text-white justify-right bg-orange-700 rounded-2xl">Enter</a>
-{:else if username==='admin@gmail.com'&& password!=='admin'}
+{:else if user_email==='admin@gmail.com'&& user_password!=='admin'}
   <h2 class="text text-xl text-orange-700 pl-2">Incorect Admin Password, Try Again</h2>
 {/if}
     

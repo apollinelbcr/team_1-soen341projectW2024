@@ -15,9 +15,9 @@ export class UsersService {
 
     //1. Create a user - PG
     async createTask(createUserDto: CreateUserDto): Promise<User> {
-        const { name_user, image, user_type, user_category, user_transmission } = createUserDto;
+        const { name_user, image, user_email, user_phone, user_password } = createUserDto;
         const user = this.userRepository.create({
-            name_user, image, user_type, user_category, user_transmission, status: UserStatus.AVAILABLE
+            name_user, image, user_email, user_phone, user_password, status: UserStatus.ACTIVE
         } as Partial<User>); // Explicit casting to Partial<User>
 
         await this.userRepository.save(user);

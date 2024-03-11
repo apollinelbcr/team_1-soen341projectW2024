@@ -24,9 +24,9 @@ let UsersService = class UsersService {
     }
     ;
     async createTask(createUserDto) {
-        const { name_user, image, user_type, user_category, user_transmission } = createUserDto;
+        const { name_user, image, user_email, user_phone, user_password } = createUserDto;
         const user = this.userRepository.create({
-            name_user, image, user_type, user_category, user_transmission, status: user_status_enum_1.UserStatus.AVAILABLE
+            name_user, image, user_email, user_phone, user_password, status: user_status_enum_1.UserStatus.ACTIVE
         });
         await this.userRepository.save(user);
         return user;

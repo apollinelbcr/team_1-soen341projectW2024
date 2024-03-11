@@ -1,7 +1,5 @@
 import { IsEnum, IsNotEmpty } from "class-validator";
-import { UserCategories } from "../user-categories.enum";
-import { UserTransmissions } from "../user-transmissions.enum";
-import { UserTypes } from "../user-types.enum";
+
 
 export class CreateUserDto {
     
@@ -11,14 +9,14 @@ export class CreateUserDto {
     @IsNotEmpty()
     image: string;
 
-    @IsEnum(UserTypes)
-    user_type: string;
+    @IsNotEmpty()
+    user_email: string;
 
-    @IsEnum(UserCategories)
-    user_category: string;
+    @IsNotEmpty()
+    user_phone: string;
 
-    @IsEnum(UserTransmissions)
-    user_transmission: string;
+    @IsNotEmpty()
+    user_password: string;
 
-    //user status is by default available
+    //user status is by default active
 }

@@ -11,9 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
 const class_validator_1 = require("class-validator");
-const user_categories_enum_1 = require("../user-categories.enum");
-const user_transmissions_enum_1 = require("../user-transmissions.enum");
-const user_types_enum_1 = require("../user-types.enum");
 class CreateUserDto {
 }
 exports.CreateUserDto = CreateUserDto;
@@ -26,15 +23,15 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "image", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(user_types_enum_1.UserTypes),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "user_type", void 0);
+], CreateUserDto.prototype, "user_email", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(user_categories_enum_1.UserCategories),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "user_category", void 0);
+], CreateUserDto.prototype, "user_phone", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(user_transmissions_enum_1.UserTransmissions),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "user_transmission", void 0);
+], CreateUserDto.prototype, "user_password", void 0);
 //# sourceMappingURL=create-user.dto.js.map

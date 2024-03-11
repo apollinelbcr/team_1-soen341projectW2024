@@ -1,8 +1,8 @@
 <script>
-	export let password
+	export let user_password
 
 	
-	$: strength = checkPasswordStrength.passwordStrength(password)
+	$: strength = checkPasswordStrength.user_passwordStrength(user_password)
 </script>
 
 <style>
@@ -35,6 +35,6 @@
 	<li class:valid={strength.contains.includes("symbol")}>Symbol</li>
 </ul>
 <h1>
-	Your password is {strength.value}!
+	Your user_password is {strength.value}!
 </h1>
 <pre>{JSON.stringify(strength, null, 2)}</pre>

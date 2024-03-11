@@ -1,8 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { UserCategories } from "./user-categories.enum";
+
 import { UserStatus } from "./user-status.enum";
-import { UserTransmissions } from "./user-transmissions.enum";
-import { UserTypes } from "./user-types.enum";
+
 
 @Entity()
 export class User{
@@ -17,13 +16,13 @@ export class User{
     image:string; //url link or path to img
 
     @Column()
-    user_type: UserTypes;
+    user_email: string;
     
     @Column()
-    user_category: UserCategories;
+    user_phone: string;
 
     @Column()
-    user_transmission: UserTransmissions;
+    user_password: string;
 
     @Column()
     status:UserStatus;

@@ -1,4 +1,4 @@
 export enum UserStatus {
-    AVAILABLE = 'AVAILABLE',
-    UNAVAILABLE = 'UNAVAILABLE'
+    ACTIVE = 'ACTIVE',
+    INACTIVE = 'INACTIVE'
 }

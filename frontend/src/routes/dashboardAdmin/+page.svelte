@@ -13,18 +13,18 @@
 <Title title="Admin Dashboard" title2="Manage Users"/>
 
     <RecentUserWraper>
-        <RecentUser name="Amanda Smith" text="Mar 1 – Mar 8" bookingref="#0003" cartype="Sedan" href="/"/>
-        <RecentUser name="Alex Wilson" text="Feb 22 – Feb 28" bookingref="#0002" cartype="Luxury" href="/"/>
-        <RecentUser name="Anna Woods" text="Apr 15 – Apr 23" bookingref="#0001" cartype="SUV" href="/"/>
+        <RecentUser name_user="Amanda Smith" text="Mar 1 – Mar 8" bookingref="#0003" cartype="Sedan" href="/"/>
+        <RecentUser name_user="Alex Wilson" text="Feb 22 – Feb 28" bookingref="#0002" cartype="Luxury" href="/"/>
+        <RecentUser name_user="Anna Woods" text="Apr 15 – Apr 23" bookingref="#0001" cartype="SUV" href="/"/>
     </RecentUserWraper>
     
     <Fleet available="18" booked="10" href="/" />
 
     <ManageUsersWrap>
-        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
-        <UsersAdmin name="Amanda Smith" email="amanda@gmail.com" Id=001 phone="012 345 6789"/>
+        <UsersAdmin name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
+        <UsersAdmin name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
+        <UsersAdmin name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
+        <UsersAdmin name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
+        <UsersAdmin name_user="Amanda Smith" user_email="amanda@gmail.com" id=001 user_phone="012 345 6789"/>
     </ManageUsersWrap>
 </main>
