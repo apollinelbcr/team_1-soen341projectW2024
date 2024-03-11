@@ -76,7 +76,7 @@
 
 </script>
 <SearchFilter pickupLocation={$pickupLocation} dropOffLocation={$dropOffLocation} pickupDate={new Date($pickupDate).toISOString().slice(0, 10)}
-dropOffDate={new Date($pickupDate).toISOString().slice(0, 10)} pickupTime={$pickupTime}  dropOffTime={$dropOffTime}
+dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pickupTime}  dropOffTime={$dropOffTime}
 />
 <div class='flex flex-col items-center py-8'>
     <div class='relative flex w-full max-w-xl flex-col lg:max-w-6xl lg:flex-row lg:justify-center'>

@@ -1,0 +1,29 @@
+<script>
+    import {createEventDispatcher} from 'svelte';
+    import {twMerge} from "tailwind-merge";
+
+    export let placeholder = '';
+    export let locations = [];
+    export let value = '';
+
+    const dispatch = createEventDispatcher();
+
+    function selectLocation(location) {
+        value = location;
+        dispatch('select', {location});
+    }
+</script>
+
+<div class={twMerge("relative w-full", $$props.class)}>
+    <input type="text" placeholder={placeholder} bind:value
+           class="w-full border border-gray-300 p-2 z-30 h-12 text-lg font-medium"/>
+    <ul class="absolute z-20 w-full bg-white border rounded-b-md border-gray-300 h-60 overflow-auto text-left">
+        {#if value}
+            {#each locations as location}
+                <li on:click={() => selectLocation(location)} class="p-2 hover:bg-gray-100 cursor-pointer">
+                    {location}
+                </li>
+            {/each}
+        {/if}
+    </ul>
+</div>
