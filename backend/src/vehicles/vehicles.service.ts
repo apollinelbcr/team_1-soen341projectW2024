@@ -37,7 +37,7 @@ export class VehiclesService {
         return found;
     }
 
-    //3. Read All Vehicles
+    //3. Read All Vehicles 
     async getAllvehicles() : Promise<Vehicle[]> {
         const found = await this.vehicleRepository.find();
         return found;
@@ -54,7 +54,7 @@ export class VehiclesService {
     //6. Update Vehicle
      async updateVehicle(id: string, updateVehicleStatusDto: UpdateVehicleStatusDto): Promise<Vehicle> {
         const vehicle = await this.getVehicleById(id);
-
+        
         // Update each field if provided in the DTO
         if (updateVehicleStatusDto.name_vehicle !== undefined) {
             vehicle.name_vehicle = updateVehicleStatusDto.name_vehicle;
@@ -83,7 +83,7 @@ export class VehiclesService {
         return vehicle;
     }
 
-    //5. Delete Vehicle
+    //5. Delete Vehicle    
     async deleteVehicle(id:string) : Promise<void> {
         const result = await this.vehicleRepository.delete(id);
         //console.log(result);

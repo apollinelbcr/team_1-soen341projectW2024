@@ -7,7 +7,7 @@ import { VehicleTransmissions } from "../vehicle-transmissions.enum";
 export class UpdateVehicleStatusDto{
     @IsNotEmpty()
     name_vehicle: string;
-
+    
     @IsNotEmpty()
     image: string;
 
