@@ -20,5 +20,7 @@ export class CreateVehicleDto {
     @IsEnum(VehicleTransmissions)
     vehicle_transmission: string;
 
-    //vehicle status is by default available
+    @IsNotEmpty()
+    price: number;
+
 }

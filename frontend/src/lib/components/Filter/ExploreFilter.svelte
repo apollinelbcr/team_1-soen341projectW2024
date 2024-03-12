@@ -1,16 +1,15 @@
 <script lang="ts">
     import {twMerge} from "tailwind-merge";
     import FilterButton from "./FilterButton.svelte";
-    import {sortByOptions, carTypes, capacities, transmissions, totalPrices} from "$lib/filters";
+    import {sortByOptions, carTypes, categories, transmissions} from "$lib/filters";
     import type {Writable} from "svelte/store";
     import {RefreshCw} from "lucide-svelte";
     import ResetButton from "./ResetButton.svelte";
     import Autocomplete from "./Autocomplete.svelte";
 
     export let selectedCarType: Writable<string[]>;
-    export let selectedCapacity: Writable<string[]>;
+    export let selectedCategory: Writable<string[]>;
     export let selectedTransmission: Writable<string[]>;
-    export let selectedTotalPrice: Writable<string[]>;
     export let sortBy: Writable<string>;
     export let variant: 'mobile' | 'desktop';
 
@@ -19,9 +18,8 @@
 
     function resetFilters() {
         selectedCarType.set([]);
-        selectedCapacity.set([]);
+        selectedCategory.set([]);
         selectedTransmission.set([])
-        selectedTotalPrice.set([])
         sortBy.set('')
         rotate = true;
 
@@ -44,7 +42,7 @@
     <h1 class='text-sm font-semibold text-gray-600'>Sort By</h1>
     <div class='py-1'/>
     <div class='relative z-20'>
-        <Autocomplete options={sortByOptions} storeValue={sortBy}/>
+        <Autocomplete reset={rotate} options={sortByOptions} storeValue={sortBy}/>
     </div>
 
     <div class='py-2.5'/>
@@ -63,11 +61,11 @@
     <h1 class='text-sm font-semibold text-gray-600'>Capacity</h1>
     <div class='py-1'/>
     <div class='flex flex-wrap gap-2'>
-        {#each capacities as capacity, i (i)}
+        {#each categories as category, i (i)}
             <FilterButton
-                    name={capacity}
-                    isSelected={$selectedCapacity.includes(capacity)}
-                    selections={selectedCapacity}
+                    name={category}
+                    isSelected={$selectedCategory.includes(category)}
+                    selections={selectedCategory}
             />
         {/each}
     </div>
@@ -85,16 +83,4 @@
         {/each}
     </div>
 
-    <div class='py-2.5'/>
-    <h1 class='text-sm font-semibold text-gray-600'>Total price</h1>
-    <div class='py-1'/>
-    <div class='flex flex-wrap gap-2'>
-        {#each totalPrices as totalPrice, i (i)}
-            <FilterButton
-                    name={totalPrice}
-                    isSelected={$selectedTotalPrice.includes(totalPrice)}
-                    selections={selectedTotalPrice}
-            />
-        {/each}
-    </div>
 </div>
