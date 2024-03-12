@@ -5,7 +5,7 @@ import { Vehicle } from './vehicles.entity';
 import { VehiclesService } from './vehicles.service';
 import { VehicleStatus } from './vehicle-status.enum';
 
-@Controller('api/v1/vehicles')
+@Controller('vehicles')
 export class VehiclesController {
 
     constructor(private vehiclesService: VehiclesService){}
@@ -15,7 +15,7 @@ export class VehiclesController {
     //1. Create vehicle
     @Post()
     createTask(@Body() createVehicleDto : CreateVehicleDto) : Promise<Vehicle>{
-        return this.vehiclesService.createTask(createVehicleDto);
+        return this.vehiclesService.createTask(createVehicleDto); 
     }
 
     //2. Get Vehicle By ID
@@ -24,13 +24,13 @@ export class VehiclesController {
         return this.vehiclesService.getVehicleById(id);
     }
 
-    //3. Read All Vehicles
+    //3. Read All Vehicles 
     @Get()
     getAllvehicles() : Promise<Vehicle[]>{
         return this.vehiclesService.getAllvehicles();
     }
 
-    //4. Update Vehicle
+    //4. Update Vehicle 
      @Patch('/:id')
      updateVehicle(@Param('id') id: string, @Body() updateVehicleStatusDto: UpdateVehicleStatusDto): Promise<Vehicle> {
          return this.vehiclesService.updateVehicle(id, updateVehicleStatusDto);
