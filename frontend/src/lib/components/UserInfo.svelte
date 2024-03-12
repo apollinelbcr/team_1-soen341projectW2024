@@ -8,7 +8,7 @@
 </script>
 
 <a href="/user/id/delete" class="  absolute right-28 bottom-4 text-xl rounded-3xl bg-orange-700 w-48 h-12 p-2 pl-3 text-white text-bold ">Delete my account</a>
-<a href="/user/id/edit" class="  absolute right-28 bottom-80 text-xl rounded-3xl bg-orange-700 w-48 h-12 p-2 pl-6 text-white text-bold ">Modify my Info</a>
+<a href="/manage_users/edit-user" class="  absolute right-28 bottom-80 text-xl rounded-3xl bg-orange-700 w-48 h-12 p-2 pl-6 text-white text-bold ">Modify my Info</a>
 
 <div class="absolute top-48 right-28 w-1/4 h-1/4 bg-white ">
 

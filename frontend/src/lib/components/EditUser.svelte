@@ -74,12 +74,11 @@
 	async function updateUser() {
 	try {
 		// Get the updated values from the input fields
-		const updatedName = document.getElementById('user_name').value;
+		const updatedName = document.getElementById('name_user').value;
 		const updatedImage = document.getElementById('user_image').value;
-		const updatedEmail = document.getElementById('types').value;
+		const updatedEmail = document.getElementById('user_email').value;
 		const updatedPhone = document.getElementById('user_phone').value;
-		const updatedPassword = document.getElementById('user_email').value;
-		const updatedPrice = document.getElementById('user_price').value;
+		const updatedPassword = document.getElementById('user_password').value;
 
 		if(updatedName != "" && updatedImage != "" && updatedPrice != ""){
 			// Create the payload with the updated values
@@ -189,36 +188,20 @@
 
 	<div class="grid md:grid-cols-4 md:gap-6">
 		<div class="relative z-0 w-full mb-5 group">
-			<label for="types" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Select the user's type</label>
-			<select id="types" bind:value={user.user_email} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
-				<option value="CAR">CAR</option>
-				<option value="SUV">SUV</option>
-				<option value="TRUCK">TRUCK</option>
-				<option value="VAN">VAN</option>
-			</select>
+			<label for="user_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">User's Email</label>
+			<input type="text" id="user_email" value={user.user_email} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. bob.smith@gmail.com" required />
 		</div> 
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="user_phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Select the user's phone</label>
-			<select id="user_phone" bind:value={user.user_phone} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
-				<option value="COMPACT">COMPACT</option>
-				<option value="STANDARD">STANDARD</option>
-				<option value="INTERMEDIATE">INTERMEDIATE</option>
-				<option value="CLASS 1">CLASS 1</option>
-				<option value="CLASS 1">CLASS 2</option>
-				<option value="MINI">MINI</option>
-				<option value="LARGE">LARGE</option>
-			</select>
+			<input type="text" id="user_phone" value={user.user_phone} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. bob.smith@gmail.com" required />
 		</div>
 		<div class="relative z-0 w-full mb-5 group">
-			<label for="user_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Select the email type</label>
-			<select id="user_email" bind:value={user.user_email} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
-				<option value="MANUAL">MANUAL</option>
-				<option value="AUTOMATIC">AUTOMATIC</option>
-			</select>
+			<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">User's Id</label>
+			<input type="text" id="id" value={user.id} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. 1234" required />
 		</div>
 		<div class="relative z-0 w-full mb-5 group">
-			<label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">User's price per day</label>
-			<input type="text" id="user_price" value={user.price} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="$200,00" required />
+			<label for="user_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">User's password</label>
+			<input type="text" id="user_password" value={user.user_password} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="smith1234" required />
 		</div>
 	</div>
 	<div class="grid md:grid-cols-2 md:gap-6">
