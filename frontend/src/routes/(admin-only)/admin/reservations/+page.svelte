@@ -1,5 +1,5 @@
 <script>
-	import ManageVehicles from '../../../../components/reservations/ManageReservation.svelte';
+	import ManageVehicles from '../../../components/reservations/ManageReservation.svelte';
 </script>
 
 <svelte:head>
