@@ -67,7 +67,7 @@
 					formData.append(key, payload[key]);
 				});
 
-				const response = await fetch(`http://localhost:3000/vehicles`, {
+				const response = await fetch(`http://localhost:3002/vehicles`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',

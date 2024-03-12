@@ -24,7 +24,7 @@
 	let vehicles = [];
 
 	async function fetchVehicles() {
-    const response = await fetch('http://localhost:3000/vehicles'); // Adjust the URL to your backend endpoint
+    const response = await fetch('http://localhost:3002/vehicles'); // Adjust the URL to your backend endpoint
     const data = await response.json();
     vehicles = data; // Assuming the backend sends an array of vehicle names
 }
@@ -36,7 +36,7 @@
 	// Function to fetch reservation details from the API
 	async function fetchReservationDetails(reservationId) {
 		try {
-			const response = await fetch(`http://localhost:3000/reservations/${reservationId}`);
+			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`);
 			const data = await response.json();
 			reservation = data;
 			console.log(reservation);
@@ -86,7 +86,7 @@ async function updateReservation() {
                 formData.append(key, payload[key]);
             });
 
-            const response = await fetch(`http://localhost:3000/reservations/${reservationId}`, {
+            const response = await fetch(`http://localhost:3002/reservations/${reservationId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -130,7 +130,7 @@ async function updateReservation() {
 	// Delete reservation
 	async function deleteReservation(reservationId) {
 		try {
-			const response = await fetch(`http://localhost:3000/reservations/${reservationId}`, {
+			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`, {
 				method: 'DELETE'
 			});
 			if(response.ok) {

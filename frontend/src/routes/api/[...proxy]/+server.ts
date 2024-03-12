@@ -1,4 +1,5 @@
 const baseUrl = "http://localhost:3002";
+const prefix = '/api/v1';
 
 export const GET = async ({ url }) => {
     return await sendRequest({ url, method: 'GET' });
@@ -38,7 +39,7 @@ export const DELETE = async ({ url, request }) => {
 
 
 const sendRequest = async ({ url, method, requestBody = null }) => {
-    const query = url.search ? `${baseUrl}${url.pathname}${url.search}` : `${baseUrl}${url.pathname}`;
+    const query = url.search ? `${baseUrl}${url.pathname.substring(prefix.length)}${url.search}` : `${baseUrl}${url.pathname.substring(prefix.length)}`;
     try {
         const options: RequestOptions = {
             method,

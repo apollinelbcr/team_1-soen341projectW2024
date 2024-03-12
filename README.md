@@ -10,7 +10,7 @@
 * [Running](#running)
 * [Utilisation](#utilisation)
 
-
+## [DEMO LINK](https://drive.google.com/file/d/1jIX1p3EbXtN0BkL8udnkJPEaU_CK0ZZ0/view?usp=sharing)
 
 ## About the project
 
@@ -168,13 +168,12 @@ The frontend can then be access @  http://localhost:5173
 
 ### Prerequisites for backend
 
-[Docker][https://www.docker.com/products/docker-desktop/]
-[NestJs]
+[Docker](https://www.docker.com/products/docker-desktop/)
 ```
 $ npm install -g @nestjs/cli
 ```
 (should be run on an admin access terminal)
-[pgAdmin][https://www.pgadmin.org/download/]
+[pgAdmin](https://www.pgadmin.org/download/)
 (For database configuration)
 
 #### Server configuration
@@ -193,7 +192,7 @@ npm i
 ```
 npm run start:dev
 ```
-The backend can then be access @  http://localhost:3000
+The backend can then be access @  http://localhost:3002
 
 ### Database Records
 They will be exported in a csv file and added to the current Sprint folder (Sprint 2 for now). Then, the file will be imported by developers in the database in pgAdmin (right-click on the table and import > select file csv)

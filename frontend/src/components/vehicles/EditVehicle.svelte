@@ -39,7 +39,7 @@
 	 */
     async function fetchVehicleDetails(vehicleId) {
         try {
-            const response = await fetch(`http://localhost:3000/vehicles/${vehicleId}`);
+            const response = await fetch(`http://localhost:3002/vehicles/${vehicleId}`);
             const data = await response.json();
             vehicle = data;
 			(vehicle.status == 'AVAILABLE') ? isChecked = true : isChecked = false;
@@ -103,7 +103,7 @@
 			formData.append(key, payload[key]);
 			});
 
-			const response = await fetch(`http://localhost:3000/vehicles/${vehicleId}`, {
+			const response = await fetch(`http://localhost:3002/vehicles/${vehicleId}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
@@ -131,7 +131,7 @@
 	// Function to delete a vehicle
 	async function deleteVehicle(vehicleId) {
     try {
-		const response = await fetch(`http://localhost:3000/vehicles/${vehicleId}`, {
+		const response = await fetch(`http://localhost:3002/vehicles/${vehicleId}`, {
 			method: 'DELETE'
 		});
 		const data = await response.text();
