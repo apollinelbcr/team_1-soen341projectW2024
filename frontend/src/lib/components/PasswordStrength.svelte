@@ -2,7 +2,7 @@
 	export let user_password
 
 	
-	$: strength = checkPasswordStrength.user_passwordStrength(user_password)
+	$: strength = checkuser_passwordtrength.user_user_passwordtrength(user_password)
 </script>
 
 <style>
