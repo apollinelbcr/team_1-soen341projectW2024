@@ -5,4 +5,5 @@
     <a href="/SignUp">Create an account</a>
     <a href="../manage_users/edit-user">Edit user</a>
     <a href="../manage_users/create-user">Create user</a>
+    <a href="../manage_users">Manage user</a>
 </div>
