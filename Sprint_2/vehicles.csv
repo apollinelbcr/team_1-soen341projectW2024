@@ -1,0 +1,13 @@
+id,name_vehicle,image,vehicle_type,vehicle_category,vehicle_transmission,status,price
+d77e586f-e902-4fe6-adbb-0567353236fe,Toyota Corolla Red,https://www.seegertoyota.com/static/dealer-12152/MY20_Corolla_US_XLE_03R3_001_DS_Front_7_8.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,35.00
+60c89e9b-49c5-449e-acd8-e84b241cb0e9,Toyota Rav4 White,https://s3.amazonaws.com/toyota.site.toyota-v5/tci-prod/toyota/media/build/rav/col/big/b24_b1rfv_fl1_0040_a.png?ck=03072024125914,SUV,STANDARD,AUTOMATIC,AVAILABLE,120.00
+08af632c-2c2d-4458-a316-25961faebd33,Ford Fusion Red,https://mpop-prod-primary.s3.amazonaws.com/oem-ford/img/1561564959V6-Sport.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,20.00
+1a936659-682d-4575-a49a-b6077e1db845,Toyota Camry Grey,https://s3.amazonaws.com/toyota.site.toyota-v5/tci-prod/toyota/media/build/cam/col/big/b24_g11ak_fl1_01h1_a.png?ck=03072024125915,CAR,INTERMEDIATE,AUTOMATIC,AVAILABLE,26.00
+1b853b58-5184-4d0c-b0e5-33cb03f71a61,Ford F-150 - Black,https://www.enterprise.ca/content/dam/global-vehicle-images/trucks/FORD_F150_2018.png,SUV,COMPACT,AUTOMATIC,AVAILABLE,150.00
+c1943bca-53c8-4c6c-ac63-661db7c20f96,Truck 26 foot,https://worktruckdirect.com/wp-content/uploads/2014/12/Hino-268A-26-Straight-Truck-70.jpg,TRUCK,CLASS 1,MANUAL,AVAILABLE,300.00
+7befc065-2e0b-4066-89f6-536bcbea24b4,Chevrolet Malibu Black 2023,https://mystrongad.com/HCN_RickHendrickChevroletNaples/HCN_Interactive/Malibu/2023/23-Chevrolet-Malibu-Black.png,CAR,COMPACT,AUTOMATIC,UNAVAILABLE,40.00
+5dfdd605-b679-4713-93bf-d3505fe40629,Mitsubishi Mirage White,https://www.radiantcuracao.com/storage/2021/11/Mirage_2021.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,20.00
+69449df2-77d8-415a-85b3-3d9e03626925,Ford Cargo,https://www.advantagecarrentals.com/media/2021/05/CargoVan-600x422.png,VAN,LARGE,AUTOMATIC,AVAILABLE,40.00
+3c6af246-9179-4368-8584-60ce8ad301dd,Toyota Yaris Sedan,https://www.hertz.ae/media/2022/10/2113205844-Toyota-2023-Yaris-Launch-Platinum-White-Pearl-Mica-316x211px.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,25.00
+4f019cba-7514-48a0-8333-febae943145e,Range Rover 2021 - White,https://corporatecars.ca/wp-content/uploads/2021/12/Car-Rental-Image-25-copia.png,CAR,LARGE,AUTOMATIC,AVAILABLE,70.00
+43f117a0-dfbe-4236-9df4-437992878abe,Tesla Model S,https://www.enterprise.ca/en/exotic-car-rental/vehicles/electric-luxury-sedan/tesla-model-s/_jcr_content/root/teaser_image.coreimg.png/1664991360308/tesla-model-s-hero-thumbnail-2048x1360.png,CAR,COMPACT,AUTOMATIC,UNAVAILABLE,80.00
