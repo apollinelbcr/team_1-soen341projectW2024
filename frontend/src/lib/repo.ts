@@ -54,20 +54,10 @@ const client = {
 
 export const repo = {
 
-  async getVehicles(
-    limit: number,
-    offset: number,
-    filters: any
-  ): Promise<Vehicle[]> {
+  async getVehicles(): Promise<Vehicle[]> {
     return client.deserialize<Vehicle[]>(
-      'POST',
-      `/vehicles/filter?limit=${limit}&offset=${offset}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(filters),
-      }
+      'GET',
+      `/vehicles`
     );
   },
 
