@@ -1,5 +1,5 @@
 <script>
-	import EditVehicle from "../../../../components/reservations/EditReservation.svelte";
+	import EditVehicle from "../../../../../components/reservations/EditReservation.svelte";
 
 </script>
 <svelte:head>
