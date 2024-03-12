@@ -151,6 +151,37 @@
 
     }
 
+    function openFormAddOn(resDetail:any){
+        const formChangeAddOn = document.getElementById("formChangeAddOn") as HTMLElement;
+        if (formChangeAddOn) {
+            console.log("id" + resDetail.id);
+            formChangeAddOn.style.display = "flex";
+        }
+    }
+
+    function closeFormAddOn(): void {
+        const formChangeAddOn = document.getElementById("formChangeAddOn") as HTMLElement;
+        if (formChangeAddOn) {
+            formChangeAddOn.style.display = "none";
+        }
+    }
+    function saveInfoAddOn(resDetail:any, event: Event){
+
+        event.preventDefault();
+
+        const newAddOnInput = document.querySelector('input[name="drop-off_date"]:checked') as HTMLInputElement;
+        const newAddOn = newAddOnInput ? newAddOnInput.value : null;
+        resDetails.update(resdets => 
+        
+            resdets.map(resdet => 
+            resdet.id == resDetail.id ? {... resdet, extra_things: [...resdet.extra_things, newAddOn as string]}: resdet)
+        );
+        const form = event.target as HTMLFormElement;
+        form.reset();
+        closeFormAddOn();
+
+    }
+    
     function deleteRes(id_res: any){
         if (confirm("are you sure?")){
             resDetails.update(resdets => 
@@ -258,7 +289,7 @@
                         
                         <div class="w-1/3 border-r-2 pl-5 justify-center ">
                             <br>
-                            <a class="underline text-blue-800 align-middle" href="" >Add other</a>
+                            <a class="underline text-blue-800 align-middle" href="" on:click={()=>openFormAddOn(resDetail)}>Add other</a>
 
                         </div>
                         
@@ -281,6 +312,30 @@
             <button on:click={()=>deleteRes(resDetail.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Delete Reservation</button> 
         </div>
         <br><br>
+        <div id="formChangeAddOn" class="hidden p-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 z-50">
+            <form on:submit={(event) => saveInfoAddOn(resDetail, event)}>
+                <div class="font-bold text-lg text-center">Add new adds-on:</div>
+                <br>
+                <hr>
+                <br>
+                <div>
+                    These are the available adds-on left that you can choose from:
+                </div>
+                <br>
+                <label>
+                    <input type="radio" name="drop-off_date" value="2024-04-27" required>
+                    2024-04-27
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="drop-off_date" value="2024-04-05" required>
+                    2024-04-05
+                </label>
+                <br><br>
+                <button id="cancelButton" on:click={closeFormAddOn} class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 rounded">Submit</button>
+            </form>
+            </div>
         {/if}
         {/each}
         
