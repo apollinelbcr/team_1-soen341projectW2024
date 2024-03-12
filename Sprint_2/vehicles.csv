@@ -1,4 +1,3 @@
-id,name_vehicle,image,vehicle_type,vehicle_category,vehicle_transmission,status,price
 d77e586f-e902-4fe6-adbb-0567353236fe,Toyota Corolla Red,https://www.seegertoyota.com/static/dealer-12152/MY20_Corolla_US_XLE_03R3_001_DS_Front_7_8.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,35.00
 60c89e9b-49c5-449e-acd8-e84b241cb0e9,Toyota Rav4 White,https://s3.amazonaws.com/toyota.site.toyota-v5/tci-prod/toyota/media/build/rav/col/big/b24_b1rfv_fl1_0040_a.png?ck=03072024125914,SUV,STANDARD,AUTOMATIC,AVAILABLE,120.00
 08af632c-2c2d-4458-a316-25961faebd33,Ford Fusion Red,https://mpop-prod-primary.s3.amazonaws.com/oem-ford/img/1561564959V6-Sport.png,CAR,COMPACT,AUTOMATIC,AVAILABLE,20.00

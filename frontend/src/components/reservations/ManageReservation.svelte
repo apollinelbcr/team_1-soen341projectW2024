@@ -27,7 +27,7 @@
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/reservations');
+            const response = await fetch('http://localhost:3002/reservations');
             reservations = await response.json();
 
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
