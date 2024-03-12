@@ -12,7 +12,7 @@
 	 export let title;
     import { onMount } from 'svelte';
     // @ts-ignore
-    import CreateUser from '../CRUDBigButtons.svelte';
+    import CreateUser from '$lib/components/CRUDBigButtons.svelte';
     
     // @ts-ignore
     /**
@@ -36,7 +36,7 @@
         }
     });
 
-    import { navigate } from 'svelte-routing';
+    //import { navigate } from 'svelte-routing';
 
     // @ts-ignore
     // function filterByStatus(status) {
@@ -66,7 +66,7 @@
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >
-                                Model
+                                Name
                             </th>
                             <th
                                 scope="col"
@@ -78,7 +78,7 @@
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >
-                                Status
+                                Account Status
                             </th>
                             <th
                                 scope="col"
@@ -119,7 +119,7 @@
                         {/each} 
                         <tr class="bg-gray-50">
                             <td class="border-b p-5 text-sm font-bold">
-                                    <p class="whitespace-nowrap">Total number of cars</p>
+                                    <p class="whitespace-nowrap">Total number of users</p>
                             </td>
                             <td class="border-b p-5 text-sm">
                                 <p class="whitespace-nowrap"></p>

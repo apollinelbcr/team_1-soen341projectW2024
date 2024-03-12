@@ -15,10 +15,10 @@
 ## About the project
 
 The project aims to develop a car rental web application leveraging a [Micro Service](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) architecture. 
-This web is designed to streamline the vehicle rental process for short durations, typically from a 
-few hours to several weeks. It functions as an intermediary between customers seeking to rent vehicles and the car 
-rental companies providing those services. The application enables users to explore a variety of vehicle models 
-available for rent, complete with descriptions, photos, and detailed specifications for each vehicle. Additionally, 
+This web is designed to streamline the user rental process for short durations, typically from a 
+few hours to several weeks. It functions as an intermediary between customers seeking to rent users and the car 
+rental companies providing those services. The application enables users to explore a variety of user models 
+available for rent, complete with descriptions, photos, and detailed specifications for each user. Additionally, 
 it offers a range of services to both users and rental providers, enhancing the rental experience and simplifying the 
 transaction process.
 
@@ -38,7 +38,7 @@ transaction process.
 
 #### Clients/Renters
 
-This application implements different services for users and renters. The user can be a business or just a regular person looking to rent a vehicle(s):
+This application implements different services for users and renters. The user can be a business or just a regular person looking to rent a user(s):
 
 * Sign-up page
   ![Status][s-todo]
@@ -66,17 +66,17 @@ This application implements different services for users and renters. The user c
   ![Status][s-todo] ![Role][s-renter]
 * Display of income, bookings for the current month
   ![Status][s-todo] ![Role][s-renter]
-* Display of the percentage of vehicles currently rented
+* Display of the percentage of users currently rented
   ![Status][s-todo] ![Role][s-renter]
 * Display of customer count
   ![Status][s-todo] ![Role][s-renter]
 * Table of the latest rentals
   ![Status][s-todo] ![Role][s-renter]
-* Summary page of vehicles with the status of each vehicle
+* Summary page of users with the status of each user
   ![Status][s-todo] ![Role][s-renter]
-* Vehicle modification page (not rented), with the option to remove the vehicle from stock
+* User modification page (not rented), with the option to remove the user from stock
   ![Status][s-todo] ![Role][s-renter]
-* Form to add a new vehicle
+* Form to add a new user
   ![Status][s-todo] ![Role][s-renter]
 * Page of all clients
   ![Status][s-todo] ![Role][s-renter]

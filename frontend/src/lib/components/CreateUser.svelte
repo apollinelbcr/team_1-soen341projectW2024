@@ -42,20 +42,17 @@
 			const createdPhone = document.getElementById('user_phone').value;
 			// @ts-ignore
 			const createdPassword = document.getElementById('user_password').value;
-			// @ts-ignore
-			const createdPrice = document.getElementById('user_price').value;
 
 			// Create the payload with the created values
 				//-- values should not be blank 
 			
-			if(createdName != "" && createdImage != "" && createdPrice != ""){
+			if(createdName != "" && createdEmail != "" && createdPassword != ""){
 				const payload = {
 				name_user: createdName,
 				image: createdImage,
 				user_email: createdEmail,
 				user_phone: createdPhone,
 				user_password: createdPassword,
-				user_password2: createdPassword
 				};
 
 				console.log(payload);
@@ -129,8 +126,8 @@
 			
 		</div>
 		<div class="relative z-0 w-full mb-5 group">
-			<label for="user_password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">ReType Password</label>
-			<input type="text" id="user_password2" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="smith123456" required />
+			<label for="user_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">ReType Password</label>
+			<input type="text" id="user_password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="smith123456" required />
 		</div>
 	</div>
 
