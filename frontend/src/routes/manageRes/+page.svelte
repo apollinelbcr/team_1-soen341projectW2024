@@ -299,9 +299,9 @@
                         
                         <div class="w-1/3 pl-5">
                             <br>
-                            Extra keys
+                            <div class="font-bold text-base">Price:</div>
                             <br>
-                            djnjdkn
+                            {resDetail.price}
                             <br>
             
                         </div>
