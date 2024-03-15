@@ -7,9 +7,9 @@
         {
             fname: "Zineb",
             lname: "Bamouh",
-            gender: "female",
-            date: "07",
-            month: "25",
+            gender: "Female",
+            date: "25",
+            month: "07",
             year: "2003",
             phone: "111 111 1111",
             email: "zineb.bamouh@gmail.com",
@@ -17,7 +17,11 @@
             cardNumber: "0000 0000 0000",
             expire: "00/00",
             code: "000",
-            cardType: "Visa"
+            cardType: "Visa",
+            cardNumber2: "1234 5678 0000",
+            expire2: "09/25",
+            code2: "981",
+            cardType2: "Visa"
         });
 
     let showEditForm = false;
@@ -121,25 +125,25 @@
                 <div class="info fname">
                     <b>First Name:</b>
                     <br>
-                    <p>Zineb</p>
+                    <p>{$formData.fname}</p>
                 </div>
                 <br>
                 <div class="info lname">
                     <b>Last Name:</b>
                     <br>
-                    <p>Bamouh</p>
+                    <p>{$formData.lname}</p>
                 </div>
                 <br>
                 <div class="info gender">
                     <b>Gender:</b>
                     <br>
-                    <p>Female</p>
+                    <p>{$formData.gender}</p>
                 </div>
                 <br>
                 <div class="info birth">
                     <b>Birthdate:</b>
                     <br>
-                    <p>25/07/2003</p>
+                    <p>{$formData.date}/{$formData.month}/{$formData.year}</p>
                 </div>
                 <br>
                 <button on:click={toggleEditForm}>
@@ -154,19 +158,19 @@
                 <div class="info phone">
                     <b>Phone number:</b>
                     <br>
-                    <p>111-111-1111</p>
+                    <p>{$formData.phone}</p>
                 </div>
                 <br>
                 <div class="info email">
                     <b>Email:</b>
                     <br>
-                    <p>zineb.bamouh@gmail.com</p>
+                    <p>{$formData.email}</p>
                 </div>
                 <br>
                 <div class="info address">
                     <b>Home Address:</b>
                     <br>
-                    <p>xxx st. abcdefgh</p>
+                    <p>{$formData.address}</p>
                 </div>
                 <br>
 
@@ -179,32 +183,32 @@
                 <br>
                 <div class="user-card">
                     <div class="card">
-                        <p id="card-number">0000 0000 0000 0000</p>
+                        <p id="card-number">{$formData.cardNumber}</p>
                         <br>
                         <div class="card-container">
                             <div class="child-card1">
-                                <p id="card-expire">00/00</p>
+                                <p id="card-expire">{$formData.expire}</p>
                             </div>
                             <div class="child-card2">
-                                <p id="card-code">000</p>
+                                <p id="card-code">{$formData.code}</p>
                             </div>
                         </div>
                         <br>
-                        <p id="card-type">Visa</p>
+                        <p id="card-type">{$formData.cardType}</p>
                     </div>
                     <div class="card">
-                        <p id="card-number1">0000 0000 0000 0000</p>
+                        <p id="card-number1">{$formData.cardNumber2}</p>
                         <br>
                         <div class="card-container">
                             <div class="child-card1">
-                                <p id="card-expire1">00/00</p>
+                                <p id="card-expire1">{$formData.expire2}</p>
                             </div>
                             <div class="child-card2">
-                                <p id="card-code1">000</p>
+                                <p id="card-code1">{$formData.code2}</p>
                             </div>
                         </div>
                         <br>
-                        <p id="card-type1">Visa</p>
+                        <p id="card-type1">{$formData.cardType2}</p>
                     </div>
 
                 </div>
