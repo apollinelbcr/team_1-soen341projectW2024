@@ -2,18 +2,32 @@
     import SveltyPicker from 'svelty-picker';
 
     const today: string = new Date().toISOString();
-    let pickupLocation = '';
-    let dropOffLocation = '';
-    let pickupDate = today.slice(0, 10); // default to today's date
-    let dropOffDate = today.slice(0, 10);
-    let pickupTime = "10:30";
-    let dropOffTime = "10:30";
-    let differentDropOff = false;
+    export let pickupLocation = '';
+    export let dropOffLocation = '';
+    export let pickupDate = today.slice(0, 10); // default to today's date
+    export let dropOffDate = today.slice(0, 10);
+    export let pickupTime = "10:30";
+    export let dropOffTime = "10:30";
+    export let differentDropOff = false;
 
+    function handleSubmit(event) {
+        const searchData = {
+            pickupLocation,
+            dropOffLocation,
+            pickupDate,
+            dropOffDate,
+            pickupTime,
+            dropOffTime
+        };
+
+        const existingSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+        existingSearches.push(searchData);
+        localStorage.setItem('recentSearches', JSON.stringify(existingSearches));
+    }
 </script>
 
 <div class="mt-1 p-5 mx-auto">
-    <form class="flex flex-col" action="/search">
+    <form class="flex flex-col" action="/search" on:submit|preventDefault={handleSubmit}>
         <div class="grid grid-cols-6 gap-4 lg:grid-cols-7">
 
             <div class="border rounded p-2 col-span-6 lg:col-span-2 h-14 border-gray-500 relative">

@@ -12,13 +12,13 @@
 	 export let title;
     import { onMount } from 'svelte';
     // @ts-ignore
-
+    import CreateVehicle from '../CRUDBigButtons.svelte';
     
     // @ts-ignore
     /**
 	 * @type {any[]}
 	 */
-    let reservations = [];
+    let vehicles = [];
     /**
 	 * @type {any[]}
 	 */
@@ -27,26 +27,14 @@
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3002/reservations');
-            reservations = await response.json();
-
-            //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
-        } catch (error) {
-            console.error('Error fetching reservations:', error);
-        }
-    });
-
-    onMount(async () => {
-        try {
-            
+            const response = await fetch('http://localhost:3002/vehicles');
+            vehicles = await response.json();
             
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
         } catch (error) {
             console.error('Error fetching vehicles:', error);
         }
     });
-
-    
 
     import { navigate } from 'svelte-routing';
 
@@ -66,18 +54,7 @@
 
 <div class="mb-5 text-2xl font-medium text-gray-700">{title}</div>
 
-<a href="/admin/manage-reservations/create-reservation">
-    <div class="max-w-sm mx-auto bg-blue-500 rounded overflow-hidden shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl text-white mb-2">Reservations</div>
-      </div>
-      <div class="px-6 py-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" class="w-6 h-6 inline-block align-text-bottom">
-          <path fill-rule="evenodd" d="M10 0a1 1 0 01.993.883L11 1v8h8a1 1 0 01.117 1.993L19 11h-8v8a1 1 0 01-1.993.117L9 19v-8H1a1 1 0 01-.117-1.993L1 9h8V1a1 1 0 011-1z" clip-rule="evenodd"></path>
-        </svg>
-      </div>
-    </div>
-  </a>
+<CreateVehicle buttonname='Create Vehicle'/>
 
 <div class="container mt-10 rounded-lg">
     <div class="py-8">
@@ -89,19 +66,19 @@
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >
-                                E-mail
+                                Model
                             </th>
                             <th
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >
-                                Pickup Date
+                                Type
                             </th>
                             <th
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >
-                                Dropoff Date
+                                Status
                             </th>
                             <th
                                 scope="col"
@@ -110,20 +87,27 @@
                         </tr>
                     </thead>
                     <tbody class="text-black">
-                        {#each reservations as reservation}
+                        {#each vehicles as vehicle}
                         <tr class="border-t border-r border-l p-4">
                             <td class="border-b border-gray-200 p-5 text-sm">
-                                    <p class="whitespace-nowrap">{reservation.email}</p>
+                                    <p class="whitespace-nowrap">{vehicle.name_vehicle}</p>
                             </td>
                             <td class="border-b border-gray-200 p-5 text-sm">
-                                <p class="whitespace-nowrap">{reservation.pickup_date}</p>
+                                <p class="whitespace-nowrap">{vehicle.vehicle_type}</p>
                             </td>
                             <td class="border-b border-gray-200 p-5 text-sm">
-                                <p class="whitespace-nowrap">{reservation.dropoff_date}</p>
+                                <span class="relative inline-block rounded-full px-3 py-1 font-semibold leading-tight"
+                                      class:bg-green-200={vehicle.status === 'AVAILABLE'}
+                                      class:bg-red-500={vehicle.status !== 'AVAILABLE'}>
+                                    <span aria-hidden="true"
+                                          class="absolute inset-0 rounded-full opacity-50">
+                                    </span>
+                                    <span class="relative">{vehicle.status}</span>
+                                </span>
                             </td>
                             
                             <td class="border-b border-gray-200 p-5 text-sm">
-                                <a href="/admin/manage-reservations/edit-reservation?id={reservation.id}" class="text-blue-600 hover:text-indigo-900 cursor-pointer">
+                                <a href="/admin/manage_vehicles/edit-vehicle?id={vehicle.id}" class="text-blue-600 hover:text-indigo-900 cursor-pointer">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm9.4-5.5a1 1 0 1 0 0 2 1 1 0 1 0 0-2ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4c0-.6-.4-1-1-1h-2Z" clip-rule="evenodd"/>
                                     </svg>
@@ -145,7 +129,7 @@
                             </td>
                             
                             <td class="border-b p-5 text-sm font-bold">
-                                {reservations.length}
+                                {vehicles.length}
                             </td>                            
                         </tr>   
                     </tbody>
@@ -155,5 +139,3 @@
             </div>
         </div>
 </div>
-
-//

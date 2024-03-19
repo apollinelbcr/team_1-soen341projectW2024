@@ -1,67 +1,66 @@
-import HomeIcon from './icons/HomeIcon.svelte';
-import UserIcon from './icons/UserIcon.svelte';
-import VehicleIcon from './icons/VehicleIcon.svelte';
-import ReservationIcon from './icons/ReservationIcon.svelte';
-import ReportsIcon from './icons/ReportsIcon.svelte';
-import SettingsIcon from './icons/SettingsIcon.svelte';
-import DocumentationIcon from './icons/DocumentationIcon.svelte';
-import LogoutIcon from './icons/LogoutIcon.svelte';
+import HomeIcon from "./icons/HomeIcon.svelte";
+import UserIcon from "./icons/UserIcon.svelte";
+import VehicleIcon from "./icons/VehicleIcon.svelte";
+import ReservationIcon from "./icons/ReservationIcon.svelte";
+import ReportsIcon from "./icons/ReportsIcon.svelte";
+import SettingsIcon from "./icons/SettingsIcon.svelte";
+import DocumentationIcon from "./icons/DocumentationIcon.svelte";
+import LogoutIcon from "./icons/LogoutIcon.svelte";
 
 export const data = [
 	{
-		section: 'Section 1',
+		section: "Section 1",
 		content: [
 			{
-				title: 'Dashboard',
+				title: "Dashboard",
 				icon: HomeIcon,
-				link: '/'
-			}
-			
-		]
+				link: "/admin",
+			},
+		],
 	},
 	{
-		section: 'Section 2',
+		section: "Section 2",
 		content: [
 			{
-				title: 'Users',
+				title: "Users",
 				icon: UserIcon,
-				link: '/admin/users'
+				link: "/admin/users",
 			},
 			{
-				title: 'Vehicles',
+				title: "Vehicles",
 				icon: VehicleIcon,
-				link: '/admin/vehicles'
+				link: "/admin/vehicles",
 			},
 			{
-				title: 'Reservations',
+				title: "Reservations",
 				icon: ReservationIcon,
-				link: '/admin/reservations'
-			}
-		]
+				link: "/admin/reservations",
+			},
+		],
 	},
 	{
-		section: 'Section 3',
+		section: "Section 3",
 		content: [
 			{
-				title: 'Reports',
+				title: "Reports",
 				icon: ReportsIcon,
-				link: '/admin/reports'
+				link: "/admin/reports",
 			},
 			{
-				title: 'Settings',
+				title: "Settings",
 				icon: SettingsIcon,
-				link: '/admin/settings'
+				link: "/admin/settings",
 			},
 			{
-				title: 'Source',
+				title: "Source",
 				icon: DocumentationIcon,
-				link: '/admin/source'
+				link: "/admin/source",
 			},
 			{
-				title: 'Logout',
+				title: "Logout",
 				icon: LogoutIcon,
-				link: '/admin/logout'
-			}
-		]
-	}
+				link: "/admin/logout",
+			},
+		],
+	},
 ];

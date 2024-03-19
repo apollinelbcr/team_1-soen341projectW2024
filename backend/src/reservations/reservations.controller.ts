@@ -11,7 +11,7 @@ export class ReservationsController {
 
     constructor(private reservationsService: ReservationsService){}
 
-    // -> URL to use http://localhost:3000/reservations/
+    // -> URL to use http://localhost:3002/reservations/
 
     //1. Create reservations
     @Post()

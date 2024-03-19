@@ -23,8 +23,7 @@
 
         <!-- Logo -->
         <a href="/" class="flex-shrink-0 flex flex-row items-center">
-            <!--img class="h-8 w-8" src="/logo.svg" alt="Logo"-->
-            Rentify
+            <img class="h-24 w-24" src="/logo_pictures/rentify_lg.png" alt="Logo"/>
         </a>
 
         <!-- Navigation Links -->
