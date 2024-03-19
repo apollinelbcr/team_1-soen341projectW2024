@@ -1,0 +1,4 @@
+"id","email","vehicle_name","pickup_date","pickup_time","dropoff_date","dropoff_time","pickup_location","dropoff_location","price","extras"
+"08af632c-2c2d-4458-a316-25961faebd33","user1@example.com","Ford Fusion Red","2024-03-15","09:00","2024-03-20","15:00","Montreal","Laval","199.00","None"
+"02af162c-1c4d-7758-a316-25961faebd32","user1@example.com","Toyota Rav4 Blue","2024-04-10","10:00","2024-04-15","16:00","Montreal","Laval","199.00","None"
+"01af217c-2c3d-5558-a316-25961faebd33","user1@example.com","Hyundai Tucson Navy","2024-05-05","08:00","2024-05-10","14:00","Montreal","Laval","199.00","None"
