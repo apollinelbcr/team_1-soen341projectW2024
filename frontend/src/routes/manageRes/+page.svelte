@@ -1,5 +1,4 @@
 <script lang="ts">
-
     
     import CarDetails from "$lib/components/carDetails.svelte";
     import {writable} from "svelte/store";
@@ -48,26 +47,6 @@
         }
     ]);
 
-    let carDatas = writable([
-        {
-            id: "vehi1234",
-            name: "Nissan",
-            type: "Rogue",
-            category: "category unknown",
-            capacity: "5",
-            transmission: "automatic",
-            src:"2023-Nissan-Rogue.png"
-        },
-        {
-            id: "vehi87438",
-            name: "Tesla",
-            type: "S",
-            category: "category unknown",
-            capacity: "2",
-            transmission: "automatic",
-            src:"tesla2024s.png"
-        },
-    ]);
 
     let userDatas = writable([
         {
