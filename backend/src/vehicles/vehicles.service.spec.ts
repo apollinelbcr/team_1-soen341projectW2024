@@ -71,7 +71,7 @@ describe('VehiclesService', () => {
     jest.spyOn(repository, 'create').mockImplementation(() => mockVehicle());
     jest.spyOn(repository, 'save').mockResolvedValue(mockVehicle());
 
-      const result = await vehicle.createTask(createVehicleDto);
+      const result = await vehicle.createVehicle(createVehicleDto);
       expect(result).toEqual(mockVehicle());
       expect(repository.save).toHaveBeenCalled();
     });

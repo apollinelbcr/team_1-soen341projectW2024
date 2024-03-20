@@ -14,8 +14,8 @@ export class VehiclesController {
 
     //1. Create vehicle
     @Post()
-    createTask(@Body() createVehicleDto : CreateVehicleDto) : Promise<Vehicle>{
-        return this.vehiclesService.createTask(createVehicleDto); 
+    createVehicle(@Body() createVehicleDto : CreateVehicleDto) : Promise<Vehicle>{
+        return this.vehiclesService.createVehicle(createVehicleDto); 
     }
 
     //2. Get Vehicle By ID

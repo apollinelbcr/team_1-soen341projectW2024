@@ -18,7 +18,7 @@ export class VehiclesService {
     ) {};
 
     //1. Create a vehicle - PG
-    async createTask(createVehicleDto: CreateVehicleDto): Promise<Vehicle> {
+    async createVehicle(createVehicleDto: CreateVehicleDto): Promise<Vehicle> {
         const { name_vehicle, image, vehicle_type, vehicle_category, vehicle_transmission, price } = createVehicleDto;
         const vehicle = this.vehicleRepository.create({
             name_vehicle, image, vehicle_type, vehicle_category, vehicle_transmission, status: VehicleStatus.AVAILABLE, price
