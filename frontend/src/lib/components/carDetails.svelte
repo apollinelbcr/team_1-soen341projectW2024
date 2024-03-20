@@ -23,7 +23,7 @@
     <div class="table-row">
         <div class="w-1/2 mx-auto table-cell">
         
-            <img src="$static/cars_pictures/ford_F150_2018.jpeg" alt={details.name_vehicle}/>
+            <img src="cars_pictures/{details.image}" alt={details.name_vehicle}/>
         </div>
     
         <div class=" pl-14 table-cell align-top">

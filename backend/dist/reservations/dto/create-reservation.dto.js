@@ -54,6 +54,6 @@ __decorate([
 ], CreateReservationDto.prototype, "dropoff_location", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(reservations_extras_enum_1.Extras),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], CreateReservationDto.prototype, "extras", void 0);
 //# sourceMappingURL=create-reservation.dto.js.map

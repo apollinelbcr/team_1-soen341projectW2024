@@ -42,5 +42,5 @@ export class UpdateReservationDto {
 
     @IsEnum(Extras)
     @IsOptional()
-    extras: Extras;
+    extras: Extras[];
 }

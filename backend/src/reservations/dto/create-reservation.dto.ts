@@ -36,5 +36,5 @@ export class CreateReservationDto {
     price: number;
 
     @IsEnum(Extras)
-    extras: Extras;
+    extras: Extras[];
 }

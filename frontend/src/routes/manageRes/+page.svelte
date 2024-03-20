@@ -317,12 +317,17 @@
                     <div class="flex justify center p-5">
                         <div class="w-1/3 border-r-2">
                             <div class="font-bold text-base">Adds-on:</div>
-                            {#each reservation.extras as extra_thing, i}
-                            {extra_thing}
-                            <br>
+                            {#if reservation.extras == 'None'}
+                                No adds-ons
                             {:else}
-                            No adds-ons
+                            {#each reservation.extras.split(',') as extra}
+                                <p>{extra.trim()}</p>
                             {/each}
+                            {/if}
+                            <br>
+                            
+                            
+                            
                         </div>
                         
                         <div class="w-1/3 border-r-2 pl-5 justify-center ">

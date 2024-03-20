@@ -62,6 +62,6 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsEnum)(reservations_extras_enum_1.Extras),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], UpdateReservationDto.prototype, "extras", void 0);
 //# sourceMappingURL=update-reservation.dto.js.map
