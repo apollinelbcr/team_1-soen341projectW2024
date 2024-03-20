@@ -7,7 +7,7 @@
     let resDetails = writable([
         {
             id: "101",
-            id_vehicle: "vehi1234",
+            vehicle_name: "vehi1234",
             id_user: "user007",
             pickupDate: "2024-03-15",
             pickupTime: "7:30 AM",
@@ -21,7 +21,7 @@
 
         {
             id: "107",
-            id_vehicle: "vehi1234",
+            vehicle_name: "vehi1234",
             id_user: "user882",
             pickupDate: "2024-02-01",
             pickupTime: "7:30 AM",
@@ -35,7 +35,7 @@
 
         {
             id: "121",
-            id_vehicle: "vehi87438",
+            vehicle_name: "vehi87438",
             id_user: "user007",
             pickupDate: "2024-06-03",
             pickupTime: "7:30 AM",
@@ -73,7 +73,7 @@
         {
             id: "user007",
             name: "Asma",
-            email: "asmaaimade@gmail.com",
+            email: "user7@example.com",
             password: "abc123",
             role: "client",
             driver_license: "YYYY 9876 5432",
@@ -88,7 +88,7 @@
         },
     ]);
 
-    const uid = "user007";
+    const email = "user7@example.com";
 
     const extras = ["baby seat", "Cushion", "GPS", "Roof boxes", "Extra keys", "Windshield washer", "Jump Starter"];
 
@@ -193,13 +193,47 @@
 
         }
     }
+
+    import { onMount } from 'svelte';
+    
+    // @ts-ignore
+    /**
+	 * @type {any[]}
+	 */
+    let vehicles: any[] = [];
+    /**
+	 * @type {any[]}
+	 */
+     let reservations: any[] = [];
+
+
+    onMount(async () => {
+        try {
+            const response = await fetch('http://localhost:3000/vehicles');
+            vehicles = await response.json();
+            
+            //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
+        } catch (error) {
+            console.error('Error fetching vehicles:', error);
+        }
+    });
+    onMount(async () => {
+        try {
+            const response = await fetch('http://localhost:3000/reservations');
+            reservations = await response.json();
+            
+            //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
+        } catch (error) {
+            console.error('Error fetching reservations:', error);
+        }
+    });
 </script>
 <div class="fixed w-100% pt-4 px-16">
     <a href="">Logo here</a>
 </div>
 
 
-{#each $userDatas.filter((userData) => userData.id == uid) as userData}
+{#each $userDatas.filter((userData) => userData.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
@@ -226,11 +260,11 @@
         
     </div>
     <div class=" mt-[50px] rounded-lg">
-        {#each $resDetails as resDetail (resDetail.id)}
-        {#if resDetail.id_user == uid}
+        {#each reservations as reservation}
+        {#if reservation.email == email}
         <table class="border-collapse">
             <tr>
-                {#each $carDatas.filter((carData) => carData.id == resDetail.id_vehicle) as carData}
+                {#each vehicles.filter((vehicle) => vehicle.name_vehicle == reservation.vehicle_name) as carData}
                 <td class=" border w-2/3 border-slate-300">
                         <CarDetails details = {carData}/>
                 </td>
@@ -243,11 +277,11 @@
                                 <td>
                                     <div class="font-bold text-base">Pick-up information:</div>
                                     <div class="text-sm">
-                                        {resDetail.pickupDate}
+                                        {reservation.pickup_date}
                                         <br>
-                                        {resDetail.pickupTime}
+                                        {reservation.pickup_time}
                                         <br>
-                                        {resDetail.pickupLoc}
+                                        {reservation.pickup_location}
                                         <br>
                                     </div>
                                 </td>
@@ -259,11 +293,11 @@
                                 <td>
                                     <div class="font-bold text-base">Drop-off information:</div>
                                     <div class="text-sm">
-                                        {resDetail.dropoffDate}
+                                        {reservation.dropoff_date}
                                         <br>
-                                        {resDetail.dropoffTime}
+                                        {reservation.dropoff_time}
                                         <br>
-                                        {resDetail.dropoffLoc}
+                                        {reservation.dropoff_location}
                                         <br>
                                     </div>
                                 </td>
@@ -283,7 +317,7 @@
                     <div class="flex justify center p-5">
                         <div class="w-1/3 border-r-2">
                             <div class="font-bold text-base">Adds-on:</div>
-                            {#each resDetail.extra_things as extra_thing, i}
+                            {#each reservation.extras as extra_thing, i}
                             {extra_thing}
                             <br>
                             {:else}
@@ -293,7 +327,7 @@
                         
                         <div class="w-1/3 border-r-2 pl-5 justify-center ">
                             <br>
-                            <a class="underline text-blue-800 align-middle" href="" on:click={()=>openFormAddOn(resDetail)}>Add other</a>
+                            <a class="underline text-blue-800 align-middle" href="" on:click={()=>openFormAddOn(reservation)}>Add other</a>
 
                         </div>
                         
@@ -301,7 +335,7 @@
                             <br>
                             <div class="font-bold text-base">Price:</div>
                             <br>
-                            {resDetail.price}
+                            {reservation.price}
                             <br>
             
                         </div>
@@ -313,11 +347,11 @@
         <br>
         <div class="items-center justify-between flex">
             <p class=" text-xs ">**You can cancel at any time your reservation without any charge.</p>
-            <button on:click={()=>deleteRes(resDetail.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Delete Reservation</button> 
+            <button on:click={()=>deleteRes(reservation.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Delete Reservation</button> 
         </div>
         <br><br>
         <div id="formChangeAddOn" class="hidden p-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 z-50">
-            <form on:submit={(event) => saveInfoAddOn(resDetail, event)}>
+            <form on:submit={(event) => saveInfoAddOn(reservation, event)}>
                 <div class="font-bold text-lg text-center">Add new adds-on:</div>
                 <br>
                 <hr>
@@ -367,7 +401,7 @@
             </form>
             </div>
             <div id="formChange" class="hidden p-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 z-50">
-                <form on:submit={(event) => saveInfoPickup(resDetail, event)}>
+                <form on:submit={(event) => saveInfoPickup(reservation, event)}>
                     <div class="font-bold text-lg text-center">Change Pick-up date</div>
                     <br>
                     <hr>
@@ -392,7 +426,7 @@
             </div>
             
             <div id="formChangeDropDate" class="hidden p-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 z-50">
-                <form on:submit={(event) => saveInfoDropoff(resDetail, event)}>
+                <form on:submit={(event) => saveInfoDropoff(reservation, event)}>
                     <div class="font-bold text-lg text-center">Change Drop-off date</div>
                     <br>
                     <hr>
