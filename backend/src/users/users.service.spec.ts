@@ -86,10 +86,8 @@ describe('UsersService', () => {
         last_name: 'Doe',
         email: 'kate.doe@gmail.com',
         password: 'testpassword1@',
-        role : UserRole.CUSTOMER,
         phone_number: '999-999-9999',
-        driver_license: 'YHKA-09-827364',
-        status: UserStatus.ACTIVE
+        driver_license: 'YHKA-09-827364'
     };
     jest.spyOn(repository, 'create').mockImplementation(() => mockUser());
     jest.spyOn(repository, 'save').mockResolvedValue(mockUser());
