@@ -188,7 +188,7 @@
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/vehicles');
+            const response = await fetch('http://localhost:3002/vehicles');
             vehicles = await response.json();
             
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
@@ -198,7 +198,7 @@
     });
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/reservations');
+            const response = await fetch('http://localhost:3002/reservations');
             reservations = await response.json();
             
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
@@ -246,6 +246,11 @@
                 {#each vehicles.filter((vehicle) => vehicle.name_vehicle == reservation.vehicle_name) as carData}
                 <td class=" border w-2/3 border-slate-300">
                         <CarDetails details = {carData}/>
+                        <a href="/admin/manage-reservations/manage?id={reservation.id}" class="text-blue-600 hover:text-indigo-900 cursor-pointer">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm9.4-5.5a1 1 0 1 0 0 2 1 1 0 1 0 0-2ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4c0-.6-.4-1-1-1h-2Z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
                 </td>
                 {/each}
                 <td class="border w-1/3 border-slate-300 mt-20">
