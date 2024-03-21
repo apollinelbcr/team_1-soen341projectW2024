@@ -9,5 +9,5 @@ export declare class CreateReservationDto {
     pickup_location: string;
     dropoff_location: string;
     price: number;
-    extras: Extras;
+    extras: Extras[];
 }
