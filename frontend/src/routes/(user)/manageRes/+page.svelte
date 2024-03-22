@@ -4,10 +4,38 @@
     import {writable} from "svelte/store";
     import Swal from 'sweetalert2';
 
+    let users:any = [];
 
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+    async function fetchUserDetails(userId:any) {
+		try {
+			const response = await fetch(`http://localhost:3000/users/${userId}`);
+			const data = await response.json();
+			users = data;
+			console.log(users);
+		} catch (error) {
+			console.error('Error fetching reservation details:', error);
+		}
+	}
+    onMount(() => {
+		fetchUserDetails(userId);
+	});
+    /*
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
+        
+    onMount(async () => {
+        try {
+            const response = await fetch('http://localhost:3000/users');
+            users = await response.json();
+            
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    });
+    */
+
     import { onMount } from 'svelte';
     
     // @ts-ignore
@@ -19,10 +47,7 @@
 	 * @type {any[]}
 	 */
      let reservations: any[] = [];
-     /**
-	 * @type {any[]}
-	 */
-     let users: any[] = [];
+     
 
 
     onMount(async () => {
@@ -42,15 +67,6 @@
             
         } catch (error) {
             console.error('Error fetching reservations:', error);
-        }
-    });
-    onMount(async () => {
-        try {
-            const response = await fetch('http://localhost:3000/users');
-            users = await response.json();
-            
-        } catch (error) {
-            console.error('Error fetching users:', error);
         }
     });
 
@@ -92,12 +108,11 @@
 </div>
 
 
-{#each users.filter((userData) => userData.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {users.first_name}!</header>
                 <ul>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
@@ -120,7 +135,7 @@
     </div>
     <div class=" mt-[50px] rounded-lg">
         {#each reservations as reservation}
-        {#if reservation.email == email}
+        {#if reservation.email == users.email}
         <table class="border-collapse">
             <tr>
                 {#each vehicles.filter((vehicle) => vehicle.name_vehicle == reservation.vehicle_name) as carData}
@@ -227,5 +242,3 @@
     </div>
 </div>
 
-
-{/each}
