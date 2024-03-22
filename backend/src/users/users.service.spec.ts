@@ -16,6 +16,7 @@ const mockUserRepository = () => ({
   create: jest.fn(),
   save: jest.fn(),
   findOneBy: jest.fn(),
+  findOne: jest.fn(),
   find: jest.fn(),
   delete: jest.fn(),
 });
