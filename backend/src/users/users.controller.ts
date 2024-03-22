@@ -11,7 +11,7 @@ export class UsersController {
     constructor(private usersService: UsersService){}
 
     //Add staff >> done by staff only
-    @Post('/admin/')
+    @Post('/admin/') 
     createStaff(@Body() createStaffDto : CreateStaffDto) : Promise<User>{
         return this.usersService.createStaff(createStaffDto); 
     }
@@ -41,7 +41,7 @@ export class UsersController {
     }
 
     //Update User >> admin
-    @Patch('/:id')
+    @Patch('/admin/:id')
     updateUserStaff(@Param('id') id: string, @Body() updateUserAdminDto: UpdateUserAdminDto): Promise<User> {
          return this.usersService.updateUserStaff(id, updateUserAdminDto);
      }
@@ -52,5 +52,26 @@ export class UsersController {
          return this.usersService.updateUserCustomer(id, updateCustomerInfoDto);
      }
 
+    //login customers only
+    @Post('login')
+    async loginUser(@Body('email') email: string, @Body('password') password: string) {
+        const user = await this.usersService.loginCustomer(email, password);
+        if (user) {
+            return { message: 'User found', user };
+        } else {
+            return { message: 'User not found' };
+        }
+    }
+
+    //find user by email
+    @Post('/email/')
+    async findUserByEmail(@Body('email') email: string){
+        const user = await this.usersService.findUserByEmail(email);
+        if (user) {
+            return { message: 'User found', user }; //return type is promise user or null
+        } else {
+            return { message: 'User not found' };
+        }
+    }
 
 }

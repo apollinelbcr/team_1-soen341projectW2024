@@ -14,4 +14,18 @@ export declare class UsersController {
     deleteUser(id: string): Promise<void>;
     updateUserStaff(id: string, updateUserAdminDto: UpdateUserAdminDto): Promise<User>;
     updateUserCustomer(id: string, updateCustomerInfoDto: UpdateCustomerInfoDto): Promise<User>;
+    loginUser(email: string, password: string): Promise<{
+        message: string;
+        user: User;
+    } | {
+        message: string;
+        user?: undefined;
+    }>;
+    findUserByEmail(email: string): Promise<{
+        message: string;
+        user: User;
+    } | {
+        message: string;
+        user?: undefined;
+    }>;
 }

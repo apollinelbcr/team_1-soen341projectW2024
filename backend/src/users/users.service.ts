@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { User } from './users.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -29,8 +29,15 @@ export class UsersService {
     }
 
     //2. Create a user -- customer
-    async createCustomer(createStaffDto: CreateCustomerDto): Promise<User> {
-        const { first_name, last_name, email, password, phone_number, driver_license } = createStaffDto;
+    async createCustomer(createCustomer: CreateCustomerDto): Promise<User | null> {
+        const { first_name, last_name, email, password, phone_number, driver_license } = createCustomer;
+        let existingUser = await this.userRepository.findOne({ where: { email, role: 'CUSTOMER' } });
+        if (existingUser){
+            throw new HttpException(
+                'Email already exists',
+                HttpStatus.CONFLICT,
+              );
+        } ;
         const customer = this.userRepository.create({
             first_name, last_name, email, password, role: UserRole.CUSTOMER, phone_number, driver_license, status: UserStatus.ACTIVE
         } as Partial<User>); 
@@ -114,5 +121,17 @@ export class UsersService {
         await this.userRepository.save(user);
         return user;
     }
+
+    //login service method - Customer Only
+    async loginCustomer(email: string, password: string): Promise<User | null> {
+        const user = await this.userRepository.findOne({ where: { email, password, role: 'CUSTOMER' } });
+        return user || null;
+      }
+
+    //Find by email - check if email exist before signing up
+    async findUserByEmail(email: string): Promise<User | null> {
+        const user = await this.userRepository.findOne({ where: { email, role: 'CUSTOMER' } });
+        return user || null;
+      }
 
 }

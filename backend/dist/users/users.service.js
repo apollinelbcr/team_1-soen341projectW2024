@@ -31,8 +31,13 @@ let UsersService = class UsersService {
         await this.userRepository.save(staff);
         return staff;
     }
-    async createCustomer(createStaffDto) {
-        const { first_name, last_name, email, password, phone_number, driver_license } = createStaffDto;
+    async createCustomer(createCustomer) {
+        const { first_name, last_name, email, password, phone_number, driver_license } = createCustomer;
+        let existingUser = await this.userRepository.findOne({ where: { email, role: 'CUSTOMER' } });
+        if (existingUser) {
+            throw new common_1.HttpException('Email already exists', common_1.HttpStatus.CONFLICT);
+        }
+        ;
         const customer = this.userRepository.create({
             first_name, last_name, email, password, role: users_roles_enum_1.UserRole.CUSTOMER, phone_number, driver_license, status: users_status_enum_1.UserStatus.ACTIVE
         });
@@ -98,6 +103,14 @@ let UsersService = class UsersService {
         }
         await this.userRepository.save(user);
         return user;
+    }
+    async loginCustomer(email, password) {
+        const user = await this.userRepository.findOne({ where: { email, password, role: 'CUSTOMER' } });
+        return user || null;
+    }
+    async findUserByEmail(email) {
+        const user = await this.userRepository.findOne({ where: { email, role: 'CUSTOMER' } });
+        return user || null;
     }
 };
 exports.UsersService = UsersService;

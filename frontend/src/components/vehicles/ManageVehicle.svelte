@@ -54,7 +54,7 @@
 
 <div class="mb-5 text-2xl font-medium text-gray-700">{title}</div>
 
-<CreateVehicle buttonname='Create Vehicle'/>
+<CreateVehicle buttonname='Create Vehicle' link="/admin/manage_vehicles/create-vehicle"/>
 
 <div class="container mt-10 rounded-lg">
     <div class="py-8">

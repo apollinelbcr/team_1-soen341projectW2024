@@ -44,6 +44,24 @@ let UsersController = class UsersController {
     updateUserCustomer(id, updateCustomerInfoDto) {
         return this.usersService.updateUserCustomer(id, updateCustomerInfoDto);
     }
+    async loginUser(email, password) {
+        const user = await this.usersService.loginCustomer(email, password);
+        if (user) {
+            return { message: 'User found', user };
+        }
+        else {
+            return { message: 'User not found' };
+        }
+    }
+    async findUserByEmail(email) {
+        const user = await this.usersService.findUserByEmail(email);
+        if (user) {
+            return { message: 'User found', user };
+        }
+        else {
+            return { message: 'User not found' };
+        }
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -81,7 +99,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "deleteUser", null);
 __decorate([
-    (0, common_1.Patch)('/:id'),
+    (0, common_1.Patch)('/admin/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -96,6 +114,21 @@ __decorate([
     __metadata("design:paramtypes", [String, update_customer_dto_1.UpdateCustomerInfoDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUserCustomer", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)('email')),
+    __param(1, (0, common_1.Body)('password')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "loginUser", null);
+__decorate([
+    (0, common_1.Post)('/email/'),
+    __param(0, (0, common_1.Body)('email')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "findUserByEmail", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
