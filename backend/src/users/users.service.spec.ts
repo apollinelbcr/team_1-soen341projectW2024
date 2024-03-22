@@ -90,6 +90,7 @@ describe('UsersService', () => {
         driver_license: 'YHKA-09-827364'
     };
     jest.spyOn(repository, 'create').mockImplementation(() => mockUser());
+    jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockUser());
     jest.spyOn(repository, 'save').mockResolvedValue(mockUser());
 
       const result = await user.createCustomer(createCustomerDto);
