@@ -85,7 +85,7 @@ describe('UsersService', () => {
     const createCustomerDto: CreateCustomerDto = {
         first_name: 'Kate',
         last_name: 'Doe',
-        email: 'kate.doe@gmail.com',
+        email: 'test.doe@gmail.com',
         password: 'testpassword1@',
         phone_number: '999-999-9999',
         driver_license: 'YHKA-09-827364'
