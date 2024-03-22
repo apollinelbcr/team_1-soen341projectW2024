@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
-import { NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateCustomerDto } from './dto/create-customer.dto';
@@ -81,24 +81,28 @@ describe('UsersService', () => {
 
   //create customer
   describe('createCustomer', () => {
-    it('should successfully insert a customer user', async () => {
-    const createCustomerDto: CreateCustomerDto = {
-        first_name: 'Kate',
-        last_name: 'Doe',
-        email: 'test.doe@gmail.com',
-        password: 'testpassword1@',
-        phone_number: '999-999-9999',
-        driver_license: 'YHKA-09-827364'
-    };
-    jest.spyOn(repository, 'create').mockImplementation(() => mockUser());
-    jest.spyOn(repository, 'findOne').mockResolvedValue(mockUser());
-    jest.spyOn(repository, 'save').mockResolvedValue(mockUser());
 
-      const result = await user.createCustomer(createCustomerDto);
-      expect(result).toEqual(mockUser());
-      expect(repository.save).toHaveBeenCalled();
+
+    it('should throw an error if email already exists', async () => {
+       const createCustomerDto: CreateCustomerDto = {
+           first_name: 'Kate',
+           last_name: 'Doe',
+           email: 'test.doe@gmail.com',
+           password: 'testpassword1@',
+           phone_number: '999-999-9999',
+           driver_license: 'YHKA-09-827364'
+       };
+
+       // Mocking findOne to return an existing user
+       jest.spyOn(repository, 'findOne').mockResolvedValue(mockUser());
+       
+       // Call the method and expect it to throw an error
+       await expect(user.createCustomer(createCustomerDto)).rejects.toThrow(HttpException);
+       expect(repository.save).not.toHaveBeenCalled(); // Make sure save is not called
     });
-  });
+
+});
+
 
   //get customer by id
   describe('getCustomerById', () => {

@@ -30,6 +30,7 @@ export class UsersService {
 
     //2. Create a user -- customer
     async createCustomer(createCustomer: CreateCustomerDto): Promise<User | null> {
+
         const { first_name, last_name, email, password, phone_number, driver_license } = createCustomer;
         let existingUser = await this.userRepository.findOne({ where: { email, role: 'CUSTOMER' } });
         if (existingUser){
