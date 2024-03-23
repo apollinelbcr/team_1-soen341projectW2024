@@ -28,7 +28,7 @@
 	
 		let reservation = {};
 		let vehicles = [];
-		
+		let users = [];
 	
 		async function fetchVehicles() {
 		const response = await fetch('http://localhost:3002/vehicles'); // Adjust the URL to your backend endpoint
@@ -38,6 +38,16 @@
 	
 			onMount(() => {
 				fetchVehicles();
+			});	
+
+			async function fetchUsers() {
+		const response = await fetch('http://localhost:3002/users'); // Adjust the URL to your backend endpoint
+		const data = await response.json();
+		users = data; // Assuming the backend sends an array of vehicle names
+	}
+	
+			onMount(() => {
+				fetchUsers();
 			});	
 	
 		// Function to fetch reservation details from the API
@@ -54,7 +64,7 @@
 	
 		 async function handleCreate() {
     try {
-        const updatedEmail = document.getElementById('reservation_email').value;
+        const updatedEmail = document.getElementById('email').value;
         const updatedVehicleId = document.getElementById('vehicle_name').value;
         const updatedPickupDate = document.getElementById('pickup_date').value;
         const updatedDropoffDate = document.getElementById('dropoff_date').value;
@@ -122,7 +132,12 @@
 		<div class="grid md:grid-cols-2 md:gap-6">
 			<div class="relative z-0 w-full mb-5 group">
 				<label for="text" class="block mb-2 text-sm font-medium text-gray-900">Customer Email</label>
-				<input type="email" id="reservation_email" placeholder="Enter the email of the customer" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+				<select id="email" bind:value={reservation.email} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+					<option value="" disabled>Select a email</option>
+					{#each users as user}
+						<option value={user.email}>{user.email}</option>
+					{/each}	
+			
 			</div> 
 			<div class="relative z-0 w-full mb-5 group">
 				<label for="vehicle_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Vehicle's Name/Model</label>
@@ -131,6 +146,7 @@
 					{#each vehicles as vehicle}
 						<option value={vehicle.name_vehicle}>{vehicle.name_vehicle}</option>
 					{/each}
+					
 				</select>
 			</div>		
 		</div>
