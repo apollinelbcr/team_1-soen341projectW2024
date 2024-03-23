@@ -1,13 +1,10 @@
-<script>
-    import { writable } from 'svelte/store';
-    // Create a writable store to hold the value of buttonname
-    /**
-	 * @type {any}
-	 */
-     export let buttonname;
+<script lang="ts">
+    export let buttonname: string;
+    export let link: string;
+
   </script>
 
-<a href="/admin/manage_vehicles/create-vehicle">
+<a href={link}>
     <div class="max-w-sm mx-auto bg-blue-500 rounded overflow-hidden shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out">
       <div class="px-6 py-4">
         <div class="font-bold text-xl text-white mb-2">{buttonname}</div>

@@ -1,6 +1,6 @@
 <script>
 	import ManageVehicles from '../../../../components/vehicles/ManageVehicle.svelte';
-</script>
+</script> 
 
 <svelte:head>
 	<title>Vehicles</title>
