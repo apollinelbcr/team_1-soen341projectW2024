@@ -102,36 +102,24 @@
             </div>
         </section>
         <section class="child-info">
-            <div class="child" id="Profile" style="display: block;">
-                <h1 style="font-size: 30px;">Profile Information</h1>
-                <p>Ensure that this information corresponds with your driver's license.</p>
+            <div class="child" id="Contact">
+                <h1 style="font-size: 30px;">Contact Information</h1>
+                <p>Ensure that this information are correct.</p>
                 <br>
-                <div class="info fname">
-                    <b>First Name:</b>
+                <div class="info phone">
+                    <b>Phone number:</b>
                     <br>
-                    <p>{userData.first_name}</p>
+                    <p>{userData.phone_number}</p>
                 </div>
                 <br>
-                <div class="info lname">
-                    <b>Last Name:</b>
+                <div class="info email">
+                    <b>Email:</b>
                     <br>
-                    <p>{userData.last_name}</p>
+                    <p>{userData.email}</p>
                 </div>
                 <br>
-                <div class="info birth">
-                    <b>Role:</b>
-                    <br>
-                    <p>{userData.role}</p>
-                </div>
-                <br>
-                <button on:click={toggleEditForm}>
-                    <a href="">Edit</a>
 
-                </button>
             </div>
-            
-            
-            
             {#if showEditForm}
                 <EditForm />
             {/if}

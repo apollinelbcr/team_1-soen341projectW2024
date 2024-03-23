@@ -4,37 +4,11 @@
     import {writable} from "svelte/store";
     import Swal from 'sweetalert2';
 
-    let users:any = [];
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('id');
-    async function fetchUserDetails(userId:any) {
-		try {
-			const response = await fetch(`http://localhost:3000/users/${userId}`);
-			const data = await response.json();
-			users = data;
-			console.log(users);
-		} catch (error) {
-			console.error('Error fetching reservation details:', error);
-		}
-	}
-    onMount(() => {
-		fetchUserDetails(userId);
-	});
-    /*
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
         
-    onMount(async () => {
-        try {
-            const response = await fetch('http://localhost:3000/users');
-            users = await response.json();
-            
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
-    });
-    */
+    
 
     import { onMount } from 'svelte';
     
@@ -47,12 +21,24 @@
 	 * @type {any[]}
 	 */
      let reservations: any[] = [];
+     /**
+	 * @type {any[]}
+	 */
+     let users: any[] = [];
      
 
-
+     onMount(async () => {
+        try {
+            const response = await fetch('http://localhost:3002/users');
+            users = await response.json();
+            
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    });
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/vehicles');
+            const response = await fetch('http://localhost:3002/vehicles');
             vehicles = await response.json();
             
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
@@ -62,7 +48,7 @@
     });
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/reservations');
+            const response = await fetch('http://localhost:3002/reservations');
             reservations = await response.json();
             
         } catch (error) {
@@ -73,7 +59,7 @@
     // Delete reservation
 	async function deleteReservation(reservationId:any) {
 		try {
-			const response = await fetch(`http://localhost:3000/reservations/${reservationId}`, {
+			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`, {
 				method: 'DELETE'
 			});
 			if(response.ok) {
@@ -107,24 +93,24 @@
     <a href="">Logo here</a>
 </div>
 
-
+{#each users.filter((user)=> user.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {users.first_name}!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
                 <ul>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser">Profile</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="contactLink">Contact</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/contactInfo">Contact</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="paymentLink">Payment</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/paymentInfo">Payment</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="reviewLink">Review</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/reviewInfo">Review</a>
                     </li>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes">My Reservation</a>
@@ -135,7 +121,7 @@
     </div>
     <div class=" mt-[50px] rounded-lg">
         {#each reservations as reservation}
-        {#if reservation.email == users.email}
+        {#if reservation.email == userData.email}
         <table class="border-collapse">
             <tr>
                 {#each vehicles.filter((vehicle) => vehicle.name_vehicle == reservation.vehicle_name) as carData}
@@ -241,4 +227,4 @@
         
     </div>
 </div>
-
+{/each}

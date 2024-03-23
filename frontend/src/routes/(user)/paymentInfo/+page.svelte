@@ -102,36 +102,47 @@
             </div>
         </section>
         <section class="child-info">
-            <div class="child" id="Profile" style="display: block;">
-                <h1 style="font-size: 30px;">Profile Information</h1>
-                <p>Ensure that this information corresponds with your driver's license.</p>
+            <div class="child" id="Payment">
+                <h1 style="font-size: 30px;">Payment Information</h1>
+                <p>Save your card for later:</p>
                 <br>
-                <div class="info fname">
-                    <b>First Name:</b>
-                    <br>
-                    <p>{userData.first_name}</p>
-                </div>
+                <p style="font-weight: bold;">Your card</p>
                 <br>
-                <div class="info lname">
-                    <b>Last Name:</b>
-                    <br>
-                    <p>{userData.last_name}</p>
-                </div>
-                <br>
-                <div class="info birth">
-                    <b>Role:</b>
-                    <br>
-                    <p>{userData.role}</p>
-                </div>
-                <br>
-                <button on:click={toggleEditForm}>
-                    <a href="">Edit</a>
+                <div class="user-card">
+                    <div class="card">
+                        <p id="card-number">{$formData.cardNumber}</p>
+                        <br>
+                        <div class="card-container">
+                            <div class="child-card1">
+                                <p id="card-expire">{$formData.expire}</p>
+                            </div>
+                            <div class="child-card2">
+                                <p id="card-code">{$formData.code}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="card-type">{$formData.cardType}</p>
+                    </div>
+                    <div class="card">
+                        <p id="card-number1">{$formData.cardNumber2}</p>
+                        <br>
+                        <div class="card-container">
+                            <div class="child-card1">
+                                <p id="card-expire1">{$formData.expire2}</p>
+                            </div>
+                            <div class="child-card2">
+                                <p id="card-code1">{$formData.code2}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="card-type1">{$formData.cardType2}</p>
+                    </div>
 
-                </button>
+                </div>
+                <br>
+
+
             </div>
-            
-            
-            
             {#if showEditForm}
                 <EditForm />
             {/if}

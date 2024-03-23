@@ -17,7 +17,7 @@
         capacity:"2",
         transmission:"Automatic",
         src: "nissan rogue.png"
-    });
+    }); 
 </script>
 <main>
     <section class="flex justify-center items-center h-screen">

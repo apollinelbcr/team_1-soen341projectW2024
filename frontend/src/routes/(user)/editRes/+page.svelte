@@ -24,7 +24,7 @@
 	let vehicles = [];
 
 	async function fetchVehicles() {
-    const response = await fetch('http://localhost:3000/vehicles'); // Adjust the URL to your backend endpoint
+    const response = await fetch('http://localhost:3002/vehicles'); // Adjust the URL to your backend endpoint
     const data = await response.json();
     vehicles = data; // Assuming the backend sends an array of vehicle names
 }
@@ -36,7 +36,7 @@
 	// Function to fetch reservation details from the API
 	async function fetchReservationDetails(reservationId) {
 		try {
-			const response = await fetch(`http://localhost:3000/reservations/${reservationId}`);
+			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`);
 			const data = await response.json();
 			reservation = data;
 			console.log(reservation);
@@ -84,7 +84,7 @@ async function updateReservation() {
                 formData.append(key, payload[key]);
             });
 
-            const response = await fetch(`http://localhost:3000/reservations/${reservationId}`, {
+            const response = await fetch(`http://localhost:3002/reservations/${reservationId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -130,7 +130,7 @@ async function updateReservation() {
      
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/users');
+            const response = await fetch('http://localhost:3002/users');
             users = await response.json();
             
         } catch (error) {
@@ -150,16 +150,16 @@ async function updateReservation() {
                 <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
                 <ul>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="profileLink">Profile</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="contactLink">Contact</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="contactLink">Contact</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="paymentLink">Payment</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="paymentLink">Payment</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="reviewLink">Review</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="reviewLink">Review</a>
                     </li>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes">My Reservation</a>
