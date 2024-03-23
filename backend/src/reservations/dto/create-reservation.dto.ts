@@ -31,10 +31,18 @@ export class CreateReservationDto {
     @IsString()
     @IsNotEmpty()
     dropoff_location: string;
-
     
     price: number;
 
     @IsEnum(Extras)
     extras: Extras;
+
+    @IsEnum(['admin', 'customer', 'customer service'])
+    isMadeBy: string;
+
+    @IsEnum(['true', 'false'])
+    isPaid: string;
+
+    @IsEnum(['true', 'false'])
+    isCheckedOut: string;
 }

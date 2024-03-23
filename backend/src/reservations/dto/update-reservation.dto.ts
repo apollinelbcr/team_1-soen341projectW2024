@@ -1,4 +1,4 @@
-import { IsDateString, IsEmail, IsEnum, IsOptional, IsString, IsNumber } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsOptional, IsString, IsNumber,IsBoolean} from 'class-validator';
 import { Extras } from "../reservations-extras.enum";
 import { Type } from "class-transformer";
 
@@ -43,4 +43,16 @@ export class UpdateReservationDto {
     @IsEnum(Extras)
     @IsOptional()
     extras: Extras;
+
+    @IsEnum(['true', 'false'])
+    @IsOptional()
+    isPaid?: string;
+
+    @IsOptional()
+    @IsEnum(['admin', 'customer', 'customer service'])
+    isMadeBy?: string;
+
+    @IsEnum(['true', 'false'])
+    @IsOptional()
+    isCheckedOut?: string ;
 }

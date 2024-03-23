@@ -58,6 +58,18 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255, nullable: true }),
     __metadata("design:type", String)
 ], Reservation.prototype, "extras", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['admin', 'customer', 'customer service'], default: 'customer' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isMadeBy", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['true', 'false'], default: 'false' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isPaid", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['true', 'false'], default: 'false' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isCheckedOut", void 0);
 exports.Reservation = Reservation = __decorate([
     (0, typeorm_1.Entity)('reservations')
 ], Reservation);

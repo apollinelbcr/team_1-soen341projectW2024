@@ -10,4 +10,7 @@ export declare class CreateReservationDto {
     dropoff_location: string;
     price: number;
     extras: Extras;
+    isMadeBy: string;
+    isPaid: string;
+    isCheckedOut: string;
 }

@@ -28,6 +28,7 @@
 	
 		let reservation = {};
 		let vehicles = [];
+		
 	
 		async function fetchVehicles() {
 		const response = await fetch('http://localhost:3002/vehicles'); // Adjust the URL to your backend endpoint
@@ -51,74 +52,67 @@
 			}
 		}
 	
-		 // @ts-ignore
 		 async function handleCreate() {
-			try {
-				const updatedEmail = document.getElementById('reservation_email').value;
-				const updatedVehicleId = document.getElementById('vehicle_name').value;
-				const updatedPickupDate = document.getElementById('pickup_date').value;
-				const updatedDropoffDate = document.getElementById('dropoff_date').value;
-				const updatedPickupLocation = document.getElementById('pickup_location').value;
-				const updatedDropoffLocation = document.getElementById('dropoff_location').value;
-				const updatedPickupTime = document.getElementById('pickup_time').value;
-				const updatedDropoffTime = document.getElementById('dropoff_time').value;
-				const updatedPrice = document.getElementById('reservation_price').value;
-				const updatedExtras = document.getElementById('extras').value;
-	
-				// Create the payload with the created values
-					//-- values should not be blank 
-				
-		if (updatedEmail && updatedVehicleId && updatedPickupDate && updatedDropoffDate && updatedPickupLocation && updatedDropoffLocation  && updatedPrice) {
-            // Create the payload with the updated values
-            const payload = {
-				email: updatedEmail,
-				vehicle_name: updatedVehicleId,
-				pickup_date: updatedPickupDate,
-				dropoff_date: updatedDropoffDate,
-				pickup_location: updatedPickupLocation,
-				dropoff_location: updatedDropoffLocation,
-				pickup_time: updatedPickupTime,
-				dropoff_time: updatedDropoffTime,
-				price: parseInt(updatedPrice),
-				extras: updatedExtras,
-			};
-	
-					console.log(payload);
-	
-					const formData = new URLSearchParams();
-	
-					// fomData -> encoded URL
-					Object.keys(payload).forEach(key => {
-					// @ts-ignore
-						formData.append(key, payload[key]);
-					});
-	
-					const response = await fetch(`http://localhost:3002/reservations`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: formData.toString(), // Convert form data to URL-encoded string
-});
+    try {
+        const updatedEmail = document.getElementById('reservation_email').value;
+        const updatedVehicleId = document.getElementById('vehicle_name').value;
+        const updatedPickupDate = document.getElementById('pickup_date').value;
+        const updatedDropoffDate = document.getElementById('dropoff_date').value;
+        const updatedPickupLocation = document.getElementById('pickup_location').value;
+        const updatedDropoffLocation = document.getElementById('dropoff_location').value;
+        const updatedPickupTime = document.getElementById('pickup_time').value;
+        const updatedDropoffTime = document.getElementById('dropoff_time').value;
+        const updatedPrice = document.getElementById('reservation_price').value;
+        const updatedExtras = document.getElementById('extras').value;
 
-if (response.ok) {
-    console.log('Reservation added successfully');
-    showAlert("Reservation created", "", "success", "OK");
-} else {
-    const errorResponse = await response.json(); // Assuming your server responds with JSON
-    console.error('Failed to add reservation', errorResponse);
-    showAlert("Failed to create reservation", errorResponse.message || "An unknown error occurred", "error", "I understand");
+        if (updatedEmail && updatedVehicleId && updatedPickupDate && updatedDropoffDate && updatedPickupLocation && updatedDropoffLocation && updatedPrice) {
+            const payload = {
+                email: updatedEmail,
+                vehicle_name: updatedVehicleId,
+                pickup_date: updatedPickupDate,
+                dropoff_date: updatedDropoffDate,
+                pickup_location: updatedPickupLocation,
+                dropoff_location: updatedDropoffLocation,
+                pickup_time: updatedPickupTime,
+                dropoff_time: updatedDropoffTime,
+                price: parseInt(updatedPrice, 10), // Ensure price is an integer
+                extras: updatedExtras,
+                isMadeBy: 'admin', 
+				isPaid: 'false',
+				isCheckedOut: 'false'
+            };
+
+            console.log(payload);
+
+            const formData = new URLSearchParams();
+            Object.keys(payload).forEach(key => {
+                formData.append(key, payload[key]);
+            });
+
+            const response = await fetch(`http://localhost:3002/reservations`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            if (response.ok) {
+                console.log('Reservation added successfully');
+                showAlert("Reservation created", "", "success", "OK");
+            } else {
+                const errorResponse = await response.json();
+                console.error('Failed to add reservation', errorResponse);
+                showAlert("Failed to create reservation", errorResponse.message || "An unknown error occurred", "error", "I understand");
+            }
+        } else {
+            showAlert("Cannot create reservations", "One or many fields are required to create a reservations", "error", "I understand");
+        }
+    } catch (error) {
+        console.error('Error creating the reservations:', error);
+    }
 }
 
-				} else {
-					// @ts-ignore
-					showAlert("Cannot create reservations", "One or many fields are required to create a reservations", "error", "I understand");
-				}
-			
-			} catch (error) {
-				console.error('Error creating the reservations:', error);
-			}
-			}
 		
 	</script>
 	

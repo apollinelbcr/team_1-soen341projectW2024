@@ -35,4 +35,14 @@ export class Reservation {
 
     @Column({ type: 'varchar', length: 255, nullable: true })
     extras: string;
+
+    @Column({ type: 'enum', enum: ['admin', 'customer', 'customer service'], default: 'customer' })
+    isMadeBy: string;
+
+    @Column({ type: 'enum', enum: ['true', 'false'], default: 'false' })
+    isPaid: string;
+
+    @Column({ type: 'enum', enum: ['true', 'false'], default: 'false' })
+    isCheckedOut: string;
+
 }

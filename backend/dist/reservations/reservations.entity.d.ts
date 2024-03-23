@@ -10,4 +10,7 @@ export declare class Reservation {
     dropoff_location: string;
     price: number;
     extras: string;
+    isMadeBy: string;
+    isPaid: string;
+    isCheckedOut: string;
 }
