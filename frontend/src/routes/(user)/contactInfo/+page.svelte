@@ -1,39 +1,11 @@
 <script lang="ts">
-    import EditForm from '$lib/components/Account/editForm.svelte';
-    import AddReview from "$lib/components/Account/addReview.svelte";
     import { onMount } from 'svelte';
-    import {writable} from "svelte/store";
-
-    
-    let formData = writable(
-        {
-            cardNumber: "0000 0000 0000",
-            expire: "00/00",
-            code: "000",
-            cardType: "Visa",
-            cardNumber2: "1234 5678 0000",
-            expire2: "09/25",
-            code2: "981",
-            cardType2: "Visa"
-    });
     
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
     
     
-    // @ts-ignore
-    /**
-	 * @type {any[]}
-	 */
-     let vehicles: any[] = [];
-    /**
-	 * @type {any[]}
-	 */
-     let reservations: any[] = [];
-     /**
-	 * @type {any[]}
-	 */
-     let users: any[] = [];
+    let users: any[] = [];
      
 
      onMount(async () => {
@@ -45,34 +17,7 @@
             console.error('Error fetching users:', error);
         }
     });
-    onMount(async () => {
-        try {
-            const response = await fetch('http://localhost:3002/vehicles');
-            vehicles = await response.json();
-            
-            //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
-        } catch (error) {
-            console.error('Error fetching vehicles:', error);
-        }
-    });
-    onMount(async () => {
-        try {
-            const response = await fetch('http://localhost:3002/reservations');
-            reservations = await response.json();
-            
-        } catch (error) {
-            console.error('Error fetching reservations:', error);
-        }
-    });
 
-    let showEditForm = false;
-    let showAddReview = false;
-    function toggleEditForm() {
-        showEditForm = !showEditForm;
-    }
-    function toggleAddEditForm() {
-        showAddReview = !showAddReview;
-    }
 
 </script>
 
@@ -120,9 +65,6 @@
                 <br>
 
             </div>
-            {#if showEditForm}
-                <EditForm />
-            {/if}
 
         </section>
     </section>
@@ -194,65 +136,6 @@
         margin-top: 50px;
         border-radius: 8px;
     }
-
-    .child-info button , .child-info a{
-        border: none;
-        background: none;
-        font-size: 15px;
-        color: dodgerblue;
-        font-weight: bold;
-        width: 40px;
-        height: 30px;
-        border-radius: 15px;
-        text-align: center;
-        margin: -5px;
-
-    }
-    .child-info button:hover , .child-info a:hover{
-        background: dodgerblue;
-        opacity: 0.2;
-        font-size: 15px;
-        color: white;
-        font-weight: bold;
-        border-radius: 15px;
-        border: 1px solid dodgerblue;
-        width: 40px;
-        height: 30px;
-        text-align: center;
-    }
-    .user-card {
-        display: flex;
-        margin: auto;
-        gap: 20px;
-    }
-    .card-container {
-        display: flex;
-        justify-content: space-between;
-        width: 140px
-    }
-    .card {
-        border: 1px solid black;
-        text-align: center;
-        width: fit-content;
-        padding: 15px;
-        border-radius: 15px;
-
-    }
-    .card-review {
-        display: flex;
-        margin: auto;
-        gap: 20px;
-    }
-    .review {
-        border: 1px solid black;
-        text-align: center;
-        width: fit-content;
-        padding: 15px;
-        border-radius: 15px;
-    }
-
-
-
 
 
 </style>

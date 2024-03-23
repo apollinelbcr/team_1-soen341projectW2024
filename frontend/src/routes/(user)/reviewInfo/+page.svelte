@@ -1,21 +1,6 @@
 <script lang="ts">
-    import EditForm from '$lib/components/Account/editForm.svelte';
     import AddReview from "$lib/components/Account/addReview.svelte";
     import { onMount } from 'svelte';
-    import {writable} from "svelte/store";
-
-    
-    let formData = writable(
-        {
-            cardNumber: "0000 0000 0000",
-            expire: "00/00",
-            code: "000",
-            cardType: "Visa",
-            cardNumber2: "1234 5678 0000",
-            expire2: "09/25",
-            code2: "981",
-            cardType2: "Visa"
-    });
     
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
@@ -25,12 +10,12 @@
     /**
 	 * @type {any[]}
 	 */
-     let vehicles: any[] = [];
-    /**
-	 * @type {any[]}
-	 */
      let reservations: any[] = [];
      /**
+	 * @type {any[]}
+	 */
+     let vehicles: any[] = [];
+    /**
 	 * @type {any[]}
 	 */
      let users: any[] = [];
@@ -45,6 +30,7 @@
             console.error('Error fetching users:', error);
         }
     });
+    
     onMount(async () => {
         try {
             const response = await fetch('http://localhost:3002/vehicles');
@@ -65,11 +51,8 @@
         }
     });
 
-    let showEditForm = false;
     let showAddReview = false;
-    function toggleEditForm() {
-        showEditForm = !showEditForm;
-    }
+    
     function toggleAddEditForm() {
         showAddReview = !showAddReview;
     }
@@ -176,9 +159,6 @@
                     <AddReview />
                 {/if}
             </div>
-            {#if showEditForm}
-                <EditForm />
-            {/if}
 
         </section>
     </section>
@@ -197,12 +177,6 @@
         text-decoration: none;
     }
     /*beginning css for account.html*/
-    /*Change the height of br*/
-    .info br {
-        display: block;
-        content: " ";
-        margin-top: 8px;
-    }
     /*Container for the side bar and account info*/
     .container {
         display: flex;
@@ -275,24 +249,6 @@
         width: 40px;
         height: 30px;
         text-align: center;
-    }
-    .user-card {
-        display: flex;
-        margin: auto;
-        gap: 20px;
-    }
-    .card-container {
-        display: flex;
-        justify-content: space-between;
-        width: 140px
-    }
-    .card {
-        border: 1px solid black;
-        text-align: center;
-        width: fit-content;
-        padding: 15px;
-        border-radius: 15px;
-
     }
     .card-review {
         display: flex;
