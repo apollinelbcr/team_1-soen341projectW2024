@@ -1,8 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { VehicleCategories } from "./vehicle-categories.enum";
 import { VehicleStatus } from "./vehicle-status.enum";
 import { VehicleTransmissions } from "./vehicle-transmissions.enum";
 import { VehicleTypes } from "./vehicle-types.enum";
+import { Vehicle_Location } from "src/vehicles_locations/vehicles_locations.entity";
 
 @Entity()
 export class Vehicle{

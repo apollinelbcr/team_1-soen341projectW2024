@@ -36,20 +36,6 @@
         }
     });
 
-    import { navigate } from 'svelte-routing';
-
-    // @ts-ignore
-    // function filterByStatus(status) {
-    //     if (status == 'AVAILABLE' || status == 'UNAVAILABLE') {
-    //         filterStatus = status;
-    //         // @ts-ignore
-    //         filteredVehicles = vehicles.filter(vehicle => vehicle.status === status);
-    //     } else {
-    //         filterStatus = '';
-    //         // @ts-ignore
-    //         filteredVehicles = vehicles;
-    //     }
-    // }
 </script>
 
 <div class="mb-5 text-2xl font-medium text-gray-700">{title}</div>

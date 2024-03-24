@@ -49,7 +49,7 @@ export class VehiclesService {
           vehicle.status = status; //affecting the new status
           await this.vehicleRepository.save(vehicle)
           return vehicle;
-      }
+    }
 
     //6. Update Vehicle
      async updateVehicle(id: string, updateVehicleStatusDto: UpdateVehicleStatusDto): Promise<Vehicle> {
