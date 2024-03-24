@@ -1,12 +1,122 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
-    let fname = '';
-    let lname = '';
-    function handleSubmit() {
-        // Emit an event with the form data
-        dispatch('formSubmit', { fname, lname });
+    import { onMount } from 'svelte';
+	import Swal from 'sweetalert2';
+
+    // Error alert
+	function showAlert(title, text, icon, confirmButtonText) {
+		Swal.fire({
+			title: title,
+			text: text,
+			icon: icon,
+			confirmButtonText: confirmButtonText,
+			confirmButtonColor: '#3085d6'
+		});
+	}
+
+	const urlParams = new URLSearchParams(window.location.search);
+	const userId = urlParams.get('id');
+
+	// Define reactive variables to store user details
+	let user = {};
+
+	// Function to fetch user details from the API
+	async function fetchUserDetails(userId:any) {
+		try {
+			const response = await fetch(`http://localhost:3002/users/${userId}`);
+			const data = await response.json();
+			user = data;
+			console.log(user);
+		} catch (error) {
+			console.error('Error fetching user details:', error);
+		}
+	}
+
+	
+
+	// Lifecycle hook to fetch user details when the component mounts
+	onMount(() => {
+		fetchUserDetails(userId);
+	});
+
+	// Update user
+async function updateUser() {
+    try {
+        // Get the updated values from the form
+        const firstNameInput = document.getElementById('fname') as HTMLInputElement;
+        const lastNameInput = document.getElementById('lname') as HTMLInputElement;
+        const emailInput = document.getElementById('email') as HTMLInputElement;
+        const phoneInput = document.getElementById('phone') as HTMLInputElement;
+        const licenseInput = document.getElementById('dropoff_location') as HTMLInputElement;
+        if (firstNameInput && lastNameInput && emailInput && phoneInput && licenseInput) {
+            const updatedFirstName = firstNameInput.value;
+            const updatedLastName = lastNameInput.value;
+            const updatedEmail = emailInput.value;
+            const updatedPhoneNumber = phoneInput.value;
+            const updatedDriverLicense = licenseInput.value;
+        
+            if (updatedFirstName && updatedLastName && updatedEmail && updatedPhoneNumber && updatedDriverLicense) {
+            // Create the payload with the updated values
+            const payload = {
+				first_name: updatedFirstName,
+                last_name: updatedLastName,
+				email: updatedEmail,
+				password: user.password,
+				role: user.role,
+				phone_number: updatedPhoneNumber,
+                driver_license: updatedDriverLicense,
+				status: user.status,
+			};
+
+
+            const formData = new URLSearchParams();
+            Object.keys(payload).forEach(key => {
+                formData.append(key, payload[key]);
+            });
+
+            const response = await fetch(`http://localhost:3002/users/${userId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            const responseData = await response.json(); // Assuming your server responds with JSON
+            console.log("Response from the server:", responseData);
+
+            if (response.ok) {
+                console.log('User updated successfully');
+                showAlert("User Updated", "", "success", "OK");
+
+                // Update user details locally
+                user = { ...user, ...payload };
+
+                
+                // Optionally, re-fetch user details if you need to ensure data consistency
+                // fetchUserDetails(userId);
+            } else {
+                console.error('Failed to update user:', responseData);
+                showAlert("Cannot update user", "There was a problem updating the user: " + responseData.message, "error", "I understand");
+            }
+        } else {
+            showAlert("Cannot update user", "All fields are required to update this user", "error", "I understand");
+        }
+        }
+        
+    } catch (error) {
+        console.error('Error updating user:', error);
+        showAlert("Cannot update user", "An unexpected error occurred while updating the user", "error", "I understand");
     }
+
+}
+
+	function handleUpdate() {
+		updateUser();
+	}
+
+    const email = "user7@example.com";
+    //at the moment it is hard coded, but i have to wait for the log in page to be linked
+
 </script>
 <main>
 
@@ -17,13 +127,13 @@
                 <br>
                 <div class="user-name">
                     <label for="fname">First:</label>
-                    <input type="text" id="fname" name="fname"  bind:value={fname}>
+                    <input type="text" id="fname" name="fname"  value={user.first_name}>
                 </div>
                 <br>
                 <br>
                 <div class="user-name">
                     <label for="lname">Last:</label>
-                    <input type="text" id="lname" name="lname"  bind:value={lname}>
+                    <input type="text" id="lname" name="lname"  value={user.first_name}>
                 </div>
                 <br>
                 <br>
@@ -62,14 +172,14 @@
                     <br>
                     <div class="user-phone">
                         <label for="phone">Tel:</label>
-                        <input type="text" id="phone" name="phone" value="111 111 1111">
+                        <input type="text" id="phone" name="phone" value={user.phone_number}>
                     </div>
                     <br>
                     <p style="font-weight: bold; font-size: 20px;">Email:</p>
                     <br>
                     <div class="user-email">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="zineb.bamouh@gmail.com">
+                        <input type="email" id="email" name="email" value={user.email}>
                     </div>
                     <br>
                     <p style="font-weight: bold; font-size: 20px;">Home Address:</p>
@@ -112,7 +222,9 @@
                     <label for="mastercard">Mastercard</label>
                     <br>
                     <br>
-                    <input type="submit" value="Edit">
+                    <div class="grid md:grid md:gap-4">
+                        <button type="button" on:click={handleUpdate} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update reservation info</button>
+                    </div>
                 </form>
             </div>
         </div>

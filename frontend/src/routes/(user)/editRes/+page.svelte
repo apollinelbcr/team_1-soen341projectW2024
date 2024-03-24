@@ -141,7 +141,9 @@ async function updateReservation() {
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
 
 </script>
-
+<div class="fixed w-100% pt-4 px-16">
+    <a href="">Logo here</a>
+</div>
 {#each users.filter((userData) => userData.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     

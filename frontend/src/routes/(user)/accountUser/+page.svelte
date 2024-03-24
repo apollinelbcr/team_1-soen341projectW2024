@@ -23,14 +23,11 @@
         }
     });
 
-    let showEditForm = false;
-    function toggleEditForm() {
-        showEditForm = !showEditForm;
-    }
 
 </script>
 
 <main>
+    
     {#each users.filter((user)=> user.email == email) as userData}
     <section class="container">
         <section class="child-option">
@@ -78,17 +75,11 @@
                     <p>{userData.role}</p>
                 </div>
                 <br>
-                <button on:click={toggleEditForm}>
-                    <a href="">Edit</a>
+                <button>
+                    <a href="/editForm?id={userData.id}">Edit</a>
 
                 </button>
             </div>
-            
-            
-            
-            {#if showEditForm}
-                <EditForm />
-            {/if}
 
         </section>
     </section>
