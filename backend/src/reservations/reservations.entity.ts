@@ -3,7 +3,6 @@ import { Extras } from './reservations-extras.enum';
 
 @Entity('reservations')
 export class Reservation {
-    
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -51,7 +50,7 @@ export class Reservation {
 
     @Column()
     userName2:string;
-    
+
     @Column()
     userPhone:string;
 
