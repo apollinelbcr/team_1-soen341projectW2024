@@ -17,14 +17,27 @@ export class ReservationsService {
 
     //1. Create a reservation 
     async createTask(createReservationDto: CreateReservationDto): Promise<Reservation> {
-        const { email,vehicle_name,pickup_date,pickup_time, dropoff_date, dropoff_time,pickup_location,dropoff_location,price,extras } = createReservationDto;
+        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut } = createReservationDto;
         const reservation = this.reservationRepository.create({
-            email,vehicle_name,pickup_date,pickup_time, dropoff_date, dropoff_time,pickup_location,dropoff_location,price,extras
-        }   as Partial<Reservation>); 
+            email,
+            vehicle_name,
+            pickup_date,
+            pickup_time, 
+            dropoff_date, 
+            dropoff_time,
+            pickup_location,
+            dropoff_location,
+            price,
+            extras,
+            isPaid ,
+            isCheckedOut ,
+            isMadeBy
+        } as Partial<Reservation>); 
 
         await this.reservationRepository.save(reservation);
         return reservation;
     }
+    
 
     //2. Get Reservations by Id
     async getReservationById(id: string) : Promise<Reservation> {
@@ -102,6 +115,14 @@ export class ReservationsService {
         
         if (updateReservationDto.extras !== undefined) {
             reservation.extras = updateReservationDto.extras as Extras;
+        }
+
+        if (updateReservationDto.isPaid !== undefined) {
+            reservation.isPaid = updateReservationDto.isPaid;
+        }
+
+        if (updateReservationDto.isCheckedOut !== undefined) {
+            reservation.isCheckedOut = updateReservationDto.isCheckedOut;
         }
         
         // Save the updated vehicle
