@@ -1,5 +1,4 @@
 <script lang="ts">
-    import EditForm from '$lib/components/Account/editForm.svelte';
     import { onMount } from 'svelte';
     
     const email = "user7@example.com";
