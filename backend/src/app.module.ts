@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { ReservationsModule } from './reservations/reservations.modules';
 import { UsersModule } from './users/users.module';
+import { VehiclesLocationsModule } from './vehicles_locations/vehicles_locations.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UsersModule } from './users/users.module';
       autoLoadEntities: true, //entities translate to tables ... 
       synchronize: true, // keep db schema in sync
     }),
+    VehiclesLocationsModule,
 
   ]
 })

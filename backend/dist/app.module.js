@@ -12,6 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const vehicles_module_1 = require("./vehicles/vehicles.module");
 const reservations_modules_1 = require("./reservations/reservations.modules");
 const users_module_1 = require("./users/users.module");
+const vehicles_locations_module_1 = require("./vehicles_locations/vehicles_locations.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,6 +30,7 @@ exports.AppModule = AppModule = __decorate([
                 autoLoadEntities: true,
                 synchronize: true,
             }),
+            vehicles_locations_module_1.VehiclesLocationsModule,
         ]
     })
 ], AppModule);
