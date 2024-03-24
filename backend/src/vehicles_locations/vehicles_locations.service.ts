@@ -16,7 +16,7 @@ export class VehiclesLocationsService {
         const { zip_code, airport_name, vehicle_id } = createvehcilelocationdto;
         const vehiclelocation = this.vehcilelocationRepository.create({
             zip_code, airport_name, vehicle_id
-        } as Partial<Vehicle_Location>); // Explicit casting to Partial<Vehicle>
+        } as Partial<Vehicle_Location>); 
 
         await this.vehcilelocationRepository.save(vehiclelocation);
         return vehiclelocation;
@@ -70,7 +70,7 @@ export class VehiclesLocationsService {
 
     async deleteVehicleLocation(id:string) : Promise<void> {
         const result = await this.vehcilelocationRepository.delete(id);
-        //console.log(result);
+        
         if(result.affected === 0){
             throw new NotFoundException(`Location with ID ${id} is not found`);
         }
