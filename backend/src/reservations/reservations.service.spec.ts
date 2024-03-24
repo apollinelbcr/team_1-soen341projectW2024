@@ -29,7 +29,10 @@ const mockReservation = (id:string = 'unique_id') => ({
   pickup_location: 'Test Location',
   dropoff_location: 'Test Location',
   price: 100,
-  extras: Extras.None
+  extras: Extras.None,
+  isMadeBy: 'admin',
+  isPaid: 'false',
+  isCheckedOut: 'false'
 });
 
 describe('ReservationsService', () => {
@@ -68,7 +71,10 @@ describe('ReservationsService', () => {
         pickup_location: 'Test Location',
         dropoff_location: 'Test Location',
         price: 100,
-        extras: Extras.None
+        extras: Extras.None,
+        isMadeBy: 'admin',
+        isPaid: 'false',
+        isCheckedOut: 'false'
     };
     jest.spyOn(repository, 'create').mockImplementation(() => mockReservation());
     jest.spyOn(repository, 'save').mockResolvedValue(mockReservation());
@@ -133,11 +139,14 @@ describe('deleteReservations', () => {
         pickup_location: 'Updated Location',
         dropoff_location: 'Updated Location',
         price: 150,
-        extras: Extras.None
+        extras: Extras.None,
+        isMadeBy: 'admin',
+        isPaid: 'false',
+        isCheckedOut: 'false'
       };
 
     jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockReservation());
-    jest.spyOn(repository, 'save').mockImplementation((reservation) => Promise.resolve({ ...reservation, id: 'test_id', email: 'test@example.com', vehicle_name: 'Test Vehicle', pickup_date: '2021-04-20', pickup_time: '10:00', dropoff_date: '2021-04-22', dropoff_location: 'Updated Location', price: 150, extras: Extras.None, dropoff_time: '11:00', pickup_location: 'Test Location' }));
+    jest.spyOn(repository, 'save').mockImplementation((reservation) => Promise.resolve({ ...reservation, id: 'test_id', email: 'test@example.com', vehicle_name: 'Test Vehicle', pickup_date: '2021-04-20', pickup_time: '10:00', dropoff_date: '2021-04-22', dropoff_location: 'Updated Location', price: 150, extras: Extras.None, dropoff_time: '11:00', pickup_location: 'Test Location' , isMadeBy: 'admin', isPaid: 'false', isCheckedOut: 'false'}));
 
     const result = await service.updateVehicle('test_id', updateReservationDto);
 
