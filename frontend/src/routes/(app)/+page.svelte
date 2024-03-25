@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
     import RecentSearch from "$lib/components/Search/RecentSearch.svelte";
     import RecentSearchItem from "$lib/components/Search/RecentSearchItem.svelte";
     import CarCard from "$lib/components/Card/CarCard.svelte";
@@ -7,6 +7,7 @@
     import {writable} from 'svelte/store';
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
+	import { navigate } from "svelte-routing";
 
     const recentSearches = writable([]);
 
@@ -22,6 +23,7 @@
     onDestroy(() => {
         if(browser) window.removeEventListener('storage', updateRecentSearches);
     });
+
 </script>
 
 <MainFilter/>

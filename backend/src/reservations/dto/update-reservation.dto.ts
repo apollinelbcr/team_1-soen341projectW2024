@@ -1,4 +1,4 @@
-import { IsDateString, IsEmail, IsEnum, IsOptional, IsString, IsNumber,IsBoolean} from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsOptional, IsString, IsNumber,IsBoolean, MaxLength} from 'class-validator';
 import { Extras } from "../reservations-extras.enum";
 import { Type } from "class-transformer";
 
@@ -36,7 +36,6 @@ export class UpdateReservationDto {
     @IsOptional()
     dropoff_location: string;
 
-   
     @IsOptional()
     price: number;
 
@@ -55,4 +54,6 @@ export class UpdateReservationDto {
     @IsEnum(['true', 'false'])
     @IsOptional()
     isCheckedOut?: string ;
+
+
 }

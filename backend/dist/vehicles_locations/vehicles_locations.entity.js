@@ -27,6 +27,14 @@ __decorate([
     __metadata("design:type", String)
 ], Vehicle_Location.prototype, "airport_name", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Vehicle_Location.prototype, "branch_name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Vehicle_Location.prototype, "branch_adress", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Vehicle_Location.prototype, "vehicle_id", void 0);

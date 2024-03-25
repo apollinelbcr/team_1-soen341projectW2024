@@ -25,5 +25,13 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
+], UpdateVehicleLocationDto.prototype, "branch_name", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UpdateVehicleLocationDto.prototype, "branch_adress", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
 ], UpdateVehicleLocationDto.prototype, "vehicle_id", void 0);
 //# sourceMappingURL=update-locveh.dto.js.map

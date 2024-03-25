@@ -10,6 +10,12 @@ export class CreateVehicleLocationDto {
     airport_name:string;
 
     @IsNotEmpty()
+    branch_name: string;
+    
+    @IsNotEmpty()
+    branch_adress: string;
+
+    @IsNotEmpty()
     vehicle_id: string;
 
 }

@@ -6,7 +6,6 @@ import { Reservation } from './reservations.entity';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Extras } from "./reservations-extras.enum";
 
-
 @Injectable()
 export class ReservationsService {
 
@@ -17,7 +16,8 @@ export class ReservationsService {
 
     //1. Create a reservation 
     async createTask(createReservationDto: CreateReservationDto): Promise<Reservation> {
-        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut } = createReservationDto;
+        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut,
+            userName, userName2,userPhone,userLicense,vehicleName,vehicleType, vehicleCategory,vehicleTransmission} = createReservationDto;
         const reservation = this.reservationRepository.create({
             email,
             vehicle_name,
@@ -31,7 +31,15 @@ export class ReservationsService {
             extras,
             isPaid ,
             isCheckedOut ,
-            isMadeBy
+            isMadeBy,
+            userName,
+            userName2,
+            userPhone,
+            userLicense,
+            vehicleName,
+            vehicleType,
+            vehicleCategory,
+            vehicleTransmission
         } as Partial<Reservation>); 
 
         await this.reservationRepository.save(reservation);
@@ -124,7 +132,6 @@ export class ReservationsService {
         if (updateReservationDto.isCheckedOut !== undefined) {
             reservation.isCheckedOut = updateReservationDto.isCheckedOut;
         }
-        
         // Save the updated vehicle
         await this.reservationRepository.save(reservation);
         return reservation;

@@ -30,9 +30,17 @@ const mockReservation = (id:string = 'unique_id') => ({
   dropoff_location: 'Test Location',
   price: 100,
   extras: Extras.None,
-  isMadeBy: 'admin',
+  isMadeBy: 'admin', 
   isPaid: 'false',
-  isCheckedOut: 'false'
+  isCheckedOut: 'false',
+  userName: "Test", 
+  userName2: "Test",
+  userPhone: "1234567890",
+  userLicense: "1234567890",
+  vehicleName: "Test Vehicle",
+  vehicleType: "Test Vehicle",
+  vehicleCategory: "Test Vehicle",
+  vehicleTransmission: "Test Vehicle",
 });
 
 describe('ReservationsService', () => {
@@ -72,9 +80,17 @@ describe('ReservationsService', () => {
         dropoff_location: 'Test Location',
         price: 100,
         extras: Extras.None,
-        isMadeBy: 'admin',
+        isMadeBy: 'admin', 
         isPaid: 'false',
-        isCheckedOut: 'false'
+        isCheckedOut: 'false',
+        userName: "Test", 
+        userName2: "Test",
+        userPhone: "1234567890",
+        userLicense: "1234567890",
+        vehicleName: "Test Vehicle",
+        vehicleType: "Test Vehicle",
+        vehicleCategory: "Test Vehicle",
+        vehicleTransmission: "Test Vehicle",
     };
     jest.spyOn(repository, 'create').mockImplementation(() => mockReservation());
     jest.spyOn(repository, 'save').mockResolvedValue(mockReservation());
@@ -127,26 +143,51 @@ describe('deleteReservations', () => {
     });
 });
 
-  describe('updateVehicle', () => {
-    it('should update the reservation details', async () => {
-      const updateReservationDto: UpdateReservationDto = {
-        email: 'updated@example.com',
-        vehicle_name: 'Updated Vehicle',
-        pickup_date: '2021-04-21',
-        pickup_time: '11:00',
-        dropoff_date: '2021-04-23',
-        dropoff_time: '11:00',
-        pickup_location: 'Updated Location',
-        dropoff_location: 'Updated Location',
-        price: 150,
-        extras: Extras.None,
-        isMadeBy: 'admin',
-        isPaid: 'false',
-        isCheckedOut: 'false'
-      };
+describe('updateVehicle', () => {
+  it('should update the reservation details', async () => {
+    const updateReservationDto: UpdateReservationDto = {
+      email: 'updated@example.com',
+      vehicle_name: 'Updated Vehicle',
+      pickup_date: '2021-04-21',
+      pickup_time: '11:00',
+      dropoff_date: '2021-04-23',
+      dropoff_time: '11:00',
+      pickup_location: 'Updated Location',
+      dropoff_location: 'Updated Location',
+      price: 150,
+      extras: Extras.None,
+      isMadeBy: 'admin',
+      isPaid: 'false',
+      isCheckedOut: 'false',
+    };
+
+    const mockUpdatedReservation = {
+      id: 'test_id',
+      email: 'updated@example.com',
+      vehicle_name: 'Updated Vehicle',
+      pickup_date: '2021-04-21',
+      pickup_time: '11:00',
+      dropoff_date: '2021-04-23',
+      dropoff_time: '11:00',
+      pickup_location: 'Updated Location',
+      dropoff_location: 'Updated Location',
+      price: 150,
+      extras: Extras.None,
+      isMadeBy: 'admin',
+      isPaid: 'false',
+      isCheckedOut: 'false',
+      userName: 'Test',
+      userName2: 'Test',
+      userPhone: '1234567890',
+      userLicense: '1234567890',
+      vehicleName: 'Test Vehicle',
+      vehicleType: 'Test Vehicle',
+      vehicleCategory: 'Test Vehicle',
+      vehicleTransmission: 'Test Vehicle',
+    };
 
     jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockReservation());
-    jest.spyOn(repository, 'save').mockImplementation((reservation) => Promise.resolve({ ...reservation, id: 'test_id', email: 'test@example.com', vehicle_name: 'Test Vehicle', pickup_date: '2021-04-20', pickup_time: '10:00', dropoff_date: '2021-04-22', dropoff_location: 'Updated Location', price: 150, extras: Extras.None, dropoff_time: '11:00', pickup_location: 'Test Location' , isMadeBy: 'admin', isPaid: 'false', isCheckedOut: 'false'}));
+    jest.spyOn(repository, 'save').mockResolvedValue(mockUpdatedReservation);
 
     const result = await service.updateVehicle('test_id', updateReservationDto);
 

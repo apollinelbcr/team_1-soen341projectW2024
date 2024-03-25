@@ -3,8 +3,6 @@
 	import { onMount } from 'svelte';
 	import Swal from 'sweetalert2';
 
-
-
 	// Error alert
 	function showAlert(title, text, icon, confirmButtonText) {
 		Swal.fire({
@@ -15,13 +13,15 @@
 			confirmButtonColor: '#3085d6'
 		});
 	}
-
+//
 	const urlParams = new URLSearchParams(window.location.search);
 	const reservationId = urlParams.get('id');
 
 	// Define reactive variables to store reservation details
 	let reservation = {};
 	let vehicles = [];
+	let isCheck1 = '';
+	let isCheck2 = '';
 
 	async function fetchVehicles() {
     const response = await fetch('http://localhost:3002/vehicles'); // Adjust the URL to your backend endpoint
@@ -39,49 +39,61 @@
 			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`);
 			const data = await response.json();
 			reservation = data;
+			(reservation.isPaid == 'true' ) ? isCheck1 = true : isCheck1 = false; // Ensure isPaid matches the backend data type
+			(reservation.isCheckedOut == 'true' ) ? isCheck2 = true : isCheck2 = false; // Ensure isCheckout matches the backend data type
 			console.log(reservation);
 		} catch (error) {
 			console.error('Error fetching reservation details:', error);
 		}
 	}
 
-	
-
 	// Lifecycle hook to fetch reservation details when the component mounts
-	onMount(() => {
-		fetchReservationDetails(reservationId);
-	});
+	onMount(async () => {
+    await fetchReservationDetails(reservationId);
+   
+});
 
-	// Update reservation
-	// Update reservation
+function handleUpdate() {
+		updateReservation();
+	}
+
 // Update reservation
-async function updateReservation() {
-    try {
+	async function updateReservation() {
+    	try {
         // Get the updated values from the form
-        const updatedEmail = document.getElementById('reservation_email').value;
-        const updatedVehicleId = document.getElementById('vehicle_name').value;
-        const updatedPickupDate = document.getElementById('pickup_date').value;
-        const updatedDropoffDate = document.getElementById('dropoff_date').value;
-        const updatedPickupLocation = document.getElementById('pickup_location').value;
-        const updatedDropoffLocation = document.getElementById('dropoff_location').value;
-        const updatedPrice = document.getElementById('reservation_price').value;
-        const updatedExtras = document.getElementById('extras').value;
+			const updatedEmail = document.getElementById('reservation_email').value;
+			const updatedVehicleId = document.getElementById('vehicle_name').value;
+			const updatedPickupDate = document.getElementById('pickup_date').value;
+			const updatedDropoffDate = document.getElementById('dropoff_date').value;
+			const updatedPickupTime = document.getElementById('pickup_time').value;
+			const updatedDropoffTime = document.getElementById('dropoff_time').value;
+			const updatedPickupLocation = document.getElementById('pickup_location').value;
+			const updatedDropoffLocation = document.getElementById('dropoff_location').value;
+			const updatedPrice = document.getElementById('reservation_price').value;
+			const updatedExtras = document.getElementById('extras').value;
 
-        if (updatedEmail && updatedVehicleId && updatedPickupDate && updatedDropoffDate && updatedPickupLocation && updatedDropoffLocation  && updatedPrice) {
+        if (updatedEmail && updatedVehicleId && updatedPickupDate && updatedDropoffDate && updatedPickupLocation && updatedDropoffLocation  && updatedPrice && updatedPickupTime && updatedDropoffTime && updatedExtras) {
             // Create the payload with the updated values
             const payload = {
 				email: updatedEmail,
 				vehicle_name: updatedVehicleId,
 				pickup_date: updatedPickupDate,
 				dropoff_date: updatedDropoffDate,
+				pickup_time: updatedPickupTime,
+				dropoff_time: updatedDropoffTime,
 				pickup_location: updatedPickupLocation,
 				dropoff_location: updatedDropoffLocation,
 				price: parseInt(updatedPrice),
 				extras: updatedExtras,
+				isPaid: isCheck1 ? 'true' : 'false',
+				isCheckedOut: isCheck2 ? 'true' : 'false',
 			};
 
+			console.log("Sending isPaid as:", isCheck1); // This should log true or false
 
-            const formData = new URLSearchParams();
+
+			// Send a PATCH request to update the reservation
+			const formData = new URLSearchParams();
             Object.keys(payload).forEach(key => {
                 formData.append(key, payload[key]);
             });
@@ -125,8 +137,6 @@ async function updateReservation() {
     }
 }
 
-
-
 	// Delete reservation
 	async function deleteReservation(reservationId) {
 		try {
@@ -160,9 +170,17 @@ async function updateReservation() {
 		});
 	}
 
-	function handleUpdate() {
-		updateReservation();
+	function handlePaymentClick(){
+		isCheck1 ? false : true;
+		console.log("Checkbox clicked. Checked state:", isCheck1);
 	}
+
+	function handleCheckboxClick(){
+		isCheck2 ? false : true;
+		console.log("Checkbox clicked. Checked state:", isCheck2);
+	}
+
+	
 
 
 </script>
@@ -172,6 +190,7 @@ async function updateReservation() {
     <div class="text-lg font-medium text-gray-700 mr-4">Vehicle 1: {reservation.vehicle_name}</div>
     <div class="text-lg font-medium text-gray-700 ml-4">Pickup Time: {reservation.pickup_time}</div>
 	<div class="text-lg font-medium text-gray-700 ml-4">Dropoff: {reservation.dropoff_time}</div>
+	<div class="text-lg font-medium text-gray-700 ml-4">Reservation made by: {reservation.isMadeBy}</div>
 </div>
 <br>
 
@@ -234,6 +253,23 @@ async function updateReservation() {
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="text" class="block mb-2 text-sm font-medium text-gray-900">Extras</label>
 			<input type="text" id="extras" value={reservation.extras} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Additional services or items" />
+		</div>
+	</div>
+
+	<div class="grid md:grid-cols-2 md:gap-6">
+		<div class="relative z-0 w-full mb-5 group">
+			<label class="inline-flex items-center mb-5 cursor-pointer">
+				<input type="checkbox" bind:checked={isCheck1} on:change={handlePaymentClick} class="sr-only peer" />
+				<div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
+				<span class="ms-3 text-sm font-medium text-dark-900 dark:text-dark-300">isPaid ?</span>
+			</label>			
+		</div>
+		<div class="relative z-0 w-full mb-5 group">
+			<label class="inline-flex items-center mb-5 cursor-pointer">
+				<input type="checkbox"	bind:checked={isCheck2} on:change={handleCheckboxClick} class="sr-only peer" />
+				<div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
+				<span class="ms-3 text-sm font-medium text-dark-900 dark:text-dark-300">isCheckout ?</span>
+			</label>
 		</div>
 	</div>
 
