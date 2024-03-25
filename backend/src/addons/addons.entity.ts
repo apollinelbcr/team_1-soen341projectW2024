@@ -13,5 +13,4 @@ export class Addons{
     @Column()
     price: number;
 
-
 }

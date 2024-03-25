@@ -13,6 +13,12 @@ export class Vehicle_Location{
     @Column({nullable: true})
     airport_name?: string;
 
+    @Column({nullable: true})
+    branch_name: string;
+    
+    @Column({nullable: true})
+    branch_adress: string;
+
     @Column()
     vehicle_id: string;
 
