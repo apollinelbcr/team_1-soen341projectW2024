@@ -144,7 +144,7 @@
                         {/each} 
                         <tr class="bg-gray-50">
                             <td class="border-b p-5 text-sm font-bold">
-                                    <p class="whitespace-nowrap">Total number of cars</p>
+                                    <p class="whitespace-nowrap">Total number of reservations</p>
                             </td>
                             <td class="border-b p-5 text-sm">
                                 <p class="whitespace-nowrap"></p>

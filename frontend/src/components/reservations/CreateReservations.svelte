@@ -128,10 +128,8 @@
     doc.text('Car Rental Agreement', 105, 10, null, 'center');
     doc.setFontSize(10);
     doc.text(`Rental Agreement Number:`, 10, 20);
-
     doc.text(`This Rental Agreement ("Agreement") is entered into between Rentify, located at XXXXX, hereinafter referred to as 
 the "Rental Company," and the individual or entity identified below, hereinafter referred to as the "Renter":`, 10, 30, { maxWidth: 190 });
-
     // Renter's Information
     doc.text('1. Renter\'s Information:', 10, 40);
     doc.text(`Name: ${reservationReview.userName} ${reservationReview.userName2}`, 10, 50);
@@ -145,7 +143,6 @@ the "Rental Company," and the individual or entity identified below, hereinafter
     doc.text(`Type: ${reservationReview.vehicleType}`, 10, 110);
     doc.text(`Vehicle Category: ${reservationReview.vehicleCategory}`, 10, 120);
     doc.text(`Transmission: ${reservationReview.vehicleTransmission}`, 10, 130);
-    
     // Rental Details
     doc.text('3. Rental Details:', 10, 140);
     doc.text(`Rental Start Date: ${reservationReview.pickup_date}`, 10, 150);
@@ -156,12 +153,11 @@ the "Rental Company," and the individual or entity identified below, hereinafter
     doc.text(`Dropoff Time: ${reservationReview.dropoff_time}`, 10, 200);
     doc.text(`Rental Rate: ${reservationReview.price}`, 10, 210);
     doc.text(`Additional Services: ${reservationReview.extras}`, 10, 220);
-
     doc.text('4. Rental Terms and Conditions:', 10, 230);
     doc.text(`The Renter acknowledges receiving the vehicle described above in good condition and agrees to return it to the Rental 
 Company in the same condition, subject to normal wear and tear.`, 10, 240);
-    doc.text(`The Renter acknowledges receiving and reviewing a copy of the vehicle's insurance coverage and agrees to comply with all insurance 
-requirements during the rental period.`, 10, 250);
+    doc.text(`The Renter acknowledges receiving and reviewing a copy of the vehicle's insurance coverage and agrees to comply with all 
+insurance requirements during the rental period.`, 10, 250);
     doc.text(`The Renter agrees to pay the Rental Company the agreed-upon rental rate for the specified rental period. Additional 
 charges may apply for exceeding the mileage limit, late returns, fuel refueling, or other damages.`, 10, 260);
     doc.text(`The Renter agrees to bear all costs associated with traffic violations, tolls, and parking fines incurred during the 
