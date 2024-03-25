@@ -3,10 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { VehiclesModule } from './vehicles/vehicles.module';
 import { ReservationsModule } from './reservations/reservations.modules';
 import { UsersModule } from './users/users.module';
+import {AuthModule} from "./auth/auth.module";
 
 @Module({
   imports: [
-    VehiclesModule, ReservationsModule, UsersModule,
+    VehiclesModule, ReservationsModule, UsersModule, AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
