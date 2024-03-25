@@ -4,10 +4,17 @@ import { VehiclesModule } from './vehicles/vehicles.module';
 import { ReservationsModule } from './reservations/reservations.modules';
 import { UsersModule } from './users/users.module';
 import {AuthModule} from "./auth/auth.module";
+import { VehiclesLocationsModule } from './vehicles_locations/vehicles_locations.module';
+import { AddonsModule } from './addons/addons.module';
 
 @Module({
   imports: [
-    VehiclesModule, ReservationsModule, UsersModule, AuthModule,
+    VehiclesModule, 
+    ReservationsModule, 
+    UsersModule, 
+    VehiclesLocationsModule,
+    AddonsModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
