@@ -9,9 +9,10 @@ import { AddonsModule } from './addons/addons.module';
 
 @Module({
   imports: [
-    VehiclesModule, 
-    ReservationsModule, 
-    UsersModule, 
+    VehiclesModule, ReservationsModule, UsersModule, AuthModule,
+    VehiclesModule,
+    ReservationsModule,
+    UsersModule,
     VehiclesLocationsModule,
     AddonsModule,
     AuthModule,
