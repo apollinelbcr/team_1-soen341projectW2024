@@ -190,6 +190,7 @@ function handleUpdate() {
     <div class="text-lg font-medium text-gray-700 mr-4">Vehicle 1: {reservation.vehicle_name}</div>
     <div class="text-lg font-medium text-gray-700 ml-4">Pickup Time: {reservation.pickup_time}</div>
 	<div class="text-lg font-medium text-gray-700 ml-4">Dropoff: {reservation.dropoff_time}</div>
+	<div class="text-lg font-medium text-gray-700 ml-4">Reservation made by: {reservation.isMadeBy}</div>
 </div>
 <br>
 

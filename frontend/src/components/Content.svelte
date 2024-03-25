@@ -1,5 +1,7 @@
 
 <script>
+// @ts-nocheck
+
 	export let title;
 </script>
 

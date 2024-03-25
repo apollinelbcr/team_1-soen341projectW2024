@@ -22,7 +22,7 @@ let ReservationsService = class ReservationsService {
         this.reservationRepository = reservationRepository;
     }
     async createTask(createReservationDto) {
-        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut } = createReservationDto;
+        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut, userName, userName2, userPhone, userLicense, vehicleName, vehicleType, vehicleCategory, vehicleTransmission } = createReservationDto;
         const reservation = this.reservationRepository.create({
             email,
             vehicle_name,
@@ -36,7 +36,15 @@ let ReservationsService = class ReservationsService {
             extras,
             isPaid,
             isCheckedOut,
-            isMadeBy
+            isMadeBy,
+            userName,
+            userName2,
+            userPhone,
+            userLicense,
+            vehicleName,
+            vehicleType,
+            vehicleCategory,
+            vehicleTransmission
         });
         await this.reservationRepository.save(reservation);
         return reservation;

@@ -69,7 +69,7 @@
 <a href="/admin/manage-reservations/create-reservation">
     <div class="max-w-sm mx-auto bg-blue-500 rounded overflow-hidden shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out">
       <div class="px-6 py-4">
-        <div class="font-bold text-xl text-white mb-2">Reservations</div>
+        <div class="font-bold text-xl text-white mb-2">Create Reservation</div>
       </div>
       <div class="px-6 py-4">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" class="w-6 h-6 inline-block align-text-bottom">
@@ -103,6 +103,9 @@
                             >
                                 Dropoff Date
                             </th>
+
+                            <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase">Paid</th>
+                            <th scope="col" class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase">Checked Out</th>
                             <th
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
@@ -119,7 +122,13 @@
                                 <p class="whitespace-nowrap">{reservation.pickup_date}</p>
                             </td>
                             <td class="border-b border-gray-200 p-5 text-sm">
-                                <p class="whitespace-nowrap">{reservation.dropoff_date}</p>
+                                <p class="whitespace-nowrap">{reservation.pickup_date}</p>
+                            </td>
+                            <td class="border-b border-gray-200 p-5 text-sm">
+                                <p class="whitespace-nowrap">{reservation.isPaid}</p>
+                            </td>
+                            <td class="border-b border-gray-200 p-5 text-sm">
+                                <p class="whitespace-nowrap">{reservation.isCheckedOut}</p>
                             </td>
                             
                             <td class="border-b border-gray-200 p-5 text-sm">
@@ -140,6 +149,13 @@
                             <td class="border-b p-5 text-sm">
                                 <p class="whitespace-nowrap"></p>
                             </td>
+                            <td class="border-b p-5 text-sm">
+                                
+                            </td>
+                            <td class="border-b p-5 text-sm">
+                                
+                            </td>
+                        
                             <td class="border-b p-5 text-sm">
                                 
                             </td>
