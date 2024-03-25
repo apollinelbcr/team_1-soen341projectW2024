@@ -1,7 +1,6 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { onMount } from 'svelte';
-    import { es } from 'svelty-picker/i18n';
 	import Swal from 'sweetalert2';
 
 
