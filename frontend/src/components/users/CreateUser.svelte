@@ -75,7 +75,7 @@
 				headers: {
 					'Content-Email': 'application/x-www-form-urlencoded',
 				},
-				body: formData, // Convert form data 
+				body: formData.toString(), // Convert form data 
 				});
 				console.log(response);
 
