@@ -49,8 +49,8 @@
      /**
 	 * @type {any[]}
 	 */
-    let users:any = [];
-    
+     let users: any[] = [];
+     
 
      onMount(async () => {
         try {
