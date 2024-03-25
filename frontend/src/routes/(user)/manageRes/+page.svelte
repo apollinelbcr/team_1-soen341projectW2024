@@ -3,14 +3,12 @@
     import CarDetails from "$lib/components/carDetails.svelte";
     import {writable} from "svelte/store";
     import Swal from 'sweetalert2';
-
-    let users:any = [];
-
+    /*
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('id');
     async function fetchUserDetails(userId:any) {
 		try {
-			const response = await fetch(`http://localhost:3000/users/${userId}`);
+			const response = await fetch(`http://localhost:3002/users/${userId}`);
 			const data = await response.json();
 			users = data;
 			console.log(users);
@@ -21,20 +19,21 @@
     onMount(() => {
 		fetchUserDetails(userId);
 	});
-    /*
+    */
+
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
         
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/users');
+            const response = await fetch('http://localhost:3002/users');
             users = await response.json();
             
         } catch (error) {
             console.error('Error fetching users:', error);
         }
     });
-    */
+    
 
     import { onMount } from 'svelte';
     
@@ -47,12 +46,16 @@
 	 * @type {any[]}
 	 */
      let reservations: any[] = [];
-     
+     /**
+	 * @type {any[]}
+	 */
+    let users:any = [];
+    
 
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/vehicles');
+            const response = await fetch('http://localhost:3002/vehicles');
             vehicles = await response.json();
             
             //filteredVehicles = vehicles; // Initialize filteredVehicles with all vehicles
@@ -62,7 +65,7 @@
     });
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/reservations');
+            const response = await fetch('http://localhost:3002/reservations');
             reservations = await response.json();
             
         } catch (error) {
@@ -73,7 +76,7 @@
     // Delete reservation
 	async function deleteReservation(reservationId:any) {
 		try {
-			const response = await fetch(`http://localhost:3000/reservations/${reservationId}`, {
+			const response = await fetch(`http://localhost:3002/reservations/${reservationId}`, {
 				method: 'DELETE'
 			});
 			if(response.ok) {
@@ -102,17 +105,36 @@
 			}
 		});
 	}
+
+    //check-out process
+    function checkOutRes(reservationId:any) {
+		Swal.fire({
+			title: 'Did you return the car at the designated drop-off location?',
+			text: '(Be sure to have returned the car before going through this process!)',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Yes, I returned it!',
+			cancelButtonText: 'No, I still have it!',
+			reverseButtons: true
+		}).then((result) => {
+			if (result.isConfirmed) {
+                window.location.href = `/checkOut?id=${reservationId}`;
+                console.log('went to check out form');
+
+            }
+		});
+	}
 </script>
 <div class="fixed w-100% pt-4 px-16">
     <a href="">Logo here</a>
 </div>
 
-
+{#each users.filter((user)=> user.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {users.first_name}!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
                 <ul>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
@@ -135,7 +157,7 @@
     </div>
     <div class=" mt-[50px] rounded-lg">
         {#each reservations as reservation}
-        {#if reservation.email == users.email}
+        {#if (reservation.email == email) && (reservation.isCheckedOut == "false")}
         <table class="border-collapse">
             <tr>
                 {#each vehicles.filter((vehicle) => vehicle.name_vehicle == reservation.vehicle_name) as carData}
@@ -209,22 +231,15 @@
                             
                         </div>
                         
-                        <div class="w-1/3 border-r-2 pl-5 justify-center ">
+                        <div class="w-2/3 pl-5 justify-center ">
+                            <div class="items-center justify-between flex">
+                                <div class="font-bold text-base">Check-out process:</div>
+                                <button on:click={()=>checkOutRes(reservation.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Check-out</button> 
+                            </div>
                             <br>
-                            CHECK IN
-                            <br>
-                            <br>
-                            CHECK OUT
+                            <p class=" text-xs ">*Once you decide to check-out, you will get the total price and get redirected to the payment process.</p>
                         </div>
                         
-                        <div class="w-1/3 pl-5">
-                            <br>
-                            <div class="font-bold text-base">Price:</div>
-                            <br>
-                            {reservation.price}
-                            <br>
-            
-                        </div>
                     </div>
                 </td>
             </tr>
@@ -241,4 +256,4 @@
         
     </div>
 </div>
-
+{/each}
