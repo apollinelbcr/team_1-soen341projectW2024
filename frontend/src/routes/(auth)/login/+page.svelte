@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	import Loginform from "../../../authforms/Loginform.svelte";
 </script>
 
