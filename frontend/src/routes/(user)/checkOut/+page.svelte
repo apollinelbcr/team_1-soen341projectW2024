@@ -124,9 +124,56 @@ async function updateReservation() {
     }
 
 }
+async function updateVehicleStatus() {
+    try {
+        const response = await fetch('http://localhost:3002/vehicles');
+        const vehiclesData = await response.json();
+        
+        // Find the vehicle in the vehicles array that matches the reservation's vehicle name
+        let vehicle = vehiclesData.find(vehicle => vehicle.name_vehicle == reservation.vehicle_name);
+        const payload = {
+				name_vehicle: vehicle.name_vehicle,
+                image: vehicle.image,
+				vehicle_type: vehicle.vehicle_type,
+				vehicle_category: vehicle.vehicle_category,
+				vehicle_transmission: vehicle.vehicle_transmission,
+                status: 'AVAILABLE',
+				price: vehicle.price,
+			};
+            const formData = new URLSearchParams();
+            Object.keys(payload).forEach(key => {
+                formData.append(key, payload[key]);
+            });
+
+            const response2 = await fetch(`http://localhost:3002/vehicles/${vehicle.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            const responseData = await response2.json(); // Assuming your server responds with JSON
+            console.log("Response from the server:", responseData);
+
+            if (response2.ok) {
+                console.log('Vehicle updated successfully');
+
+                // Update vehicle details locally
+                vehicle = { ...vehicle, status:'AVAILABLE'};
+
+            } else {
+                console.error('Failed to update vehicle:', responseData);
+            }
+    } catch (error) {
+        console.error('Error updating vehicle:', error);
+    }
+
+}
 
 	function handleUpdate() {
 		updateReservation();
+        updateVehicleStatus();
 	}
 
     /**
