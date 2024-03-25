@@ -68,7 +68,7 @@ async function updateUser() {
     try {
         const oldEmail = user.email;
         // Get the updated values from the form
-        const updatedFirstName = (document.getElementById('fname') as HTMLInputElement).value;
+        const updatedFirstName = (document.getElementById('first_name') as HTMLInputElement).value;
         const updatedLastName = (document.getElementById('last_name') as HTMLInputElement).value;
         const updatedEmail = (document.getElementById('email') as HTMLInputElement).value;
         const updatedPhoneNumber = (document.getElementById('phone') as HTMLInputElement).value;
@@ -97,7 +97,6 @@ async function updateUser() {
                 },
                 body: formData.toString(),
             });
-
             const responseData = await response.json(); // Assuming your server responds with JSON
             console.log("Response from the server:", responseData);
 
@@ -105,7 +104,8 @@ async function updateUser() {
                 console.log('User updated successfully');
                 showAlert("User Updated", "", "success", "OK");
                 // Update user details locally
-                user = {...user, ...payload };
+                user = { ...user, ...payload };
+                console.log("user new name: " + user.first_name);
                 // Optionally, re-fetch user details if you need to ensure data consistency
                 fetchUserDetails(userId);
             } else {
@@ -169,7 +169,7 @@ async function updateUser() {
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                     <label for="fname" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
-                    <input type="text" id="fname" value={user.first_name} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    <input type="text" id="first_name" value={user.first_name} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
