@@ -213,8 +213,9 @@ async function updateVehicleStatus() {
                 reservation.price += 0;
             }
             else{
-                reservation.price += 10;
+                reservation.price += 10;//set the price for all extras to be 10$
             }
+            reservation.price = (reservation.price * (1.14975)).toFixed(2);
         } else {
             reservation.price = basePrice;
             console.log("oups");
