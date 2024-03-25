@@ -12,7 +12,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { NotFoundException } from '@nestjs/common';
 
-// Mock repository functions
+
 const mockVehicleRepository = () => ({
   create: jest.fn(),
   save: jest.fn(),
@@ -21,7 +21,6 @@ const mockVehicleRepository = () => ({
   delete: jest.fn(),
 });
 
-// Mock reservation
 const mockVehicle = (id:string = 'unique_id') => ({
   id,
   name_vehicle: 'Test Vehicle',
@@ -57,7 +56,6 @@ describe('VehiclesService', () => {
     expect(repository).toBeDefined();
   });
 
-  //create vehicle
   describe('createVehicle', () => {
     it('should successfully insert a reservation', async () => {
     const createVehicleDto: CreateVehicleDto = {
@@ -77,7 +75,6 @@ describe('VehiclesService', () => {
     });
   });
 
-  //get vehicle by id
   describe('getVehicleById', () => {
     it('should retrieve a reservation by id', async () => {
       jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockVehicle('test_id'));
@@ -119,7 +116,6 @@ describe('deleteVehicles', () => {
     });
 });
 
-    //update vehicle
   describe('updateVehicle', () => {
     it('should update the reservation details', async () => {
       const updateVehicleStatusDto: UpdateVehicleStatusDto = {

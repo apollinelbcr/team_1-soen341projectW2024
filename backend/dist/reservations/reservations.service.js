@@ -22,9 +22,29 @@ let ReservationsService = class ReservationsService {
         this.reservationRepository = reservationRepository;
     }
     async createTask(createReservationDto) {
-        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras } = createReservationDto;
+        const { email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras, isMadeBy, isPaid, isCheckedOut, userName, userName2, userPhone, userLicense, vehicleName, vehicleType, vehicleCategory, vehicleTransmission } = createReservationDto;
         const reservation = this.reservationRepository.create({
-            email, vehicle_name, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_location, dropoff_location, price, extras
+            email,
+            vehicle_name,
+            pickup_date,
+            pickup_time,
+            dropoff_date,
+            dropoff_time,
+            pickup_location,
+            dropoff_location,
+            price,
+            extras,
+            isPaid,
+            isCheckedOut,
+            isMadeBy,
+            userName,
+            userName2,
+            userPhone,
+            userLicense,
+            vehicleName,
+            vehicleType,
+            vehicleCategory,
+            vehicleTransmission
         });
         await this.reservationRepository.save(reservation);
         return reservation;
@@ -84,6 +104,12 @@ let ReservationsService = class ReservationsService {
         }
         if (updateReservationDto.extras !== undefined) {
             reservation.extras = updateReservationDto.extras;
+        }
+        if (updateReservationDto.isPaid !== undefined) {
+            reservation.isPaid = updateReservationDto.isPaid;
+        }
+        if (updateReservationDto.isCheckedOut !== undefined) {
+            reservation.isCheckedOut = updateReservationDto.isCheckedOut;
         }
         await this.reservationRepository.save(reservation);
         return reservation;
