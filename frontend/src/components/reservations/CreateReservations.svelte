@@ -122,7 +122,9 @@
     
     const jsPDF = window.jspdf.jsPDF;
     const doc = new jsPDF();
-    
+
+	const confirm = new jsPDF();
+
     // Car Rental Agreement Header
     doc.setFontSize(18);
     doc.text('Car Rental Agreement', 105, 10, null, 'center');
@@ -196,6 +198,48 @@ all prior agreements and understandings, whether written or oral.`, 10, 100);
     let fileName = `reservation_${reservationReview.email}.pdf`;
     doc.save(fileName);
 
+		const imgData = '/logo_pictures/rentify_lg.png';
+		confirm.addImage(imgData, 'JPEG', 160, 10, 40, 20); // Adjust dimensions as needed
+
+		// Set title and company name with specific font size and style
+		confirm.setFont('Helvetica'); // You can change this to any supported font
+		confirm.setFontSize(18); // Slightly larger for company name
+		confirm.text('Rentify', 105, 15, null, 'center'); // Centered company name
+
+		// Booking Confirmation Title
+		confirm.setFontSize(16); // Set font size for the title
+		confirm.text('Booking Confirmation', 105, 30, null, 'center'); // Centered title
+
+		// Set smaller font size for the details
+		confirm.setFontSize(12);
+		confirm.setTextColor(100); // Set the text color to a dark gray for better readability
+
+		// Include the current date
+		confirm.text(`Date: ${new Date().toLocaleDateString()}`, 10, 40);
+
+		// Details of the booking
+		const details = [
+			`Name: ${reservationReview.userName} ${reservationReview.userName2}`,
+			`Email: ${reservationReview.email}`,
+			`Phone: ${reservationReview.userPhone}`,
+			`Vehicle: ${reservationReview.vehicleName}`,
+			`Type: ${reservationReview.vehicleType}`,
+			`Pick-up Date: ${reservationReview.pickup_date}`,
+			`Drop-off Date: ${reservationReview.dropoff_date}`,
+			`Pick-up Location: ${reservationReview.pickup_location}`,
+			`Drop-off Location: ${reservationReview.dropoff_location}`,
+			`Price: $${reservationReview.price}`,
+			`Extras: ${reservationReview.extras}`
+		];
+
+		// Iterating over details to add them to the PDF
+		details.forEach((detail, index) => {
+			confirm.text(detail, 10, 50 + (index * 10)); // Adjust starting position and line height as needed
+		});
+
+		// Save the PDF with a dynamic filename based on the reservation email
+		confirm.save(`BookingConfirmation_${reservationReview.email}.pdf`);
+
                     showAlert("Reservation Created", "", "success", "OK");
                 } else {
                     const errorResponse = await response.json();
@@ -208,7 +252,6 @@ all prior agreements and understandings, whether written or oral.`, 10, 100);
         }
     });
 }
-
 
 </script>
 
@@ -225,6 +268,7 @@ all prior agreements and understandings, whether written or oral.`, 10, 100);
 					{/each}	
 			
 			</div> 
+
 			<div class="relative z-0 w-full mb-5 group">
 				<label for="vehicle_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Vehicle's Name/Model</label>
 				<select id="vehicle_name" bind:value={reservation.vehicle_name} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
@@ -270,7 +314,6 @@ all prior agreements and understandings, whether written or oral.`, 10, 100);
 			</div>
 		</div>
 		
-	
 		<div class="grid md:grid-cols-2 md:gap-6">
 			<div class="relative z-0 w-full mb-5 group">
 				<label for="text" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
@@ -284,5 +327,6 @@ all prior agreements and understandings, whether written or oral.`, 10, 100);
         
 		<div class="grid md:grid-cols-2 md:gap-4">
 			<button type="button" on:click={() => handleCreate()} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create a reservation</button>
-			</div>
+		</div>
+	
 	</form>
