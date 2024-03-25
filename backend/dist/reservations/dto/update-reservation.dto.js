@@ -64,4 +64,19 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateReservationDto.prototype, "extras", void 0);
+__decorate([
+    (0, class_validator_1.IsEnum)(['true', 'false']),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateReservationDto.prototype, "isPaid", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(['admin', 'customer', 'customer service']),
+    __metadata("design:type", String)
+], UpdateReservationDto.prototype, "isMadeBy", void 0);
+__decorate([
+    (0, class_validator_1.IsEnum)(['true', 'false']),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateReservationDto.prototype, "isCheckedOut", void 0);
 //# sourceMappingURL=update-reservation.dto.js.map
