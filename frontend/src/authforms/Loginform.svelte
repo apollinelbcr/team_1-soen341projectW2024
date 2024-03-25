@@ -1,18 +1,7 @@
-<script>
+<script lang="ts">
 
     import Swal from "sweetalert2";
-    //import Cookies from 'js-cookie'; //using js cookies
-
-    // function setUserCookies(user) {
-    // Cookies.set('user', JSON.stringify(user), { expires: 7 }); // Store user data as a cookie for 7 days (adjust as needed)
-    // }
-
-    // Function to retrieve user information from cookies
-    // @ts-ignore
-    // function getUserFromCookies() {
-    //     const userCookie = Cookies.get('user');
-    //     return userCookie ? JSON.parse(userCookie) : null;
-    // }
+    import { userinfo } from './store.ts';
 
     // @ts-ignore
     function showAlert(title, text, icon, confirmButtonText) {
@@ -39,7 +28,7 @@
         const formData = new URLSearchParams();
         formData.append('email', email);
         formData.append('password', password);
-        console.log(formData.toString());
+        //console.log(formData.toString());
 
         try {
             const response = await fetch('http://localhost:3002/users/login/', {
@@ -58,10 +47,12 @@
                 if(user == undefined){
                     showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
                 } else{
-                    //setUserCookies(user); //setting cookies 
+                    $userinfo.email= user.email;
+                    $userinfo.password= user.password;
+                    //console.log($userinfo); -- OK
+                    userinfo.set($userinfo);
                     window.location.href = '/';
                 }
-                //window.location.href = '/';
             } else {
                 const errorData = await response.json();
                 showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
