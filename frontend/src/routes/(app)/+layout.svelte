@@ -3,6 +3,7 @@
   import Header from "$lib/components/layout/Header.svelte";
   import Footer from "$lib/components/layout/Footer.svelte";
   import {Toaster} from "svelte-sonner";
+  import {page} from "$app/stores";
 </script>
 
 <Toaster closeButton/>
@@ -12,4 +13,6 @@
 <slot />
 </main>
 
+{#if !$page.url.pathname.match(/^(\/signup|\/login)$/)}
 <Footer/>
+{/if}

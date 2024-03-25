@@ -61,4 +61,14 @@ export const repo = {
     );
   },
 
+  async getUser(fetch: { (input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>; (arg0: string): any; }): Promise<any> {
+    const backendURL = 'http://localhost:3002/auth/profile';
+    let payload = null;
+    const response = await fetch(backendURL);
+    if (response.ok) {
+      payload = await response.json();
+    }
+    return payload;
+  },
+
 };

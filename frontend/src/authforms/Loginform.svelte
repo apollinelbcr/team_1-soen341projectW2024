@@ -42,28 +42,27 @@
         console.log(formData.toString());
 
         try {
-            const response = await fetch('http://localhost:3002/users/login/', {
+            const response = await fetch('http://localhost:3002/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
-                body: formData.toString(),
-                //credentials: 'include' // Include cookies in the request
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
             });
-            
             if (response.ok) {
                 const responseData = await response.json();
-                const { user } = responseData;
-                //console.log(user);
-                if(user == undefined){
+                if(responseData === undefined){
                     showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
                 } else{
-                    //setUserCookies(user); //setting cookies 
+                    setUserCookies(responseData.access_token);
                     window.location.href = '/';
                 }
-                //window.location.href = '/';
             } else {
                 const errorData = await response.json();
+                console.log(errorData);
                 showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
                 errorMessage = errorData.message || 'Login failed';
             }
@@ -73,6 +72,15 @@
         }
     }
 
+    function setUserCookies(jwtToken) {
+        const secure = location.protocol === 'https:';
+        const now = new Date();
+        const hour = 3600000;
+        const expiryTime = new Date(now.getTime() + (2 * hour)).toUTCString();
+
+        // Set a cookie for the JWT Token
+        document.cookie = `accessToken=${jwtToken};path=/;expires=${expiryTime};${secure ? 'Secure;' : ''}SameSite=Strict;`;
+    }
 </script>
 
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:mt-7 lg:py-0">
