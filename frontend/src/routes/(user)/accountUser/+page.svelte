@@ -75,7 +75,7 @@
                 </div>
                 <br>
                 <button>
-                    <a href="/editForm?id={userData.id}">Edit</a>
+                    <a href="/editInfoUser?id={userData.id}">Edit</a>
 
                 </button>
             </div>
