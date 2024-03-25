@@ -58,6 +58,50 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255, nullable: true }),
     __metadata("design:type", String)
 ], Reservation.prototype, "extras", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['admin', 'customer', 'customer service'], default: 'customer' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isMadeBy", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['true', 'false'], default: 'false' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isPaid", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'enum', enum: ['true', 'false'], default: 'false' }),
+    __metadata("design:type", String)
+], Reservation.prototype, "isCheckedOut", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "userName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "userName2", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "userPhone", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "userLicense", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "vehicleName", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "vehicleType", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "vehicleCategory", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Reservation.prototype, "vehicleTransmission", void 0);
 exports.Reservation = Reservation = __decorate([
     (0, typeorm_1.Entity)('reservations')
 ], Reservation);
