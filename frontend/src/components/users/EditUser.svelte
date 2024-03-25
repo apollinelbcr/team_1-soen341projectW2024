@@ -39,7 +39,7 @@
 	 */
     async function fetchUserDetails(userId) {
         try {
-            const response = await fetch(`http://localhost:3000/users/${userId}`);
+            const response = await fetch(`http://localhost:3002/users/${userId}`);
             const data = await response.json();
             user = data;
 			(user.status == 'ACTIVE') ? isChecked = true : isChecked = false;
@@ -76,12 +76,13 @@
 		// Get the updated values from the input fields
 		const updatedFirstName = document.getElementById('fist_name').value;
 		const updatedLastName = document.getElementById('last_name').value;
-		const updatedImage = document.getElementById('driver_license').value;
+		const updatedDriverLicense = document.getElementById('driver_license').value;
 		const updatedEmail = document.getElementById('email').value;
 		const updatedPhoneNumber = document.getElementById('phone_number').value;
 		const updatedPassword = document.getElementById('password').value;
+		const updatedRole = document.getElementById('role').value;
 
-		if(updatedLastName != "" && updatedImage != "" && updatedFirstName != ""){
+		if(updatedLastName != "" && updatedDriverLicense != "" && updatedFirstName != ""){
 			// Create the payload with the updated values
 			const payload = {
 			id: userId,
@@ -91,7 +92,7 @@
 			email: updatedEmail,
 			phone_number: updatedPhoneNumber,
 			password: updatedPassword,
-			
+			role: updatedRole,
 			status: isChecked ? 'ACTIVE' : 'INACTIVE',
 			};
 
@@ -104,7 +105,7 @@
 			formData.append(key, payload[key]);
 			});
 
-			const response = await fetch(`http://localhost:3000/users/${userId}`, {
+			const response = await fetch(`http://localhost:3002/users/${userId}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Email': 'application/x-www-form-urlencoded',
@@ -132,7 +133,7 @@
 	// Function to delete a user
 	async function deleteUser(userId) {
     try {
-		const response = await fetch(`http://localhost:3000/users/${userId}`, {
+		const response = await fetch(`http://localhost:3002/users/${userId}`, {
 			method: 'DELETE'
 		});
 		const data = await response.text();
@@ -199,7 +200,7 @@
 		</div> 
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Select the user's phone_number</label>
-			<input type="text" id="phone_number" value={user.phone_number} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. bob.smith@gmail.com" required />
+			<input type="text" id="phone_number" value={user.phone_number} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="" required />
 		</div>
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">User's Id</label>
@@ -210,6 +211,14 @@
 			<input type="text" id="password" value={user.password} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="smith1234" required />
 		</div>
 	</div>
+	<div class="relative z-0 w-full mb-5 group">
+			<label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Role</label>
+			<select id="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500">
+				<option value="CUSTOMER">CUSTOMER</option>
+				<option value="ADMIN">ADMIN</option>
+				<option value="CUSTOMER_SERVICE">CUSTOMER_SERVICE</option>
+			</select>
+		</div>
 	<div class="grid md:grid-cols-2 md:gap-6">
 		<label class="inline-flex items-center mb-5 cursor-pointer">
 			<input type="checkbox" bind:checked={isChecked} on:change={handleCheckboxClick} class="sr-only peer" />

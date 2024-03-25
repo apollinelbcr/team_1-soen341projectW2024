@@ -70,12 +70,12 @@
 					formData.append(key, payload[key]);
 				});
 
-				const response = await fetch(`http://localhost:3000/users`, {
+				const response = await fetch(`http://localhost:3002/users`, {
 				method: 'POST',
 				headers: {
 					'Content-Email': 'application/x-www-form-urlencoded',
 				},
-				body: formData.toString(), // Convert form data 
+				body: formData, // Convert form data 
 				});
 				console.log(response);
 

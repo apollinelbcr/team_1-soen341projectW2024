@@ -27,7 +27,7 @@
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/users');
+            const response = await fetch('http://localhost:3002/users');
             users = await response.json();
             
             //filteredUsers = users; // Initialize filteredUsers with all users
