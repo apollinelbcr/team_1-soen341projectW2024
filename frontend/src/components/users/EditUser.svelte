@@ -1,4 +1,3 @@
-
 <script>
 // @ts-nocheck
 
@@ -39,11 +38,11 @@
 	 */
     async function fetchUserDetails(userId) {
         try {
-            const response = await fetch(`http://localhost:3000/users/${userId}`);
+            const response = await fetch(`http://localhost:3002/users/${userId}`);
             const data = await response.json();
             user = data;
 			(user.status == 'ACTIVE') ? isChecked = true : isChecked = false;
-			console.log(user.status);
+			//console.log(user.status);
         } catch (error) {
             console.error('Error fetching user details:', error);
         }
@@ -57,31 +56,29 @@
 
         // Fetch user details
         fetchUserDetails(userId);
+		//console.log(userId); ok
     });
 
 	function handleUpdate() {
-    	//console.log("Update button clicked");
 		updateUser();
   	}
 
-	//checking isChecked value after update
 	function handleCheckboxClick(){
 		isChecked ? false : true;
 		console.log("Checkbox clicked. Checked state:", isChecked);
 	}
 
-	//update a user
 	async function updateUser() {
 	try {
 		// Get the updated values from the input fields
-		const updatedFirstName = document.getElementById('fist_name').value;
+		const updatedFirstName = document.getElementById('first_name').value;
 		const updatedLastName = document.getElementById('last_name').value;
-		const updatedImage = document.getElementById('driver_license').value;
+		const updatedDriverLicense = document.getElementById('driver_license').value;
 		const updatedEmail = document.getElementById('email').value;
 		const updatedPhoneNumber = document.getElementById('phone_number').value;
 		const updatedPassword = document.getElementById('password').value;
 
-		if(updatedLastName != "" && updatedImage != "" && updatedFirstName != ""){
+		if(updatedLastName != "" && updatedFirstName != "" && updatedEmail != "" && updatedDriverLicense != ""){
 			// Create the payload with the updated values
 			const payload = {
 			id: userId,
@@ -91,20 +88,17 @@
 			email: updatedEmail,
 			phone_number: updatedPhoneNumber,
 			password: updatedPassword,
-			
 			status: isChecked ? 'ACTIVE' : 'INACTIVE',
 			};
 
 			console.log(payload);
 
 			const formData = new URLSearchParams();
-
-			// Assuming payload is an object containing key-value pairs
 			Object.keys(payload).forEach(key => {
 			formData.append(key, payload[key]);
 			});
 
-			const response = await fetch(`http://localhost:3000/users/${userId}`, {
+			const response = await fetch(`http://localhost:3002/users/${userId}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Email': 'application/x-www-form-urlencoded',
@@ -114,6 +108,7 @@
 
 			if (response.ok) {
 				console.log('User updated successfully');
+				console.log(formData)
 				showAlert("User Updated", "", "success", "OK");
 			} else {
 				console.error('Failed to update user');
@@ -132,7 +127,7 @@
 	// Function to delete a user
 	async function deleteUser(userId) {
     try {
-		const response = await fetch(`http://localhost:3000/users/${userId}`, {
+		const response = await fetch(`http://localhost:3002/users/${userId}`, {
 			method: 'DELETE'
 		});
 		const data = await response.text();
@@ -170,12 +165,6 @@
 
 <div class="mb-5 text-2xl font-medium text-gray-700">{title} of user : {userId}</div>
 
-<div class="flex justify-center items-center mt-5 mb-5 md:mb-10">
-	<!-- svelte-ignore a11y-img-redundant-alt -->
-	<img id="userimg" src="{user.driver_license}" class="max-w-xs h-auto" alt="Oups! It seems like you forgot to input a driver license.">
-</div>
-
-
 <form class="mx-auto">
 	<div class="grid md:grid-cols-2 md:gap-6">
 		<div class="relative z-0 w-full mb-5 group">
@@ -187,7 +176,7 @@
 			<input type="text" id="last_name" value={user.last_name} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. Smith" required />
 		</div> 
 		<div class="relative z-0 w-full mb-5 group">
-			<label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">User's Profile Picture</label>
+			<label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">User's Driver License</label>
 			<input type="text" id="driver_license" value={user.driver_license} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder=" " required />
 		</div>
 	</div>
@@ -200,10 +189,6 @@
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">Select the user's phone_number</label>
 			<input type="text" id="phone_number" value={user.phone_number} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. bob.smith@gmail.com" required />
-		</div>
-		<div class="relative z-0 w-full mb-5 group">
-			<label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark">User's Id</label>
-			<input type="text" id="id" value={user.id} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Ex. 1234" required />
 		</div>
 		<div class="relative z-0 w-full mb-5 group">
 			<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">User's password</label>

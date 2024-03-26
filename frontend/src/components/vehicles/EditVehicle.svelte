@@ -82,7 +82,6 @@
 		const updatedPrice = document.getElementById('vehicle_price').value;
 
 		if(updatedName != "" && updatedImage != "" && updatedPrice != ""){
-			// Create the payload with the updated values
 			const payload = {
 			id: vehicleId,
 			name_vehicle: updatedName,

@@ -46,8 +46,6 @@
 			// @ts-ignore
 			const createdPassword = document.getElementById('password').value;
 
-			// Create the payload with the created values
-				//-- values should not be blank 
 			
 			if(createdLastName != "" && createdFirstName != "" && createdEmail != "" && createdPassword != "" && createdDriverLicense != "" &&createdPhoneNumber != ""){
 				const payload = {
@@ -70,12 +68,12 @@
 					formData.append(key, payload[key]);
 				});
 
-				const response = await fetch(`http://localhost:3000/users`, {
+				const response = await fetch(`http://localhost:3002/users`, {
 				method: 'POST',
 				headers: {
 					'Content-Email': 'application/x-www-form-urlencoded',
 				},
-				body: formData, // Convert form data 
+				body: formData, 
 				});
 				console.log(response);
 

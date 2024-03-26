@@ -27,29 +27,14 @@
 
     onMount(async () => {
         try {
-            const response = await fetch('http://localhost:3000/users');
+            const response = await fetch('http://localhost:3002/users');
             users = await response.json();
             
-            //filteredUsers = users; // Initialize filteredUsers with all users
         } catch (error) {
             console.error('Error fetching users:', error);
         }
     });
 
-    //import { navigate } from 'svelte-routing';
-
-    // @ts-ignore
-    // function filterByStatus(status) {
-    //     if (status == 'ACTIVE' || status == 'INACTIVE') {
-    //         filterStatus = status;
-    //         // @ts-ignore
-    //         filteredUsers = users.filter(user => user.status === status);
-    //     } else {
-    //         filterStatus = '';
-    //         // @ts-ignore
-    //         filteredUsers = users;
-    //     }
-    // }
 </script>
 
 <div class="mb-5 text-2xl font-medium text-gray-700">{title}</div>
@@ -136,6 +121,9 @@
                             <td class="border-b p-5 text-sm">
                                 
                             </td>
+                            <td class="border-b p-5 text-sm">
+                                
+                            </td>
                             
                             <td class="border-b p-5 text-sm font-bold">
                                 {users.length}
@@ -143,8 +131,6 @@
                         </tr>   
                     </tbody>
                 </table>
-
-                
             </div>
         </div>
 </div>
