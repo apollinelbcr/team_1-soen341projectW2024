@@ -88,7 +88,7 @@ export class UsersService {
             user.password = updateUsersDto.password;
         }
         if (updateUsersDto.role !== undefined) {
-            user.role = updateUsersDto.role;
+            user.role = updateUsersDto.role as UserRole;
         }
         if (updateUsersDto.phone_number !== undefined) {
             user.phone_number = updateUsersDto.phone_number;
