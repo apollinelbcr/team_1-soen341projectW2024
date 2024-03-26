@@ -1,11 +1,11 @@
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 import { Extras } from '../reservations-extras.enum';
 
 export class CreateReservationDto {
-    
+
     @IsEmail()
     email: string;
-
+    
     @IsString()
     @IsNotEmpty()
     vehicle_name: string;
@@ -31,10 +31,35 @@ export class CreateReservationDto {
     @IsString()
     @IsNotEmpty()
     dropoff_location: string;
-
     
     price: number;
 
     @IsEnum(Extras)
     extras: Extras;
+
+    @IsEnum(['admin', 'customer', 'customer service'])
+    isMadeBy: string;
+
+    @IsEnum(['true', 'false'])
+    isPaid: string;
+
+    @IsEnum(['true', 'false'])
+    isCheckedOut: string;
+
+    userName:string;
+
+    userName2:string;
+    
+    userPhone:string;
+
+    userLicense:string;
+
+    vehicleName:string;
+
+    vehicleType:string;
+
+    vehicleCategory:string;
+
+    vehicleTransmission:string;
+
 }

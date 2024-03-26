@@ -51,7 +51,7 @@
                     $userinfo.password= user.password;
                     //console.log($userinfo); -- OK
                     userinfo.set($userinfo);
-                    window.location.href = '/';
+                    window.location.href = `/accountUser?id=${user.id}`;
                 }
             } else {
                 const errorData = await response.json();

@@ -15,7 +15,8 @@
 			confirmButtonColor: '#3085d6'
 		});
 	}
-    let reservationId: string | null = null;
+
+	let reservationId: string | null = null;
     let userId: string | null = null;
 
     onMount(() => {
@@ -58,6 +59,7 @@
 		fetchUserDetails(userId);
 	});
 
+
 	// Define reactive variables to store reservation details
 	let reservation = {};
 	let vehicles = [];
@@ -79,6 +81,7 @@
 			const data = await response.json();
 			reservation = data;
 			console.log(reservation);
+            //calculatePrice();
 		} catch (error) {
 			console.error('Error fetching reservation details:', error);
 		}
@@ -97,12 +100,13 @@
 async function updateReservation() {
     try {
         // Get the updated values from the form
+        
         const updatedPickupDate = document.getElementById('pickup_date').value;
         const updatedDropoffDate = document.getElementById('dropoff_date').value;
         const updatedPickupLocation = document.getElementById('pickup_location').value;
         const updatedDropoffLocation = document.getElementById('dropoff_location').value;
         const updatedExtras = document.getElementById('extras').value;
-
+        await calculatePrice(updatedPickupDate, updatedDropoffDate, updatedExtras);
         if (updatedPickupDate && updatedDropoffDate && updatedPickupLocation && updatedDropoffLocation) {
             // Create the payload with the updated values
             const payload = {
@@ -114,6 +118,7 @@ async function updateReservation() {
 				dropoff_location: updatedDropoffLocation,
                 price: reservation.price,
 				extras: updatedExtras,
+                isCheckedOut: 'true'
 			};
 
 
@@ -156,9 +161,56 @@ async function updateReservation() {
     }
 
 }
+async function updateVehicleStatus() {
+    try {
+        const response = await fetch('http://localhost:3002/vehicles');
+        const vehiclesData = await response.json();
+        
+        // Find the vehicle in the vehicles array that matches the reservation's vehicle name
+        let vehicle = vehiclesData.find(vehicle => vehicle.name_vehicle == reservation.vehicle_name);
+        const payload = {
+				name_vehicle: vehicle.name_vehicle,
+                image: vehicle.image,
+				vehicle_type: vehicle.vehicle_type,
+				vehicle_category: vehicle.vehicle_category,
+				vehicle_transmission: vehicle.vehicle_transmission,
+                status: 'AVAILABLE',
+				price: vehicle.price,
+			};
+            const formData = new URLSearchParams();
+            Object.keys(payload).forEach(key => {
+                formData.append(key, payload[key]);
+            });
+
+            const response2 = await fetch(`http://localhost:3002/vehicles/${vehicle.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            const responseData = await response2.json(); // Assuming your server responds with JSON
+            console.log("Response from the server:", responseData);
+
+            if (response2.ok) {
+                console.log('Vehicle updated successfully');
+
+                // Update vehicle details locally
+                vehicle = { ...vehicle, status:'AVAILABLE'};
+
+            } else {
+                console.error('Failed to update vehicle:', responseData);
+            }
+    } catch (error) {
+        console.error('Error updating vehicle:', error);
+    }
+
+}
 
 	function handleUpdate() {
 		updateReservation();
+        updateVehicleStatus();
 	}
 
     /**
@@ -178,10 +230,47 @@ async function updateReservation() {
     const email = "user7@example.com";
     //at the moment it is hard coded, but i have to wait for the log in page to be linked
 
+    // Function to calculate price based on the number of days
+    async function calculatePrice(updatedPickupDate, updatedDropoffDate, updatedExtras) {
+    const pickupDate = new Date(updatedPickupDate);
+    const dropoffDate = new Date(updatedDropoffDate);
+    const timeDifference = dropoffDate.getTime() - pickupDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days
+    let basePrice = 0;
+
+    try {
+        const response = await fetch('http://localhost:3002/vehicles');
+        const vehiclesData = await response.json();
+        
+        // Find the vehicle in the vehicles array that matches the reservation's vehicle name
+        const vehicle = vehiclesData.find(vehicle => vehicle.name_vehicle == reservation.vehicle_name);
+        if (vehicle) {
+            reservation.price = (vehicle.price * daysDifference)
+            if (updatedExtras == "None"){
+                reservation.price += 0;
+            }
+            else{
+                reservation.price += 10;//set the price for all extras to be 10$
+            }
+            reservation.price = (reservation.price * (1.14975)).toFixed(2);
+        } else {
+            reservation.price = basePrice;
+            console.log("oups");
+        }
+    } catch (error) {
+        console.error('Error fetching vehicle details:', error);
+        reservation.price = basePrice; // Set price to base price if there's an error fetching vehicle details
+    }
+    return reservation.price;
+  }
+/*
+  onMount(() => {
+    // Calculate initial price
+    calculatePrice();
+  });*/
+
 </script>
-<div class="fixed w-100% pt-4 px-16">
-    <a href="">Logo here</a>
-</div>
+
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
@@ -201,31 +290,37 @@ async function updateReservation() {
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/reviewInfo?id={userId}">Review</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes?id={userId}">My Reservation</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes?id={reservationId}">My Reservation</a>
                     </li>
                 </ul>
             </div>
         
     </div>
     <div class=" mt-[50px] rounded-lg">
-        <div class="mb-5 text-2xl font-medium text-gray-700">Details of Reservation:</div>
+        <div class="mb-5 text-2xl font-medium text-gray-700">Check-out:</div>
         <div class="flex">
-            <div class="text-lg font-medium text-gray-700 mr-4">Vehicle : {reservation.vehicle_name}</div>
-            <div class="text-lg font-medium text-gray-700 ml-4">Pickup Time: {reservation.pickup_time}</div>
-            <div class="text-lg font-medium text-gray-700 ml-4">Dropoff: {reservation.dropoff_time}</div>
+            <div class="text-lg font-medium text-gray-700 mr-4">Please confirm the details below before proceding to payment</div>
         </div>
         <br>
 
         <form class="mx-auto">
-
+            <div class="grid md:grid-cols-1 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Vehicle</label>
+                    <input type="text" id="vehicle_name" value={reservation.vehicle_name} readonly class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Additional services or items" />
+                </div>
+            </div>
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                     <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Pickup Date</label>
-                    <input type="date" id="pickup_date" value={reservation.pickup_date} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    <input type="date" id="pickup_date" value={reservation.pickup_date}  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    <p class=" text-xs ">*If the dates are changed now, the price will updated at the next page.</p>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
                     <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Dropoff Date</label>
                     <input type="date" id="dropoff_date" value={reservation.dropoff_date} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    <p class=" text-xs ">*If the dates are changed now, the price will updated at the next page.</p>
+
                 </div>
             </div>
 
@@ -252,17 +347,26 @@ async function updateReservation() {
             </div>
             
 
-            <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="grid md:grid-cols-1 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                     <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Extras</label>
                     <input type="text" id="extras" value={reservation.extras} class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Additional services or items" />
+                    <p class=" text-xs ">*If the extra is changed now, the price will be updated at the next page.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-1 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                    <input type="number" id="price" value={reservation.price} readonly class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Additional services or items" />
                 </div>
             </div>
 
             <div class="grid md:grid md:gap-4">
-                <button type="button" on:click={handleUpdate} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update reservation info</button>
+                <button type="button" on:click={handleUpdate} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm Check-Out</button>
             </div>
         </form>
     </div>
 </div>
+
 
