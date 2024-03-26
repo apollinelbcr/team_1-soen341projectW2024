@@ -74,7 +74,7 @@
 	async function updateUser() {
 	try {
 		// Get the updated values from the input fields
-		const updatedFirstName = document.getElementById('fist_name').value;
+		const updatedFirstName = document.getElementById('first_name').value;
 		const updatedLastName = document.getElementById('last_name').value;
 		const updatedDriverLicense = document.getElementById('driver_license').value;
 		const updatedEmail = document.getElementById('email').value;
@@ -85,8 +85,7 @@
 		if(updatedLastName != "" && updatedDriverLicense != "" && updatedFirstName != ""){
 			// Create the payload with the updated values
 			const payload = {
-			id: userId,
-			fist_name: updatedFirstName,
+			first_name: updatedFirstName,
 			last_name: updatedLastName,
 			driver_license: updatedDriverLicense,
 			email: updatedEmail,
