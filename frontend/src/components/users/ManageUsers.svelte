@@ -125,7 +125,7 @@
                                 </span>
                             </td>
                             
-                            <td class="border-b border-gray-200 p-5 text-sm">
+                            <td class="border-b border-gray-200 p-5 px-9 text-sm">
                                 <a href="/admin/manage_users/edit-user?id={user.id}" class="text-blue-600 hover:text-indigo-900 cursor-pointer">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm9.4-5.5a1 1 0 1 0 0 2 1 1 0 1 0 0-2ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4c0-.6-.4-1-1-1h-2Z" clip-rule="evenodd"/>
@@ -136,18 +136,20 @@
                         </tr>
                        
                         {/each} 
-                        <tr class="bg-gray-50">
-                            <td class="border-b p-5 text-sm font-bold">
-                                    <p class="whitespace-nowrap">Total number of users</p>
+                        <tr class="bg-gray-50 border border-gray-200">
+                            <td class="border-b p-5  text-md font-bold">
+                                    <p class="whitespace-nowrap">Total number of users:</p>
                             </td>
-                            <td class="border-b p-5 text-sm">
+                            <td class="border-b p-5 text-md">
                                 <p class="whitespace-nowrap"></p>
                             </td>
                             <td class="border-b p-5 text-sm">
-                                
                             </td>
-                            
-                            <td class="border-b p-5 text-sm font-bold">
+                            <td class="border-b p-5 text-sm">
+                            </td>
+                            <td class="border-b p-5 text-sm">
+                            </td>
+                            <td class="border-b p-5 px-10 text-md font-bold">
                                 {users.length}
                             </td>                            
                         </tr>   
