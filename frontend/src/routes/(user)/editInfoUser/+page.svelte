@@ -66,7 +66,6 @@ let user={
 	// Update user
 async function updateUser() {
     try {
-        const oldEmail = user.email;
         // Get the updated values from the form
         const updatedFirstName = (document.getElementById('first_name') as HTMLInputElement).value;
         const updatedLastName = (document.getElementById('last_name') as HTMLInputElement).value;
@@ -133,27 +132,26 @@ async function updateUser() {
 <div class="fixed w-100% pt-4 px-16">
     <a href="">Logo here</a>
 </div>
-{#each users.filter((userData) => userData.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {user.first_name}!</header>
                 <ul>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="profileLink">Profile</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser?id={userId}">Profile</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="contactLink">Contact</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/ContactInfo?id={userId}">Contact</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="paymentLink">Payment</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/paymentInfo?id={userId}">Payment</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser" id="reviewLink">Review</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/reviewInfo?id={userId}">Review</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes">My Reservation</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes?id={userId}">My Reservation</a>
                     </li>
                 </ul>
             </div>
@@ -199,5 +197,4 @@ async function updateUser() {
         </form>
     </div>
 </div>
-{/each}
 

@@ -1,52 +1,68 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     
-    const email = "user7@example.com";
-    //at the moment it is hard coded, but i have to wait for the log in page to be linked
+    let userId: string | null = null;
     
-    
-    // @ts-ignore
-    /**
-	 * @type {any[]}
-	 */
-     let users: any[] = [];
-     
-
-     onMount(async () => {
-        try {
-            const response = await fetch('http://localhost:3002/users');
-            users = await response.json();
-            
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
+    onMount(() => {
+        const url = new URL(window.location.href);
+        const searchParams = url.searchParams;
+        userId = searchParams.get('id');
     });
 
+	// Define reactive variables to store user details
+	let user={
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        role: '',
+        phone_number: '',
+        driver_license: '',
+        status: ''
+    };
 
+	// Function to fetch user details from the API
+	async function fetchUserDetails(userId:any) {
+		try {
+			const response = await fetch(`http://localhost:3002/users/${userId}`);
+			const data = await response.json();
+			user = data;
+			console.log(user);
+		} catch (error) {
+			console.error('Error fetching user details:', error);
+		}
+	}
+
+	
+
+	// Lifecycle hook to fetch user details when the component mounts
+	onMount(() => {
+		fetchUserDetails(userId);
+	});
 </script>
 
 <main>
     
-    {#each users.filter((user)=> user.email == email) as userData}
+    
     <section class="container">
         <section class="child-option">
             <div class="sidebar">
-                <header>Welcome, {userData.first_name}</header>
+                <header>Welcome, {user.first_name}</header>
                 <ul>
                     <li>
-                        <a href="/accountUser">Profile</a>
+                        <a href="/accountUser?id={userId}">Profile</a>
                     </li>
                     <li>
-                        <a href="/contactInfo">Contact</a>
+                        <a href="/contactInfo?id={userId}">Contact</a>
                     </li>
                     <li>
-                        <a href="/paymentInfo">Payment</a>
+                        <a href="/paymentInfo?id={userId}">Payment</a>
                     </li>
                     <li>
-                        <a href="/reviewInfo">Review</a>
+                        <a href="/reviewInfo?id={userId}">Review</a>
                     </li>
                     <li>
-                        <a href="/manageRes">My Reservation</a>
+                        <a href="/manageRes?id={userId}">My Reservation</a>
                     </li>
                 </ul>
             </div>
@@ -59,30 +75,29 @@
                 <div class="info fname">
                     <b>First Name:</b>
                     <br>
-                    <p>{userData.first_name}</p>
+                    <p>{user.first_name}</p>
                 </div>
                 <br>
                 <div class="info lname">
                     <b>Last Name:</b>
                     <br>
-                    <p>{userData.last_name}</p>
+                    <p>{user.last_name}</p>
                 </div>
                 <br>
                 <div class="info birth">
                     <b>Role:</b>
                     <br>
-                    <p>{userData.role}</p>
+                    <p>{user.role}</p>
                 </div>
                 <br>
                 <button>
-                    <a href="/editInfoUser?id={userData.id}">Edit</a>
+                    <a href="/editInfoUser?id={userId}">Edit</a>
 
                 </button>
             </div>
 
         </section>
     </section>
-    {/each}
 </main>
 
 <style>

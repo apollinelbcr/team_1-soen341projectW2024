@@ -2,10 +2,44 @@
     import AddReview from "$lib/components/Account/addReview.svelte";
     import { onMount } from 'svelte';
     
-    const email = "user7@example.com";
-    //at the moment it is hard coded, but i have to wait for the log in page to be linked
+    let userId: string | null = null;
     
-    
+    onMount(() => {
+        const url = new URL(window.location.href);
+        const searchParams = url.searchParams;
+        userId = searchParams.get('id');
+    });
+
+	// Define reactive variables to store user details
+	let user={
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        role: '',
+        phone_number: '',
+        driver_license: '',
+        status: ''
+    };
+
+	// Function to fetch user details from the API
+	async function fetchUserDetails(userId:any) {
+		try {
+			const response = await fetch(`http://localhost:3002/users/${userId}`);
+			const data = await response.json();
+			user = data;
+			console.log(user);
+		} catch (error) {
+			console.error('Error fetching user details:', error);
+		}
+	}
+
+	
+
+	// Lifecycle hook to fetch user details when the component mounts
+	onMount(() => {
+		fetchUserDetails(userId);
+	}); 
     // @ts-ignore
     /**
 	 * @type {any[]}
@@ -60,26 +94,25 @@
 </script>
 
 <main>
-    {#each users.filter((user)=> user.email == email) as userData}
     <section class="container">
         <section class="child-option">
             <div class="sidebar">
-                <header>Welcome, {userData.first_name}</header>
+                <header>Welcome, {user.first_name}</header>
                 <ul>
                     <li>
-                        <a href="/accountUser">Profile</a>
+                        <a href="/accountUser?id={userId}">Profile</a>
                     </li>
                     <li>
-                        <a href="/contactInfo">Contact</a>
+                        <a href="/contactInfo?id={userId}">Contact</a>
                     </li>
                     <li>
-                        <a href="/paymentInfo">Payment</a>
+                        <a href="/paymentInfo?id={userId}">Payment</a>
                     </li>
                     <li>
-                        <a href="/reviewInfo">Review</a>
+                        <a href="/reviewInfo?id={userId}">Review</a>
                     </li>
                     <li>
-                        <a href="/manageRes">My Reservation</a>
+                        <a href="/manageRes?id={userId}">My Reservation</a>
                     </li>
                 </ul>
             </div>
@@ -162,7 +195,6 @@
 
         </section>
     </section>
-    {/each}
 </main>
 
 <style>

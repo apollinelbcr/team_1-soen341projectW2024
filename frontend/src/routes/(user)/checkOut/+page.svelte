@@ -17,11 +17,48 @@
 	}
 
 	let reservationId: string | null = null;
+    let userId: string | null = null;
 
     onMount(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        reservationId = urlParams.get('id');
+        reservationId = urlParams.get('id1');
+        userId = urlParams.get('id2');
+
+        console.log("resId : "+ reservationId);
+        console.log("userId : "+ userId);
     });
+    
+	// Define reactive variables to store user details
+	let user={
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        role: '',
+        phone_number: '',
+        driver_license: '',
+        status: ''
+    };
+
+	// Function to fetch user details from the API
+	async function fetchUserDetails(userId:any) {
+		try {
+			const response = await fetch(`http://localhost:3002/users/${userId}`);
+			const data = await response.json();
+			user = data;
+			console.log(user);
+		} catch (error) {
+			console.error('Error fetching user details:', error);
+		}
+	}
+
+	
+
+	// Lifecycle hook to fetch user details when the component mounts
+	onMount(() => {
+		fetchUserDetails(userId);
+	});
+
 
 	// Define reactive variables to store reservation details
 	let reservation = {};
@@ -234,27 +271,26 @@ async function updateVehicleStatus() {
 
 </script>
 
-{#each users.filter((userData) => userData.email == email) as userData}
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
-                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {userData.first_name}!</header>
+                <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {user.first_name}</header>
                 <ul>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="profileLink">Profile</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser?id={userId}">Profile</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="contactLink">Contact</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/ContactInfo?id={userId}">Contact</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="paymentLink">Payment</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/paymentInfo?id={userId}">Payment</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="account.html" id="reviewLink">Review</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/reviewInfo?id={userId}">Review</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes">My Reservation</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/manageRes?id={reservationId}">My Reservation</a>
                     </li>
                 </ul>
             </div>
@@ -332,5 +368,5 @@ async function updateVehicleStatus() {
         </form>
     </div>
 </div>
-{/each}
+
 
