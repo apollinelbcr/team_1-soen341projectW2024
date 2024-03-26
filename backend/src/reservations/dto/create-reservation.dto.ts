@@ -1,11 +1,11 @@
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
 import { Extras } from '../reservations-extras.enum';
 
 export class CreateReservationDto {
-    
+
     @IsEmail()
     email: string;
-
+    
     @IsString()
     @IsNotEmpty()
     vehicle_name: string;
@@ -31,7 +31,6 @@ export class CreateReservationDto {
     @IsString()
     @IsNotEmpty()
     dropoff_location: string;
-
     
     price: number;
 
@@ -50,7 +49,7 @@ export class CreateReservationDto {
     userName:string;
 
     userName2:string;
-
+    
     userPhone:string;
 
     userLicense:string;
@@ -62,4 +61,5 @@ export class CreateReservationDto {
     vehicleCategory:string;
 
     vehicleTransmission:string;
+
 }
