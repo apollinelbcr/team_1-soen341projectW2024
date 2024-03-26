@@ -1,7 +1,18 @@
-<script lang="ts">
+<script>
 
     import Swal from "sweetalert2";
-    import { userinfo } from './store.ts';
+    //import Cookies from 'js-cookie'; //using js cookies
+
+    // function setUserCookies(user) {
+    // Cookies.set('user', JSON.stringify(user), { expires: 7 }); // Store user data as a cookie for 7 days (adjust as needed)
+    // }
+
+    // Function to retrieve user information from cookies
+    // @ts-ignore
+    // function getUserFromCookies() {
+    //     const userCookie = Cookies.get('user');
+    //     return userCookie ? JSON.parse(userCookie) : null;
+    // }
 
     // @ts-ignore
     function showAlert(title, text, icon, confirmButtonText) {
@@ -28,33 +39,30 @@
         const formData = new URLSearchParams();
         formData.append('email', email);
         formData.append('password', password);
-        //console.log(formData.toString());
+        console.log(formData.toString());
 
         try {
-            const response = await fetch('http://localhost:3002/users/login/', {
+            const response = await fetch('http://localhost:3002/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
-                body: formData.toString(),
-                //credentials: 'include' // Include cookies in the request
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
             });
-            
             if (response.ok) {
                 const responseData = await response.json();
-                const { user } = responseData;
-                //console.log(user);
-                if(user == undefined){
+                if(responseData === undefined){
                     showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
                 } else{
-                    $userinfo.email= user.email;
-                    $userinfo.password= user.password;
-                    //console.log($userinfo); -- OK
-                    userinfo.set($userinfo);
-                    window.location.href = `/accountUser?id=${user.id}`;
+                    setUserCookies(responseData.access_token);
+                    window.location.href = '/';
                 }
             } else {
                 const errorData = await response.json();
+                console.log(errorData);
                 showAlert('Error', 'Login failed. Please double check your credentials.', 'warning', 'OK');
                 errorMessage = errorData.message || 'Login failed';
             }
@@ -64,6 +72,15 @@
         }
     }
 
+    function setUserCookies(jwtToken) {
+        const secure = location.protocol === 'https:';
+        const now = new Date();
+        const hour = 3600000;
+        const expiryTime = new Date(now.getTime() + (2 * hour)).toUTCString();
+
+        // Set a cookie for the JWT Token
+        document.cookie = `accessToken=${jwtToken};path=/;expires=${expiryTime};${secure ? 'Secure;' : ''}SameSite=Strict;`;
+    }
 </script>
 
 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:mt-7 lg:py-0">

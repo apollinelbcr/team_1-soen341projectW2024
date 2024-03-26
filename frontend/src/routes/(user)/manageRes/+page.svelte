@@ -4,7 +4,7 @@
     import {writable} from "svelte/store";
     import Swal from 'sweetalert2';
     let userId: string | null = null;
-    
+
     onMount(() => {
         const url = new URL(window.location.href);
         const searchParams = url.searchParams;
@@ -35,7 +35,7 @@
 		}
 	}
 
-	
+
 
 	// Lifecycle hook to fetch user details when the component mounts
 	onMount(() => {
@@ -54,7 +54,7 @@
             console.error('Error fetching users:', error);
         }
     });
-    
+
 
     import { onMount } from 'svelte';
     
@@ -71,13 +71,13 @@
 	 * @type {any[]}
 	 */
      let users: any[] = [];
-     
+
 
      onMount(async () => {
         try {
             const response = await fetch('http://localhost:3002/users');
             users = await response.json();
-            
+
         } catch (error) {
             console.error('Error fetching users:', error);
         }
@@ -109,7 +109,7 @@
 				method: 'DELETE'
 			});
 			if(response.ok) {
-				window.location.href = `/manageRes?id=${userId}`; 
+				window.location.href = `/manageRes?id=${userId}`;
 			}
 		} catch (error) {
 			console.error('Error deleting reservation:', error);
@@ -262,12 +262,12 @@
                         <div class="w-2/3 pl-5 justify-center ">
                             <div class="items-center justify-between flex">
                                 <div class="font-bold text-base">Check-out process:</div>
-                                <button on:click={()=>checkOutRes(reservation.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Check-out</button> 
+                                <button on:click={()=>checkOutRes(reservation.id)} class=" w-44 px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded">Check-out</button>
                             </div>
                             <br>
                             <p class=" text-xs ">*Once you decide to check-out, you will get the total price and get redirected to the payment process.</p>
                         </div>
-                        
+
                     </div>
                 </td>
             </tr>
