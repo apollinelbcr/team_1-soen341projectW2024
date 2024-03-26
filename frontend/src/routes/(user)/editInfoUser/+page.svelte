@@ -142,7 +142,7 @@ async function updateUser() {
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/accountUser?id={userId}">Profile</a>
                     </li>
                     <li>
-                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/ContactInfo?id={userId}">Contact</a>
+                        <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/contactInfo?id={userId}">Contact</a>
                     </li>
                     <li>
                         <a class="block w-full h-full leading-[65px] text-xl pl-10 box-border no-underline transition-[.4s] text-[#2f373d] hover:pl-[50px]" href="/paymentInfo?id={userId}">Payment</a>
