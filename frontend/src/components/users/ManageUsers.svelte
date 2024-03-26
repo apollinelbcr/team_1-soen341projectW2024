@@ -90,7 +90,14 @@
                                 scope="col"
                                 class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                             >Account Status</th>
+                            <th
+                                scope="col"
+                                class="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
+                            >
+                                Details
+                            </th>
                         </tr>
+                        
                     </thead>
                     <tbody class="text-black">
                         {#each users as user}

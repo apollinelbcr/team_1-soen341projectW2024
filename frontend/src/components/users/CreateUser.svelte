@@ -49,7 +49,7 @@
 			// Create the payload with the created values
 				//-- values should not be blank 
 			
-			if(createdLastName != "" && createdFirstName != "" && createdEmail != "" && createdPassword != "" && createdDriverLicense != "" &&createdPhoneNumber != ""){
+			if(createdLastName != "" && createdFirstName != "" && createdEmail != "" && createdPassword != "" && createdDriverLicense != "" && createdPhoneNumber != ""){
 				const payload = {
 				first_name: createdFirstName,
 				last_name: createdLastName,

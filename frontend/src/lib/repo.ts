@@ -1,5 +1,4 @@
 import type {Vehicle} from "$lib/model/Vehicle";
-import type {User} from "$lib/model/User";
 
 const prefix = '/api/v1';
 
@@ -59,12 +58,6 @@ export const repo = {
     return client.deserialize<Vehicle[]>(
       'GET',
       `/vehicles`
-    );
-  },
-  async getUsers(): Promise<User[]> {
-    return client.deserialize<User[]>(
-      'GET',
-      `/users`
     );
   },
 
