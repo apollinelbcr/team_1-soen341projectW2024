@@ -112,13 +112,16 @@
                                 <p class="whitespace-nowrap">{user.email}</p>
                             </td>
                             <td class="border-b border-gray-200 p-5 text-sm">
+                                <p class="whitespace-nowrap">{user.role}</p>
+                            </td>
+                            <td class="border-b border-gray-200 p-5 text-sm">
                                 <span class="relative inline-block rounded-full px-3 py-1 font-semibold leading-tight"
                                       class:bg-green-200={user.status === 'ACTIVE'}
                                       class:bg-red-500={user.status !== 'ACTIVE'}>
                                     <span aria-hidden="true"
                                           class="absolute inset-0 rounded-full opacity-50">
                                     </span>
-                                    <span class="relative">{user.role}</span>
+                                    <span class="relative">{user.status}</span>
                                 </span>
                             </td>
                             
