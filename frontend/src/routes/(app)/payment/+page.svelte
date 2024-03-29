@@ -94,7 +94,7 @@
                 dropoff_time: dropOffTime,
                 price: parseInt(total, 10), // Ensure price is an integer
                 extras: extrasJoined,
-                isMadeBy: 'user',
+                isMadeBy: 'customer',
                 isPaid: 'true',
                 isCheckedOut: 'false',
                 userName: userDetails.first_name,
@@ -119,12 +119,19 @@
 
                 const res = await fetch('http://localhost:3002/reservations', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(reservationReview)
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(reservationReview).toString()
                 });
+
+                console.log("res", res);
+                console.log("data", reservationReview)
 
                 if (!response.ok) {
                     showAlert('Error', 'Failed to send booking confirmation email.', 'danger', 'Retry');
+                }
+
+                if (!res.ok) {
+                    showAlert('Error', 'Failed to process reservation.', 'danger', 'Retry');
                 }
 
                 showAlert('Booking completed successfully', 'Check your email for confirmation.', 'success', 'Done');
