@@ -96,6 +96,7 @@
         try {
             const response = await fetch('http://localhost:3002/reservations');
             reservations = await response.json();
+            reservations = reservations.filter((reservation) => reservation.email == user.email);
             
         } catch (error) {
             console.error('Error fetching reservations:', error);

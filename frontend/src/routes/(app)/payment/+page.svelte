@@ -84,7 +84,7 @@
             const userDetails = await repo.getUserById(user.sub);
 
             const reservationReview = {
-                email: email,
+                email: userDetails.email,
                 vehicle_name: vehicle.name_vehicle,
                 pickup_date: pickupDate,
                 dropoff_date: dropOffDate,
