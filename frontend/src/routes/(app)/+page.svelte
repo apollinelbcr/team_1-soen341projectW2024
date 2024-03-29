@@ -7,7 +7,6 @@
     import {writable} from 'svelte/store';
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
-    import {navigate} from "svelte-routing";
     import {selectedBranch} from "$lib/stores";
     import {goto} from "$app/navigation";
 
