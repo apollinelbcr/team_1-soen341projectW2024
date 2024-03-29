@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <a href="/account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
+                            <a href={`/accountUser?id=${user.sub}`} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
                             <hr>
                             <a href="javascript:void(0);" on:click={signOut} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                         </div>
