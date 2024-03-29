@@ -5,9 +5,10 @@
     import {onMount} from "svelte";
     import {repo} from "$lib/repo.js";
     import {type Vehicle} from "$lib/model/vehicle";
-    import {showAlert} from "$lib/utils";
+    import {generateUUID, showAlert} from "$lib/utils";
     import {toast} from "svelte-sonner";
 
+    const user = $page.data.user;
     const dates = writable('');
     const locations = writable('');
     let id;
@@ -52,18 +53,51 @@
     function validateInputs() {
         return email.trim() !== '' &&
             cardName.trim() !== '' &&
-            cardNumber.trim() !== '' &&
+            String(cardNumber).trim() !== '' &&
             expDate.trim() !== '' &&
             expYear.trim() !== '' &&
             securityCode.trim() !== '' &&
             postalCode.trim() !== '';
     }
 
-    function completeBooking() {
-        if (validateInputs()) {
-            showAlert('Booking completed successfully', 'Check your email for confirmation.', 'danger', 'Done');
+    async function completeBooking() {
+        let result = validateInputs();
+        if (result) {
+            const bookingDetails = {
+                email,
+                name: user.username,
+                vehicle: vehicle ? {
+                    name_vehicle: vehicle.name_vehicle,
+                    vehicle_category: vehicle.vehicle_category,
+                    vehicle_type: vehicle.vehicle_type,
+                } : {},
+                dates: $dates,
+                location: $locations,
+                totalPrice: total,
+                confirmationNumber: generateUUID(),
+            };
+
+            try {
+                // Send booking details to your server endpoint
+                const response = await fetch('/emails/sendBookingConfirmation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingDetails),
+                });
+
+                if (!response.ok) {
+                    showAlert('Error', 'Failed to send booking confirmation email.', 'danger', 'Retry');
+                }
+
+                showAlert('Booking completed successfully', 'Check your email for confirmation.', 'success', 'Done');
+            } catch (error) {
+                console.error(error);
+                showAlert('Error', 'There was a problem with your booking confirmation.', 'danger', 'Retry');
+            }
         } else {
-            showAlert('Oups!', 'Please add your confirmation email and payment details', 'danger', 'Continue');
+            showAlert('Oops!', 'Please add your confirmation email and payment details', 'danger', 'Continue');
         }
     }
 </script>

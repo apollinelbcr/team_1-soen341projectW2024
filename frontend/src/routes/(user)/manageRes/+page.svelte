@@ -154,10 +154,6 @@
 		});
 	}
 </script>
-<div class="fixed w-100% pt-4 px-16">
-    <a href="">Logo here</a>
-</div>
-
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
