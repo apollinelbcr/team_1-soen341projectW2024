@@ -1,11 +1,15 @@
 <script lang="ts">
-    import {Calendar, ChevronDown, ChevronRight, CreditCard, Gauge, Lock, PlaneTakeoff} from "lucide-svelte";
+    import {Calendar, Gauge, PlaneTakeoff} from "lucide-svelte";
     import {repo} from "$lib/repo.js";
     import {page} from "$app/stores";
     import {onMount} from "svelte";
     import {writable} from "svelte/store";
     import type {Vehicle} from "$lib/model/Vehicle";
-    import {goto} from "$app/navigation";
+    let showModal = false;
+
+    function toggleModal() {
+        showModal = !showModal;
+    }
 
     $: extras = [
         {name: 'Booster seat', price: 23.00, checked: false},
@@ -23,11 +27,10 @@
     let vehicle: Vehicle | null = null;
     $: basePrice = vehicle ? vehicle.price : 0;
 
-    $: total = selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice);
+    $: taxes = 0.15 * (selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice));
+    $: total = selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice) + Number(taxes);
     $: selectedExtras = extras.filter(extra => extra.checked);
 
-    $: console.log("Base Price:", basePrice);
-    $: console.log("Selected Extras:", selectedExtras.map(extra => extra.price));
 
     $: if ($page.url.searchParams) {
         dates.set($page.url.searchParams.get('d'));
@@ -49,7 +52,7 @@
 
 <div id="whole-page" class="max-w-4xl mx-auto">
     <button on:click={() => window.history.back()} class="text-blue-900 text-xl font-bold mt-2 hover:underline">
-        {'<-'} See all cars {total}
+        {'<-'} See all cars
     </button>
 
     <div class="flex max-lg:flex-wrap gap-5 justify-between mt-4">
@@ -157,13 +160,17 @@
                             <div>CA ${extra.price.toFixed(2)}</div>
                         </div>
                     {/each}
+                    <div class="flex justify-between items-center mt-2">
+                        <div>Taxes and fees</div>
+                        <div>CA ${taxes.toFixed(2)}</div>
+                    </div>
                 </div>
                 <div class="border-t border-gray-200 my-4"></div>
                 <div class="flex justify-between items-center font-bold mb-4">
                     <div>Total</div>
                     <div>CA ${total.toFixed(2)}</div>
                 </div>
-                <a href="" on:click|preventDefault={() => goto(`/payment?id=${vehicle?.id}&d=${$dates}&l=${$locations}`)} class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                <a href={`/payment?id=${vehicle?.id}&d=${$dates}&l=${$locations}&extras=${JSON.stringify(selectedExtras)}`} class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
                     Reserve
                 </a>
             </div>
@@ -172,8 +179,20 @@
 
     <div class="my-4 px-4 py-2 flex flex-col justify-center items-center">
         <p class="text-gray-600 text-sm mr-3">Your opinion matters. Tell us what's missing on this page</p>
-        <button class="bg-white hover:bg-blue-100 text-blue-400 py-2 px-4 border border-gray-400 rounded-lg shadow">
+        <button on:click={toggleModal} class="bg-white hover:bg-blue-100 text-blue-400 py-2 px-4 border border-gray-400 rounded-lg shadow">
             Share feedback
         </button>
     </div>
 </div>
+
+{#if showModal}
+    <div class="modal" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center;">
+        <div class="modal-content" style="background: white; padding: 20px; border-radius: 8px; max-width: 500px; width: 100%;">
+            <iframe src="https://forms.gle/SmZDDjh2XwAXpbD48" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <button on:click={toggleModal} class="bg-red-500 text-white font-semibold py-2 px-4 border border-red-700 rounded hover:bg-red-400 mt-2">
+                Close
+            </button>
+
+        </div>
+    </div>
+{/if}

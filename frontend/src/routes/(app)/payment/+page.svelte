@@ -5,23 +5,67 @@
     import {onMount} from "svelte";
     import {repo} from "$lib/repo.js";
     import {type Vehicle} from "$lib/model/vehicle";
+    import {showAlert} from "$lib/utils";
+    import {toast} from "svelte-sonner";
 
     const dates = writable('');
     const locations = writable('');
     let id;
     let vehicle: Vehicle;
     $: basePrice = vehicle?.price;
+    let extras;
+
     $: if ($page.url.searchParams) {
         dates.set($page.url.searchParams.get('d'));
         locations.set($page.url.searchParams.get('l'));
         id = $page.url.searchParams.get('id');
-        console.log(id);
+        const extrasString = $page.url.searchParams.get('extras');
+        if (extrasString) {
+            extras = JSON.parse(extrasString);
+        }
     }
 
+    $: taxes = 0.15 * (extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice));
+    $: total = extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice) + Number(taxes);
+
     onMount(async () => {
-        console.log(id);
         vehicle = await repo.getVehicle(id);
     });
+
+    function calculateDaysBetween(dates) {
+        const [checkInStr, checkOutStr] = dates.split('to').map(date => date.split(',')[0]);
+        const checkInDate = new Date(checkInStr);
+        const checkOutDate = new Date(checkOutStr);
+        const millisecondsPerDay = 1000 * 60 * 60 * 24;
+        return Math.round((checkOutDate.getTime() - checkInDate.getTime()) / millisecondsPerDay);
+    }
+
+    let email = '';
+    let cardName = '';
+    let cardNumber = '';
+    let expDate = '';
+    let expYear = '';
+    let securityCode = '';
+    let postalCode = '';
+
+    $: console.log(email, cardName, cardNumber, expDate, expYear, securityCode, postalCode);
+    function validateInputs() {
+        return email.trim() !== '' &&
+            cardName.trim() !== '' &&
+            cardNumber.trim() !== '' &&
+            expDate.trim() !== '' &&
+            expYear.trim() !== '' &&
+            securityCode.trim() !== '' &&
+            postalCode.trim() !== '';
+    }
+
+    function completeBooking() {
+        if (validateInputs()) {
+            showAlert('Booking completed successfully', 'Check your email for confirmation.', 'danger', 'Done');
+        } else {
+            showAlert('Oups!', 'Please add your confirmation email and payment details', 'danger', 'Continue');
+        }
+    }
 </script>
 
 <div id="whole-page" class="max-w-4xl mx-auto">
@@ -87,11 +131,11 @@
                     </div>
                     <div class="inputdiv">
                         <p class="name">Name on Card</p>
-                        <input type="text" class="input w-2/3"/>
+                        <input type="text" class="input w-2/3" bind:value={cardName}/>
                     </div>
                     <div class="inputdiv">
                         <p class="name">Debit/Credit card number</p>
-                        <input
+                        <input bind:value={cardNumber}
                                 type="number"
                                 class="input w-1/2"
                         />
@@ -99,7 +143,7 @@
                     <div class="inputdiv">
                         <p class="name">Expiration date</p>
                         <div class="flex">
-                            <select
+                            <select bind:value={expDate}
                                     class="country w-[25%] mr-1"
                             >
                                 <option value="usa">
@@ -155,7 +199,7 @@
                                     <ChevronDown/>
                                 </option>
                             </select>
-                            <select class="country w-1/4">
+                            <select class="country w-1/4" bind:value={expYear}>
                                 <option value="usa">
                                     Year
                                     <ChevronDown/>
@@ -192,17 +236,17 @@
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="inputdiv">
+                        <div class="inputdiv mr-2">
                             <p class="name">Security code</p>
-                            <input
-                                    type="number"
+                            <input bind:value={securityCode}
+                                    type="password"
                                     class="input w-1/3"
                             />
                         </div>
                         <div class="inputdiv">
                             <p class="name">Billing ZIP code</p>
-                            <input
-                                    type="number"
+                            <input bind:value={postalCode}
+                                    type="text"
                                     class="input w-1/2"
                             />
                         </div>
@@ -227,6 +271,7 @@
                 <div class="inputdiv">
                     <p class="name">Email adress</p>
                     <input
+                            bind:value={email}
                             type="email"
                             placeholder="(e.g. xyz@gmail.com)"
                             class="input w-1/2"
@@ -318,7 +363,7 @@
                     Change of plans? No problem. You can cancel for
                     free
                 </p>
-                <button id="complete-btn">
+                <button on:click={completeBooking} id="complete-btn">
                     Complete Booking {">"}
                 </button>
                 <div class="flex items-center">
@@ -358,7 +403,7 @@
                     <p>
                         <b>Check-out</b>: {$dates?.split('to')[1]}
                     </p>
-                    <p>{new Date((new Date($dates?.split('to')[1]?.split(",")[0]))?.getTime() - (new Date($dates.split('to')[0]?.split(",")[0]))?.getTime())?.getDay()} day(s)</p>
+                    <p>{calculateDaysBetween($dates)} day(s)</p>
                 </div>
             </div>
 
@@ -371,12 +416,20 @@
                 <div class="flex items-center justify-between"
                 >
                     <p>Car rental fee x 1 day</p>
-                    <p>${vehicle?.price}</p>
+                    <p>CA ${basePrice}</p>
                 </div>
+                {#if extras}
+                {#each extras as extra}
+                    <div class="flex justify-between items-center">
+                        <div>{extra.name}</div>
+                        <div>CA ${extra.price.toFixed(2)}</div>
+                    </div>
+                {/each}
+                    {/if}
                 <div class="flex items-center justify-between"
                 >
                     <p>Taxes and fees !</p>
-                    <p>${Math.floor(100 * 0.28)}</p>
+                    <p>CA ${taxes}</p>
                 </div>
                 <hr class="border-t mt-4 mb-4"
                 />
@@ -386,7 +439,7 @@
                         <b>Total</b>
                     </p>
                     <p>
-                        <b>${100 + Math.floor(+(100 * 0.28))}</b>
+                        <b>CA ${total}</b>
                     </p>
                 </div>
                 <hr class="border-t mt-4 mb-4"
