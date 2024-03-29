@@ -105,7 +105,7 @@ let UsersService = class UsersService {
         return user;
     }
     async loginCustomer(email, password) {
-        const user = await this.userRepository.findOne({ where: { email, password, role: 'CUSTOMER' } });
+        const user = await this.userRepository.findOne({ where: { email, password } });
         return user || null;
     }
     async findUserByEmail(email) {
