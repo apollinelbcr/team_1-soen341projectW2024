@@ -4,7 +4,7 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn
 @Entity()
 export class Vehicle_Location{
     
-    @PrimaryGeneratedColumn('uuid') 
+    @PrimaryGeneratedColumn()
     id:string;
 
     @Column({nullable: true})
@@ -17,7 +17,7 @@ export class Vehicle_Location{
     branch_name: string;
     
     @Column({nullable: true})
-    branch_adress: string;
+    branch_address: string;
 
     @Column()
     vehicle_id: string;

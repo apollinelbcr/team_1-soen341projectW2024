@@ -61,6 +61,13 @@ export const repo = {
     );
   },
 
+  async getVehicle(id: string): Promise<Vehicle> {
+    return client.deserialize<Vehicle>(
+        'GET',
+        `/vehicles/${id}`
+    );
+  },
+
   async getUser(fetch: { (input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>; (arg0: string): any; }): Promise<any> {
     const backendURL = 'http://localhost:3002/auth/profile';
     let payload = null;

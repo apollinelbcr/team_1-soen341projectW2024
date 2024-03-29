@@ -7,7 +7,9 @@
     import {writable} from 'svelte/store';
     import {onDestroy, onMount} from "svelte";
     import {browser} from "$app/environment";
-	import { navigate } from "svelte-routing";
+    import {navigate} from "svelte-routing";
+    import {selectedBranch} from "$lib/stores";
+    import {goto} from "$app/navigation";
 
     const recentSearches = writable([]);
 
@@ -16,12 +18,17 @@
         recentSearches.set(searches);
     }
 
-    // Call updateRecentSearches on component mount and whenever local storage changes
-    onMount(updateRecentSearches);
-    if(browser) window.addEventListener('storage', updateRecentSearches);
+
+    onMount(() => {
+        if (!$selectedBranch) {
+            goto('/select-branch');
+        }
+        updateRecentSearches();
+    });
+    if (browser) window.addEventListener('storage', updateRecentSearches);
 
     onDestroy(() => {
-        if(browser) window.removeEventListener('storage', updateRecentSearches);
+        if (browser) window.removeEventListener('storage', updateRecentSearches);
     });
 
 </script>

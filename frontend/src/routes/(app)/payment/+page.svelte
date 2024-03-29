@@ -1,5 +1,27 @@
-<script>
+<script lang="ts">
     import {ChevronDown, ChevronRight, CreditCard, Lock} from "lucide-svelte";
+    import {writable} from "svelte/store";
+    import {page} from "$app/stores";
+    import {onMount} from "svelte";
+    import {repo} from "$lib/repo.js";
+    import {type Vehicle} from "$lib/model/vehicle";
+
+    const dates = writable('');
+    const locations = writable('');
+    let id;
+    let vehicle: Vehicle;
+    $: basePrice = vehicle?.price;
+    $: if ($page.url.searchParams) {
+        dates.set($page.url.searchParams.get('d'));
+        locations.set($page.url.searchParams.get('l'));
+        id = $page.url.searchParams.get('id');
+        console.log(id);
+    }
+
+    onMount(async () => {
+        console.log(id);
+        vehicle = await repo.getVehicle(id);
+    });
 </script>
 
 <div id="whole-page" class="max-w-4xl mx-auto">
@@ -11,7 +33,7 @@
         <!-- Icon here: For demo, replace with Tailwind CSS icon or custom SVG -->
         <div class="text-3xl">📅</div>
         <div class="ml-4">
-            <p class="font-bold">Free cancellation before Tue, Aug 30, 6:00pm (property local time)</p>
+            <p class="font-bold">Free cancellation before {$dates?.split('to')[0]} (property local time)</p>
             <p>You can change or cancel this stay for a full refund if plans change. Because flexibility matters.</p>
         </div>
     </div>
@@ -139,31 +161,31 @@
                                     <ChevronDown/>
                                 </option>
                                 <option value="india">
-                                    2020
-                                    <ChevronDown/>
-                                </option>
-                                <option value="china">
-                                    2021
-                                    <ChevronDown/>
-                                </option>
-                                <option value="uk">
-                                    2022
-                                    <ChevronDown/>
-                                </option>
-                                <option value="turky">
                                     2024
                                     <ChevronDown/>
                                 </option>
-                                <option value="turky">
+                                <option value="china">
                                     2025
                                     <ChevronDown/>
                                 </option>
-                                <option value="turky">
+                                <option value="uk">
                                     2026
                                     <ChevronDown/>
                                 </option>
                                 <option value="turky">
                                     2027
+                                    <ChevronDown/>
+                                </option>
+                                <option value="turky">
+                                    2028
+                                    <ChevronDown/>
+                                </option>
+                                <option value="turky">
+                                    2029
+                                    <ChevronDown/>
+                                </option>
+                                <option value="turky">
+                                    2030
                                     <ChevronDown/>
                                 </option>
                             </select>
@@ -313,30 +335,30 @@
             <div class="box7">
                 <div>
                     <img class="p-4 w-full rounded-md"
-                         src="details?.images[0]?.src"
-                         alt="details.title"
+                         src={vehicle?.image}
+                         alt="Car preview"
                     />
                 </div>
                 <div class="p-4">
                     <p>
-                        <b>{"details.title"}</b>
+                        <b>{vehicle?.name_vehicle}</b>
                     </p>
                     <p>
-                        <b>{"details.rating"}/5</b> Very good ({"details.reviews"} reviews)
+                        {`${vehicle?.vehicle_category} ${vehicle?.vehicle_type}`}
                     </p>
                     <p>
-                        Guests rated this property {"details.rating"}/5 for cleanliness
+                        Guests rated this property 4/5 for cleanliness
                     </p>
                     <p class="my-5">
-                        1 Room: King, Executive Room, Balcony, River View
+                        {$locations}
                     </p>
                     <p>
-                        <b>Check-in</b>: Fri, Sep 9
+                        <b>Check-in</b>: {$dates?.split('to')[0]}
                     </p>
                     <p>
-                        <b>Check-out</b>: Sat, Sep 10
+                        <b>Check-out</b>: {$dates?.split('to')[1]}
                     </p>
-                    <p>1-night stay</p>
+                    <p>{new Date((new Date($dates?.split('to')[1]?.split(",")[0]))?.getTime() - (new Date($dates.split('to')[0]?.split(",")[0]))?.getTime())?.getDay()} day(s)</p>
                 </div>
             </div>
 
@@ -348,8 +370,8 @@
                 />
                 <div class="flex items-center justify-between"
                 >
-                    <p>1 room x 1 night</p>
-                    <p>${100}</p>
+                    <p>Car rental fee x 1 day</p>
+                    <p>${vehicle?.price}</p>
                 </div>
                 <div class="flex items-center justify-between"
                 >

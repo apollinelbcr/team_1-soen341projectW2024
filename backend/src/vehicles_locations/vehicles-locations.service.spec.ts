@@ -21,7 +21,7 @@ const mockLocation = (id:string = 'unique_id') => ({
   zip_code: 'H3L3N3',
   airport_name: 'YYU',
   branch_name: 'rentify st-laurent',
-  branch_adress: '123 chemin cote-vertu',
+  branch_address: '123 chemin cote-vertu',
   vehicle_id: '3uh4ih848duihodsh9',
 });
 
@@ -56,7 +56,7 @@ describe('VehiclesLocationsService', () => {
         zip_code: 'H4N3L8',
         airport_name: 'WYE',
         branch_name: 'rentify st-catherine',
-        branch_adress: '92 bvd sainte-catherine',
+        branch_address: '92 bvd sainte-catherine',
         vehicle_id: '73bhg4g5iuhoihlsh'
     };
     jest.spyOn(repository, 'create').mockImplementation(() => mockLocation());
@@ -87,8 +87,8 @@ describe('VehiclesLocationsService', () => {
   describe('getAllVehicleLocations', () => {
 
     it('should retrieve vehicle locations by parameter', async () => {
-        const mockLocation1: Vehicle_Location = { id: 'hjdjash43kjh', zip_code: '12345', airport_name: 'Test Airport 1', branch_name: 'branch test', branch_adress: 'address test', vehicle_id: 'hadh43giuhd' };
-        const mockLocation2: Vehicle_Location = { id: 'sdhjhoh3hljkh', zip_code: '67890', airport_name: 'Test Airport 2', branch_name: 'branch test', branch_adress: 'address test', vehicle_id: 'ihkajsjh4yghosjo'};
+        const mockLocation1: Vehicle_Location = { id: 'hjdjash43kjh', zip_code: '12345', airport_name: 'Test Airport 1', branch_name: 'branch test', branch_address: 'address test', vehicle_id: 'hadh43giuhd' };
+        const mockLocation2: Vehicle_Location = { id: 'sdhjhoh3hljkh', zip_code: '67890', airport_name: 'Test Airport 2', branch_name: 'branch test', branch_address: 'address test', vehicle_id: 'ihkajsjh4yghosjo'};
     
         jest.spyOn(repository, 'find').mockResolvedValue([mockLocation1, mockLocation2]);
     
@@ -132,12 +132,12 @@ describe('VehiclesLocationsService', () => {
             zip_code:'H5T7G9',
             airport_name: 'YQU',
             branch_name: 'rentify st-catherine',
-            branch_adress: '92 bvd sainte-catherine',
+            branch_address: '92 bvd sainte-catherine',
             vehicle_id: 'hgh76jhdaig73397'
         };
 
         jest.spyOn(repository, 'findOneBy').mockResolvedValue(mockLocation());
-        jest.spyOn(repository, 'save').mockImplementation((location) => Promise.resolve({ ...location, id: 'test_user_id', zip_code: 'F6R4U7', airport_name: 'YQT', branch_name: 'branch test', branch_adress: 'address test', vehicle_id:'gisajy76auisgi' }));
+        jest.spyOn(repository, 'save').mockImplementation((location) => Promise.resolve({ ...location, id: 'test_user_id', zip_code: 'F6R4U7', airport_name: 'YQT', branch_name: 'branch test', branch_address: 'address test', vehicle_id:'gisajy76auisgi' }));
 
         const result = await vehicle_location.updateVehicleLocation('test_id', updateVehicleLocationDto);
 

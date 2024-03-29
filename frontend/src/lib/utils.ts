@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export function multiplySvgPoints(pointsString: string, iconSize: number, width: number, height: number) {
   const iconMaxSize = Math.min(width, height) * 0.5;
   const scale = iconMaxSize / iconSize;
@@ -11,5 +13,15 @@ export function multiplySvgPoints(pointsString: string, iconSize: number, width:
       return `${Math.round(x)},${Math.round(y)}`;
     }
     return `${x},${y}`;
+  });
+}
+
+export function showAlert(title, text, icon, confirmButtonText) {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: confirmButtonText,
+    confirmButtonColor: '#3085d6'
   });
 }
