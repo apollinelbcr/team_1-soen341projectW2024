@@ -72,7 +72,7 @@
                     vehicle_type: vehicle.vehicle_type,
                 } : {},
                 dates: $dates,
-                location: $locations,
+                locations: $locations,
                 totalPrice: total,
                 confirmationNumber: generateUUID(),
             };

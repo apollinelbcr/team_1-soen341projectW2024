@@ -3,7 +3,7 @@
     export let name;
     export let vehicle;
     export let dates;
-    export let location;
+    export let locations;
     export let totalPrice;
     export let confirmationNumber;
 </script>
@@ -25,7 +25,7 @@
             <Text><strong>Confirmation Number:</strong> {confirmationNumber}</Text>
             <Text><strong>Vehicle:</strong> {vehicle.name_vehicle} ({vehicle.vehicle_category} {vehicle.vehicle_type})</Text>
             <Text><strong>Dates:</strong> {dates}</Text>
-            <Text><strong>Locations:</strong> {location}</Text>
+            <Text><strong>Locations:</strong> {locations}</Text>
             <Text><strong>Total Price:</strong> CA ${totalPrice.toFixed(2)}</Text>
     </Section>
     <Hr/>
