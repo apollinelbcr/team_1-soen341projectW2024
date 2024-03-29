@@ -12,6 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const vehicles_module_1 = require("./vehicles/vehicles.module");
 const reservations_modules_1 = require("./reservations/reservations.modules");
 const users_module_1 = require("./users/users.module");
+const auth_module_1 = require("./auth/auth.module");
 const vehicles_locations_module_1 = require("./vehicles_locations/vehicles_locations.module");
 const addons_module_1 = require("./addons/addons.module");
 let AppModule = class AppModule {
@@ -20,11 +21,13 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            vehicles_module_1.VehiclesModule, reservations_modules_1.ReservationsModule, users_module_1.UsersModule, auth_module_1.AuthModule,
             vehicles_module_1.VehiclesModule,
             reservations_modules_1.ReservationsModule,
             users_module_1.UsersModule,
             vehicles_locations_module_1.VehiclesLocationsModule,
             addons_module_1.AddonsModule,
+            auth_module_1.AuthModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'localhost',
