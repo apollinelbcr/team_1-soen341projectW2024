@@ -78,4 +78,14 @@ export const repo = {
     return payload;
   },
 
+  async getUserById(id: string): Promise<any> {
+    const backendURL = `http://localhost:3002/users/${id}`
+    let payload = null;
+    const response = await fetch(backendURL);
+    if (response.ok) {
+      payload = await response.json();
+    }
+    return payload;
+  },
+
 };

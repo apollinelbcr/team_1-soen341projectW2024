@@ -41,3 +41,11 @@ export function generateUUID() {
     return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
   });
 }
+
+export function calculateDaysBetween(dates) {
+  const [checkInStr, checkOutStr] = dates.split('to').map(date => date.split(',')[0]);
+  const checkInDate = new Date(checkInStr);
+  const checkOutDate = new Date(checkOutStr);
+  const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  return Math.round((checkOutDate.getTime() - checkInDate.getTime()) / millisecondsPerDay);
+}

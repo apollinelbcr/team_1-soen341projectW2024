@@ -5,7 +5,7 @@
     import {onMount} from "svelte";
     import {repo} from "$lib/repo.js";
     import {type Vehicle} from "$lib/model/vehicle";
-    import {generateUUID, showAlert} from "$lib/utils";
+    import {calculateDaysBetween, generateUUID, showAlert} from "$lib/utils";
     import {toast} from "svelte-sonner";
 
     const user = $page.data.user;
@@ -26,20 +26,12 @@
         }
     }
 
-    $: taxes = 0.15 * (extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice));
-    $: total = extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice) + Number(taxes);
+    $: taxes = 0.15 * (extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + (calculateDaysBetween($dates) * Number(basePrice)));
+    $: total = (calculateDaysBetween($dates) * Number(basePrice)) + extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(taxes);
 
     onMount(async () => {
         vehicle = await repo.getVehicle(id);
     });
-
-    function calculateDaysBetween(dates) {
-        const [checkInStr, checkOutStr] = dates.split('to').map(date => date.split(',')[0]);
-        const checkInDate = new Date(checkInStr);
-        const checkOutDate = new Date(checkOutStr);
-        const millisecondsPerDay = 1000 * 60 * 60 * 24;
-        return Math.round((checkOutDate.getTime() - checkInDate.getTime()) / millisecondsPerDay);
-    }
 
     let email = '';
     let cardName = '';
@@ -62,7 +54,14 @@
 
     async function completeBooking() {
         let result = validateInputs();
+
         if (result) {
+            const [datePart, timePart] = $dates.split('to').map(part => part.trim());
+            const [pickupDate, pickupTime] = datePart.split(',').map(part => part.trim());
+            const [dropOffDate, dropOffTime] = timePart.split(',').map(part => part.trim());
+            const [pickupLoc, dropOffLoc] = $locations.split('->').map(part => part.trim());
+            const extrasJoined = extras && extras.length > 0 ? extras.map(extra => extra.name).join(', ') : 'None';
+
             const bookingDetails = {
                 email,
                 name: user.username,
@@ -71,10 +70,41 @@
                     vehicle_category: vehicle.vehicle_category,
                     vehicle_type: vehicle.vehicle_type,
                 } : {},
-                dates: $dates,
-                locations: $locations,
+                pickupDate: pickupDate,
+                dropOffDate: dropOffDate,
+                pickupLoc: pickupLoc,
+                dropOffLoc: dropOffLoc,
+                pickupTime: pickupTime,
+                dropOffTime: dropOffTime,
+                extrasJoined: extrasJoined,
                 totalPrice: total,
                 confirmationNumber: generateUUID(),
+            };
+
+            const userDetails = await repo.getUserById(user.sub);
+
+            const reservationReview = {
+                email: email,
+                vehicle_name: vehicle.name_vehicle,
+                pickup_date: pickupDate,
+                dropoff_date: dropOffDate,
+                pickup_location: pickupLoc,
+                dropoff_location: dropOffLoc,
+                pickup_time: pickupTime,
+                dropoff_time: dropOffTime,
+                price: parseInt(total, 10), // Ensure price is an integer
+                extras: extrasJoined,
+                isMadeBy: 'user',
+                isPaid: 'true',
+                isCheckedOut: 'false',
+                userName: userDetails.first_name,
+                userName2: userDetails.last_name,
+                userPhone: userDetails.phone_number,
+                userLicense: userDetails.driver_license,
+                vehicleName: vehicle.name_vehicle,
+                vehicleType: vehicle.vehicle_type,
+                vehicleCategory: vehicle.vehicle_category,
+                vehicleTransmission: vehicle.vehicle_transmission,
             };
 
             try {
@@ -85,6 +115,12 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(bookingDetails),
+                });
+
+                const res = await fetch('http://localhost:3002/reservations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(reservationReview)
                 });
 
                 if (!response.ok) {

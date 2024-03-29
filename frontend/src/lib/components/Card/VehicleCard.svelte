@@ -39,11 +39,11 @@
                 <p class="text-xl font-bold">CA ${vehicle?.price}</p>
                 <p class="text-xs">total</p>
             </div>
-            <a href="" on:click|preventDefault={() => goto(`/reserve?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '-' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})} class="bg-blue-500 text-white px-5 py-2 rounded-full w-24">Reserve</a>
+            <a href="" on:click|preventDefault={() => goto(`/reserve?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '->' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})} class="bg-blue-500 text-white px-5 py-2 rounded-full w-24">Reserve</a>
         </div>
     </div>
 
-    <a href="" on:click|preventDefault={() => goto(`/reserve?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '-' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})}
+    <a href="" on:click|preventDefault={() => goto(`/reserve?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '->' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})}
        class="flex md:hidden items-center justify-between border p-4 rounded-lg h-full relative w-full">
         <div class="flex flex-col items-start">
             <h2 class="text-2xl font-bold">{vehicle?.name_vehicle}</h2>

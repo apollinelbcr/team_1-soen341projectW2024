@@ -5,6 +5,7 @@
     import {onMount} from "svelte";
     import {writable} from "svelte/store";
     import type {Vehicle} from "$lib/model/Vehicle";
+    import {calculateDaysBetween} from "$lib/utils";
     let showModal = false;
 
     function toggleModal() {
@@ -15,10 +16,12 @@
         {name: 'Booster seat', price: 23.00, checked: false},
         {name: 'Toddler seat', price: 23.00, checked: false},
         {name: 'Infant seat', price: 23.00, checked: false},
-        {name: 'Left hand control', price: 20.00, checked: false},
-        {name: 'Right hand control', price: 20.00, checked: false},
-        {name: 'Spinner knob', price: 23.00, checked: false},
-        {name: 'Seat belt extensions', price: 20.00, checked: false},
+        {name: 'Cushion', price: 20.00, checked: false},
+        {name: 'GPS', price: 20.00, checked: false},
+        {name: 'Roof Boxes', price: 23.00, checked: false},
+        {name: 'Extra Keys', price: 20.00, checked: false},
+        {name: 'Windshield Washer', price: 21.00, checked: false},
+        {name: 'Jump Starter', price: 21.00, checked: false},
     ];
 
     const dates = writable('');
@@ -27,8 +30,8 @@
     let vehicle: Vehicle | null = null;
     $: basePrice = vehicle ? vehicle.price : 0;
 
-    $: taxes = 0.15 * (selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice));
-    $: total = selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(basePrice) + Number(taxes);
+    $: taxes = 0.15 * (selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + (calculateDaysBetween($dates) * Number(basePrice)));
+    $: total = selectedExtras.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + (calculateDaysBetween($dates) * Number(basePrice)) + Number(taxes);
     $: selectedExtras = extras.filter(extra => extra.checked);
 
 

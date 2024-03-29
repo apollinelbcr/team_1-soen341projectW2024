@@ -1,9 +1,15 @@
 <script>
-    import {Preview, Html, Head, Body, Container, Section, Heading, Text, Hr, Column, Button } from "svelte-email";
+    import {Preview, Html, Head, Body, Container, Section, Heading, Text, Hr } from "svelte-email";
+
     export let name;
     export let vehicle;
-    export let dates;
-    export let locations;
+    export let pickupDate;
+    export let dropOffDate;
+    export let pickupLoc;
+    export let dropOffLoc;
+    export let pickupTime;
+    export let dropOffTime;
+    export let extrasJoined;
     export let totalPrice;
     export let confirmationNumber;
 </script>
@@ -17,24 +23,23 @@
     <Section>
         <Heading as="h1">Booking Confirmation</Heading>
         <Text>Hello, {name}!</Text>
-        <Text>Your booking has been successfully confirmed. Here are your booking details:</Text>
+        <Text>Your booking has been successfully confirmed. Below are the details of your reservation:</Text>
     </Section>
     <Hr/>
     <Section>
         <Heading as="h2">Reservation Details</Heading>
-            <Text><strong>Confirmation Number:</strong> {confirmationNumber}</Text>
-            <Text><strong>Vehicle:</strong> {vehicle.name_vehicle} ({vehicle.vehicle_category} {vehicle.vehicle_type})</Text>
-            <Text><strong>Dates:</strong> {dates}</Text>
-            <Text><strong>Locations:</strong> {locations}</Text>
-            <Text><strong>Total Price:</strong> CA ${totalPrice.toFixed(2)}</Text>
+        <Text><strong>Confirmation Number:</strong> {confirmationNumber}</Text>
+        <Text><strong>Vehicle:</strong> {vehicle.name_vehicle} ({vehicle.vehicle_category} {vehicle.vehicle_type})</Text>
+        <Text><strong>Pickup Date:</strong> {pickupDate} at {pickupTime}</Text>
+        <Text><strong>Pickup Location:</strong> {pickupLoc}</Text>
+        <Text><strong>Drop-off Date:</strong> {dropOffDate} at {dropOffTime}</Text>
+        <Text><strong>Drop-off Location:</strong> {dropOffLoc}</Text>
+        <Text><strong>Extras:</strong> {extrasJoined}</Text>
+        <Text><strong>Total Price:</strong> CA ${totalPrice.toFixed(2)}</Text>
     </Section>
     <Hr/>
     <Section>
-        <strong>You may login to manage your booking</strong>
-    </Section>
-    <Hr/>
-    <Section>
-        <Text>If you have any questions, feel free to contact us at any time.</Text>
+        <Text>You can manage your booking using the information provided above. Should you need to make any changes or have any questions, feel free to contact us.</Text>
     </Section>
 </Container>
 </Body>
