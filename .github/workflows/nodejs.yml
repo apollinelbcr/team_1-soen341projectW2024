@@ -30,6 +30,8 @@ jobs:
       run: cd frontend && npm test
 
   build:
+    env:
+      SENDGRID_API: $SENDGRID_API_KEY
     needs: test
     runs-on: ubuntu-latest
     steps:
