@@ -3,6 +3,7 @@ import { Extras } from './reservations-extras.enum';
 
 @Entity('reservations')
 export class Reservation {
+    
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -45,27 +46,27 @@ export class Reservation {
     @Column({ type: 'enum', enum: ['true', 'false'], default: 'false' })
     isCheckedOut: string;
 
-    @Column()
+    @Column({ nullable: true })
     userName:string;
 
-    @Column()
+    @Column({ nullable: true })
     userName2:string;
-
-    @Column()
+    
+    @Column({ nullable: true })
     userPhone:string;
 
-    @Column()
+    @Column({ nullable: true })
     userLicense:string;
 
-    @Column()
+    @Column({ nullable: true })
     vehicleName:string;
 
-    @Column()
+    @Column({ nullable: true })
     vehicleType:string;
 
-    @Column()
+    @Column({ nullable: true })
     vehicleCategory:string;
 
-    @Column()
+    @Column({ nullable: true })
     vehicleTransmission:string;
 }

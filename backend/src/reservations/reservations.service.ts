@@ -132,7 +132,6 @@ export class ReservationsService {
         if (updateReservationDto.isCheckedOut !== undefined) {
             reservation.isCheckedOut = updateReservationDto.isCheckedOut;
         }
-
         // Save the updated vehicle
         await this.reservationRepository.save(reservation);
         return reservation;
