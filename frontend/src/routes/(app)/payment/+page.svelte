@@ -4,7 +4,7 @@
     import {page} from "$app/stores";
     import {onMount} from "svelte";
     import {repo} from "$lib/repo.js";
-    import {type Vehicle} from "$lib/model/vehicle";
+    import type {Vehicle} from "$lib/model/Vehicle";
     import {calculateDaysBetween, generateUUID, showAlert} from "$lib/utils";
     import {toast} from "svelte-sonner";
 
