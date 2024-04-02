@@ -55,12 +55,7 @@ export const data = [
 				title: "Source",
 				icon: DocumentationIcon,
 				link: "/admin/source",
-			},
-			{
-				title: "Logout",
-				icon: LogoutIcon,
-				link: "/admin/logout",
-			},
+			}
 		],
 	},
 ];

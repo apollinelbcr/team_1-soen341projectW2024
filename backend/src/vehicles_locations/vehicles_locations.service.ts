@@ -13,9 +13,9 @@ export class VehiclesLocationsService {
     ){}
 
     async createVehicleLocation(createvehcilelocationdto: CreateVehicleLocationDto): Promise<Vehicle_Location> {
-        const { zip_code, airport_name, branch_name, branch_adress, vehicle_id } = createvehcilelocationdto;
+        const { zip_code, airport_name, branch_name, branch_address, vehicle_id } = createvehcilelocationdto;
         const vehiclelocation = this.vehcilelocationRepository.create({
-            zip_code, airport_name, branch_name, branch_adress, vehicle_id
+            zip_code, airport_name, branch_name, branch_address, vehicle_id
         } as Partial<Vehicle_Location>); 
 
         await this.vehcilelocationRepository.save(vehiclelocation);
@@ -63,8 +63,8 @@ export class VehiclesLocationsService {
         if (updateVehicleLocationDto.branch_name !== undefined) {
             vehicle_location.branch_name = updateVehicleLocationDto.branch_name;
         }
-        if (updateVehicleLocationDto.branch_adress !== undefined) {
-            vehicle_location.branch_adress = updateVehicleLocationDto.branch_adress;
+        if (updateVehicleLocationDto.branch_address !== undefined) {
+            vehicle_location.branch_address = updateVehicleLocationDto.branch_address;
         }
         if (updateVehicleLocationDto.vehicle_id !== undefined) {
             vehicle_location.vehicle_id = updateVehicleLocationDto.vehicle_id;

@@ -123,8 +123,8 @@ export class UsersService {
     }
 
     //login service method - Customer Only
-    async loginCustomer(email: string, password: string): Promise<User | null> {
-        const user = await this.userRepository.findOne({ where: { email, password, role: 'CUSTOMER' } });
+    async login(email: string, password: string): Promise<User | null> {
+        const user = await this.userRepository.findOne({ where: { email, password} });
         return user || null;
       }
 

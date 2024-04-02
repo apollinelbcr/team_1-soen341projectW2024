@@ -32,8 +32,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sendgrid/mail": "^8.1.1",
 		"google-auth-library": "^9.7.0",
 		"lucide-svelte": "^0.324.0",
+		"svelte-email": "^0.0.4",
 		"svelte-headlessui": "^0.0.33",
 		"svelte-infinite-scroll": "^2.0.1",
 		"svelte-routing": "^2.12.0",

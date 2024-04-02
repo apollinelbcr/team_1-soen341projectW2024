@@ -3,6 +3,7 @@
     import {MapPin} from "lucide-svelte";
     import AutocompleteInput from "../../components/AutocompleteInput.svelte";
     import {clickOutside} from '../clickOutside';
+    import {showAlert} from "$lib/utils";
 
     const today: string = new Date().toISOString();
     let pickupLocation = '';
@@ -12,7 +13,13 @@
     let pickupTime = "10:30";
     let dropOffTime = "10:30";
 
-    function handleSubmit() {
+    function handleSubmit(event) {
+        if (!pickupLocation.trim() || !dropOffLocation.trim() || !pickupDate.trim() || !dropOffDate.trim() || !pickupTime.trim() || !dropOffTime.trim()) {
+            showAlert('Humm Big NO NO!', 'All fields must be filled out', 'danger', 'Got it');
+            event.preventDefault();
+            return; // Stop the function if any field is empty
+        }
+
         const newSearch = {
             pickupLocation,
             dropOffLocation,
@@ -31,29 +38,36 @@
     }
 
     const locations = [
-        'Honolulu (HNL - Daniel K. Inouye Intl.)', // Honolulu International Airport
-        'Seattle (SEA - Seattle-Tacoma Intl.)', // Seattle-Tacoma International Airport
-        'Denver (DEN - Denver Intl.)', // Denver International Airport
-        'New York (JFK - John F. Kennedy Intl.)', // John F. Kennedy International Airport
-        'Las Vegas (LAS - McCarran Intl.)', // McCarran International Airport
+        // Canadian Airports
         'Toronto (YYZ - Toronto Pearson Intl.)', // Toronto Pearson International Airport
-        'Los Angeles (LAX - Los Angeles Intl.)', // Los Angeles International Airport
-        "Chicago (ORD - O'Hare Intl.)", // O'Hare International Airport
-        'San Francisco (SFO - San Francisco Intl.)', // San Francisco International Airport
-        'Miami (MIA - Miami Intl.)', // Miami International Airport
-        'Orlando (MCO - Orlando Intl.)', // Orlando International Airport
-        'Atlanta (ATL - Hartsfield-Jackson Atlanta Intl.)', // Hartsfield-Jackson Atlanta International Airport
-        'Dallas (DFW - Dallas/Fort Worth Intl.)', // Dallas/Fort Worth International Airport
-        'Boston (BOS - Logan Intl.)', // Logan International Airport
-        'London (LHR - Heathrow Airport)', // Heathrow Airport
-        'Paris (CDG - Charles de Gaulle Airport)', // Charles de Gaulle Airport
-        'Tokyo (HND - Haneda Airport)', // Haneda Airport
-        'Sydney (SYD - Sydney Airport)', // Sydney Airport
-        'Berlin (BER - Berlin Brandenburg Airport)', // Berlin Brandenburg Airport
-        'Dubai (DXB - Dubai International Airport)', // Dubai International Airport
+        'Vancouver (YVR - Vancouver Intl.)', // Vancouver International Airport
+        'Montreal (YUL - Montréal–Pierre Elliott Trudeau Intl.)', // Montréal–Pierre Elliott Trudeau International Airport
+        'Calgary (YYC - Calgary Intl.)', // Calgary International Airport
+        'Ottawa (YOW - Ottawa Macdonald–Cartier Intl.)', // Ottawa Macdonald–Cartier International Airport
+        'Edmonton (YEG - Edmonton Intl.)', // Edmonton International Airport
+        'Halifax (YHZ - Halifax Stanfield Intl.)', // Halifax Stanfield International Airport
+        'Winnipeg (YWG - Winnipeg James Armstrong Richardson Intl.)', // Winnipeg James Armstrong Richardson International Airport
+
+        // Canadian Hotels
+        'Fairmont Le Château Frontenac (Quebec City)', // Fairmont Le Château Frontenac
+        'The Ritz-Carlton (Toronto)', // The Ritz-Carlton, Toronto
+        'Hotel Fairmont Pacific Rim (Vancouver)', // Hotel Fairmont Pacific Rim
+        'Shangri-La Hotel (Toronto)', // Shangri-La Hotel, Toronto
+        'The Banff Springs Hotel (Banff)', // The Banff Springs Hotel
+        'Four Seasons Hotel (Toronto)', // Four Seasons Hotel, Toronto
+        'The Westin Harbour Castle Hotel (Toronto)', // The Westin Harbour Castle, Toronto
+        'Hotel Fairmont Royal York (Toronto)', // Hotel Fairmont Royal York
+        'The Pan Pacific Hotel (Vancouver)', // The Pan Pacific Hotel, Vancouver
+        'JW Marriott Parq (Vancouver)', // JW Marriott Parq Vancouver
+        'The Sutton Place Hotel (Vancouver)', // The Sutton Place Hotel, Vancouver
+        'Le Germain Hotel (Montreal)', // Le Germain Hotel, Montreal
+        'Hotel Le Crystal (Montreal)', // Hotel Le Crystal, Montreal
+        'The Ritz-Carlton (Montreal)', // The Ritz-Carlton, Montreal
+        'Delta Hotels by Marriott Bessborough (Saskatoon)', // Delta Hotels by Marriott Bessborough
     ];
 
-let pickUpVisible = false;
+
+    let pickUpVisible = false;
 let dropOffVisible = false;
 
     function handlePickUpToggle() {

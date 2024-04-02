@@ -40,7 +40,7 @@
 
     if(!user) {
         nav.push({
-            href: "/signin",
+            href: "/login",
             label: "Sign in",
             icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>`
         })
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <a href="/account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
+                            <a href={`/accountUser?id=${user.sub}`} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
                             <hr>
                             <a href="javascript:void(0);" on:click={signOut} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                         </div>

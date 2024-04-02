@@ -131,7 +131,14 @@ dropOffDate={new Date($dropOffDate).toISOString().slice(0, 10)} pickupTime={$pic
             <div class='mr-auto flex w-full max-w-xl flex-col overflow-y-hidden'>
                 {#if cars !== undefined}
                     {#each showingVehicles as vehicle}
-                        <VehicleCard {vehicle}/>
+                        <VehicleCard
+                                pickupDate={$pickupDate}
+                                pickupLocation={$pickupLocation}
+                                pickupTime={$pickupTime}
+                                dropOffDate={$dropOffDate}
+                                dropOffLocation={$dropOffLocation}
+                                dropOffTime={$dropOffTime}
+                                {vehicle}/>
                     {/each}
                 {:else }
                     <div class='mx-2 text-gray-50'>

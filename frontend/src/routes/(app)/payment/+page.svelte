@@ -1,5 +1,148 @@
-<script>
+<script lang="ts">
     import {ChevronDown, ChevronRight, CreditCard, Lock} from "lucide-svelte";
+    import {writable} from "svelte/store";
+    import {page} from "$app/stores";
+    import {onMount} from "svelte";
+    import {repo} from "$lib/repo.js";
+    import type {Vehicle} from "$lib/model/Vehicle";
+    import {calculateDaysBetween, generateUUID, showAlert} from "$lib/utils";
+    import {toast} from "svelte-sonner";
+
+    const user = $page.data.user;
+    const dates = writable('');
+    const locations = writable('');
+    let id;
+    let vehicle: Vehicle;
+    $: basePrice = vehicle?.price;
+    let extras;
+
+    $: if ($page.url.searchParams) {
+        dates.set($page.url.searchParams.get('d'));
+        locations.set($page.url.searchParams.get('l'));
+        id = $page.url.searchParams.get('id');
+        const extrasString = $page.url.searchParams.get('extras');
+        if (extrasString) {
+            extras = JSON.parse(extrasString);
+        }
+    }
+
+    $: taxes = 0.15 * (extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + (calculateDaysBetween($dates) * Number(basePrice)));
+    $: total = (calculateDaysBetween($dates) * Number(basePrice)) + extras?.map(extra => extra.price).reduce((acc, extra) => acc + extra, 0) + Number(taxes);
+
+    onMount(async () => {
+        vehicle = await repo.getVehicle(id);
+    });
+
+    let email = '';
+    let cardName = '';
+    let cardNumber = '';
+    let expDate = '';
+    let expYear = '';
+    let securityCode = '';
+    let postalCode = '';
+
+    $: console.log(email, cardName, cardNumber, expDate, expYear, securityCode, postalCode);
+    function validateInputs() {
+        return email.trim() !== '' &&
+            cardName.trim() !== '' &&
+            String(cardNumber).trim() !== '' &&
+            expDate.trim() !== '' &&
+            expYear.trim() !== '' &&
+            securityCode.trim() !== '' &&
+            postalCode.trim() !== '';
+    }
+
+    async function completeBooking() {
+        let result = validateInputs();
+
+        if (result) {
+            const [datePart, timePart] = $dates.split('to').map(part => part.trim());
+            const [pickupDate, pickupTime] = datePart.split(',').map(part => part.trim());
+            const [dropOffDate, dropOffTime] = timePart.split(',').map(part => part.trim());
+            const [pickupLoc, dropOffLoc] = $locations.split('->').map(part => part.trim());
+            const extrasJoined = extras && extras.length > 0 ? extras.map(extra => extra.name).join(', ') : 'None';
+
+            const bookingDetails = {
+                email,
+                name: user.username,
+                vehicle: vehicle ? {
+                    name_vehicle: vehicle.name_vehicle,
+                    vehicle_category: vehicle.vehicle_category,
+                    vehicle_type: vehicle.vehicle_type,
+                } : {},
+                pickupDate: pickupDate,
+                dropOffDate: dropOffDate,
+                pickupLoc: pickupLoc,
+                dropOffLoc: dropOffLoc,
+                pickupTime: pickupTime,
+                dropOffTime: dropOffTime,
+                extrasJoined: extrasJoined,
+                totalPrice: total,
+                confirmationNumber: generateUUID(),
+            };
+
+            const userDetails = await repo.getUserById(user.sub);
+
+            const reservationReview = {
+                email: userDetails.email,
+                vehicle_name: vehicle.name_vehicle,
+                pickup_date: pickupDate,
+                dropoff_date: dropOffDate,
+                pickup_location: pickupLoc,
+                dropoff_location: dropOffLoc,
+                pickup_time: pickupTime,
+                dropoff_time: dropOffTime,
+                price: parseInt(total, 10), // Ensure price is an integer
+                extras: extrasJoined,
+                isMadeBy: 'customer',
+                isPaid: 'true',
+                isCheckedOut: 'false',
+                userName: userDetails.first_name,
+                userName2: userDetails.last_name,
+                userPhone: userDetails.phone_number,
+                userLicense: userDetails.driver_license,
+                vehicleName: vehicle.name_vehicle,
+                vehicleType: vehicle.vehicle_type,
+                vehicleCategory: vehicle.vehicle_category,
+                vehicleTransmission: vehicle.vehicle_transmission,
+            };
+
+            try {
+                // Send booking details to your server endpoint
+                const response = await fetch('/emails/sendBookingConfirmation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingDetails),
+                });
+
+                const res = await fetch('http://localhost:3002/reservations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(reservationReview).toString()
+                });
+
+                console.log("res", res);
+                console.log("data", reservationReview)
+
+                if (!response.ok) {
+                    showAlert('Error', 'Failed to send booking confirmation email.', 'danger', 'Retry');
+                }
+
+                if (!res.ok) {
+                    showAlert('Error', 'Failed to process reservation.', 'danger', 'Retry');
+                }
+
+                showAlert('Booking completed successfully', 'Check your email for confirmation.', 'success', 'Done');
+            } catch (error) {
+                console.error(error);
+                showAlert('Error', 'There was a problem with your booking confirmation.', 'danger', 'Retry');
+            }
+        } else {
+            showAlert('Oops!', 'Please add your confirmation email and payment details', 'danger', 'Continue');
+        }
+    }
 </script>
 
 <div id="whole-page" class="max-w-4xl mx-auto">
@@ -11,7 +154,7 @@
         <!-- Icon here: For demo, replace with Tailwind CSS icon or custom SVG -->
         <div class="text-3xl">📅</div>
         <div class="ml-4">
-            <p class="font-bold">Free cancellation before Tue, Aug 30, 6:00pm (property local time)</p>
+            <p class="font-bold">Free cancellation before {$dates?.split('to')[0]} (property local time)</p>
             <p>You can change or cancel this stay for a full refund if plans change. Because flexibility matters.</p>
         </div>
     </div>
@@ -65,11 +208,11 @@
                     </div>
                     <div class="inputdiv">
                         <p class="name">Name on Card</p>
-                        <input type="text" class="input w-2/3"/>
+                        <input type="text" class="input w-2/3" bind:value={cardName}/>
                     </div>
                     <div class="inputdiv">
                         <p class="name">Debit/Credit card number</p>
-                        <input
+                        <input bind:value={cardNumber}
                                 type="number"
                                 class="input w-1/2"
                         />
@@ -77,7 +220,7 @@
                     <div class="inputdiv">
                         <p class="name">Expiration date</p>
                         <div class="flex">
-                            <select
+                            <select bind:value={expDate}
                                     class="country w-[25%] mr-1"
                             >
                                 <option value="usa">
@@ -133,32 +276,20 @@
                                     <ChevronDown/>
                                 </option>
                             </select>
-                            <select class="country w-1/4">
+                            <select class="country w-1/4" bind:value={expYear}>
                                 <option value="usa">
                                     Year
                                     <ChevronDown/>
                                 </option>
                                 <option value="india">
-                                    2020
-                                    <ChevronDown/>
-                                </option>
-                                <option value="china">
-                                    2021
-                                    <ChevronDown/>
-                                </option>
-                                <option value="uk">
-                                    2022
-                                    <ChevronDown/>
-                                </option>
-                                <option value="turky">
                                     2024
                                     <ChevronDown/>
                                 </option>
-                                <option value="turky">
+                                <option value="china">
                                     2025
                                     <ChevronDown/>
                                 </option>
-                                <option value="turky">
+                                <option value="uk">
                                     2026
                                     <ChevronDown/>
                                 </option>
@@ -166,21 +297,33 @@
                                     2027
                                     <ChevronDown/>
                                 </option>
+                                <option value="turky">
+                                    2028
+                                    <ChevronDown/>
+                                </option>
+                                <option value="turky">
+                                    2029
+                                    <ChevronDown/>
+                                </option>
+                                <option value="turky">
+                                    2030
+                                    <ChevronDown/>
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="inputdiv">
+                        <div class="inputdiv mr-2">
                             <p class="name">Security code</p>
-                            <input
-                                    type="number"
+                            <input bind:value={securityCode}
+                                    type="password"
                                     class="input w-1/3"
                             />
                         </div>
                         <div class="inputdiv">
                             <p class="name">Billing ZIP code</p>
-                            <input
-                                    type="number"
+                            <input bind:value={postalCode}
+                                    type="text"
                                     class="input w-1/2"
                             />
                         </div>
@@ -205,6 +348,7 @@
                 <div class="inputdiv">
                     <p class="name">Email adress</p>
                     <input
+                            bind:value={email}
                             type="email"
                             placeholder="(e.g. xyz@gmail.com)"
                             class="input w-1/2"
@@ -296,7 +440,7 @@
                     Change of plans? No problem. You can cancel for
                     free
                 </p>
-                <button id="complete-btn">
+                <button on:click={completeBooking} id="complete-btn">
                     Complete Booking {">"}
                 </button>
                 <div class="flex items-center">
@@ -313,30 +457,30 @@
             <div class="box7">
                 <div>
                     <img class="p-4 w-full rounded-md"
-                         src="details?.images[0]?.src"
-                         alt="details.title"
+                         src={vehicle?.image}
+                         alt="Car preview"
                     />
                 </div>
                 <div class="p-4">
                     <p>
-                        <b>{"details.title"}</b>
+                        <b>{vehicle?.name_vehicle}</b>
                     </p>
                     <p>
-                        <b>{"details.rating"}/5</b> Very good ({"details.reviews"} reviews)
+                        {`${vehicle?.vehicle_category} ${vehicle?.vehicle_type}`}
                     </p>
                     <p>
-                        Guests rated this property {"details.rating"}/5 for cleanliness
+                        Guests rated this property 4/5 for cleanliness
                     </p>
                     <p class="my-5">
-                        1 Room: King, Executive Room, Balcony, River View
+                        {$locations}
                     </p>
                     <p>
-                        <b>Check-in</b>: Fri, Sep 9
+                        <b>Check-in</b>: {$dates?.split('to')[0]}
                     </p>
                     <p>
-                        <b>Check-out</b>: Sat, Sep 10
+                        <b>Check-out</b>: {$dates?.split('to')[1]}
                     </p>
-                    <p>1-night stay</p>
+                    <p>{calculateDaysBetween($dates)} day(s)</p>
                 </div>
             </div>
 
@@ -348,13 +492,21 @@
                 />
                 <div class="flex items-center justify-between"
                 >
-                    <p>1 room x 1 night</p>
-                    <p>${100}</p>
+                    <p>Car rental fee x 1 day</p>
+                    <p>CA ${basePrice}</p>
                 </div>
+                {#if extras}
+                {#each extras as extra}
+                    <div class="flex justify-between items-center">
+                        <div>{extra.name}</div>
+                        <div>CA ${extra.price.toFixed(2)}</div>
+                    </div>
+                {/each}
+                    {/if}
                 <div class="flex items-center justify-between"
                 >
                     <p>Taxes and fees !</p>
-                    <p>${Math.floor(100 * 0.28)}</p>
+                    <p>CA ${taxes}</p>
                 </div>
                 <hr class="border-t mt-4 mb-4"
                 />
@@ -364,7 +516,7 @@
                         <b>Total</b>
                     </p>
                     <p>
-                        <b>${100 + Math.floor(+(100 * 0.28))}</b>
+                        <b>CA ${total}</b>
                     </p>
                 </div>
                 <hr class="border-t mt-4 mb-4"

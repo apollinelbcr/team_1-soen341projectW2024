@@ -55,7 +55,7 @@ export class UsersController {
     //login customers only
     @Post('login')
     async loginUser(@Body('email') email: string, @Body('password') password: string) {
-        const user = await this.usersService.loginCustomer(email, password);
+        const user = await this.usersService.login(email, password);
         if (user) {
             return { message: 'User found', user };
         } else {
