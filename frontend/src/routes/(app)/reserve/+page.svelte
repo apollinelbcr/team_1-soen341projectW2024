@@ -54,9 +54,9 @@
 </script>
 
 <div id="whole-page" class="max-w-4xl mx-auto">
-    <button on:click={() => window.history.back()} class="text-blue-900 text-xl font-bold mt-2 hover:underline">
+    <a href="/search" class="text-blue-900 text-xl font-bold mt-2 hover:underline">
         {'<-'} See all cars
-    </button>
+    </a>
 
     <div class="flex max-lg:flex-wrap gap-5 justify-between mt-4">
         <div class="lg:w-3/5">
