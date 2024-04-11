@@ -15,6 +15,7 @@
         showBookSearchModal = !showBookSearchModal;
     }
 </script>
+
 <div class="relative">
 <div class="flex flex-col md:flex-row bg-white text-black">
     <div class="flex-1">
