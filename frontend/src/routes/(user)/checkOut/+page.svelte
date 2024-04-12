@@ -271,7 +271,7 @@ async function updateVehicleStatus() {
 
 </script>
 
-{#each users.filter((userData) => userData.email == email) as userData}
+
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
@@ -370,5 +370,4 @@ async function updateVehicleStatus() {
         </form>
     </div>
 </div>
-{/each}
 
