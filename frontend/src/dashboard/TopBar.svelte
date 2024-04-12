@@ -1,5 +1,5 @@
 <script>
-	import { openSidebar } from './store.ts';
+	import { openSidebar } from './store';
 </script>
 
 <header class="relative z-10 h-16 w-full items-center bg-white shadow md:h-20">

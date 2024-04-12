@@ -35,12 +35,16 @@
             href: "/support",
             label: "Support",
             icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-question"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>`
+        }, {
+            href: "/compare",
+            label: "Compare",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-diff"><path d="M12 3v14"/><path d="M5 10h14"/><path d="M5 21h14"/></svg>`
         }
     ]
 
     if(!user) {
         nav.push({
-            href: "/signin",
+            href: "/login",
             label: "Sign in",
             icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>`
         })
@@ -75,7 +79,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <a href="/account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
+                            <a href={`/accountUser?id=${user.sub}`} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
                             <hr>
                             <a href="javascript:void(0);" on:click={signOut} class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                         </div>

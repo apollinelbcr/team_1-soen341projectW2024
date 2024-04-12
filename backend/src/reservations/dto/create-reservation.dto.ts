@@ -34,8 +34,8 @@ export class CreateReservationDto {
     
     price: number;
 
-    @IsEnum(Extras)
-    extras: Extras;
+    @IsString()
+    extras: string;
 
     @IsEnum(['admin', 'customer', 'customer service'])
     isMadeBy: string;

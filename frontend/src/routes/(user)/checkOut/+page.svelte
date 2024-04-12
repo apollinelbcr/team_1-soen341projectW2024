@@ -271,10 +271,12 @@ async function updateVehicleStatus() {
 
 </script>
 
+
 <div class="flex w-[95%] m-auto">
     
     <div class=" min-w-[300px]">
             <div class="w-[250px] p-[15px] bg-[#f5f5f5] mt-[50px] rounded-lg">
+
                 <header class="text-xl text-[#2f373d] text-center leading-[70px]">Welcome, {user.first_name}</header>
                 <ul>
                     <li>

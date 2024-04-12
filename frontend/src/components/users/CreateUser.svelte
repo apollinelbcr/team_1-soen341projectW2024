@@ -56,6 +56,7 @@
 				phone_number: createdPhoneNumber,
 				role: createdRole,
 				password: createdPassword,
+				status: "ACTIVE"
 				};
 
 				console.log(payload);
@@ -68,7 +69,7 @@
 					formData.append(key, payload[key]);
 				});
 
-				const response = await fetch(`http://localhost:3002/users`, {
+				const response = await fetch(`http://localhost:3002/users/admin/`, {
 				method: 'POST',
 				headers: {
 					'Content-Email': 'application/x-www-form-urlencoded',

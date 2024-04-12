@@ -13,7 +13,7 @@ export class CreateVehicleLocationDto {
     branch_name: string;
     
     @IsNotEmpty()
-    branch_adress: string;
+    branch_address: string;
 
     @IsNotEmpty()
     vehicle_id: string;

@@ -1,4 +1,5 @@
 export type Vehicle = {
+    id: string
     name_vehicle: string
     image: string
     vehicle_type: string

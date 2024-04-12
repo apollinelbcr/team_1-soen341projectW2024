@@ -104,7 +104,7 @@
 			formData.append(key, payload[key]);
 			});
 
-			const response = await fetch(`http://localhost:3002/users/${userId}`, {
+			const response = await fetch(`http://localhost:3002/users/admin/${userId}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Email': 'application/x-www-form-urlencoded',

@@ -1,5 +1,6 @@
 <script lang="ts">
     import SveltyPicker from 'svelty-picker';
+    import {showAlert} from "$lib/utils";
 
     const today: string = new Date().toISOString();
     export let pickupLocation = '';
@@ -11,6 +12,12 @@
     export let differentDropOff = false;
 
     function handleSubmit(event) {
+        if (!pickupLocation.trim() || !dropOffLocation.trim() || !pickupDate.trim() || !dropOffDate.trim() || !pickupTime.trim() || !dropOffTime.trim()) {
+            showAlert('Humm Big NO NO!', 'All fields must be filled out', 'danger', 'Got it');
+            event.preventDefault();
+            return; // Stop the function if any field is empty
+        }
+
         const searchData = {
             pickupLocation,
             dropOffLocation,
@@ -27,11 +34,11 @@
 </script>
 
 <div class="mt-1 p-5 mx-auto">
-    <form class="flex flex-col" action="/search" on:submit|preventDefault={handleSubmit}>
+    <form class="flex flex-col" action="/search" on:submit={handleSubmit}>
         <div class="grid grid-cols-6 gap-4 lg:grid-cols-7">
 
             <div class="border rounded p-2 col-span-6 lg:col-span-2 h-14 border-gray-500 relative">
-                <div class="absolute top-0">
+                <div class="absolute top-0 w-11/12">
                     <span class="text-xs text-gray-600">{differentDropOff ? 'Pick-up' : 'Pick-up and Drop-off'}</span>
                     <input type="text" placeholder="search..." class="text-black focus:outline-none h-full w-full"
                            bind:value={pickupLocation}/>
@@ -72,7 +79,7 @@
         </label>
         {#if differentDropOff}
             <div class="border mt-3 rounded p-2 w-full lg:w-[28%] h-14 border-gray-500 relative">
-                <div class="absolute top-0">
+                <div class="absolute top-0 w-11/12">
                     <span class="text-xs text-gray-600">Drop-off</span>
                     <input type="text" placeholder="search..." class="text-black focus:outline-none h-full w-full"
                            bind:value={dropOffLocation}/>

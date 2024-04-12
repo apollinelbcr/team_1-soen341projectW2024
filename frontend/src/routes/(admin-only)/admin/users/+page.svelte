@@ -7,5 +7,5 @@
 	<title>Users</title>
 </svelte:head>
 
-<ManageUsers title=Users/>
+<ManageUsers title="Users"/>
 
