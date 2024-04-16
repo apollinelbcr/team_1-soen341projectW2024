@@ -1,7 +1,14 @@
 <script lang="ts">
     import VehicleComparison from '$lib/components/VehicleComparison.svelte';
     import type {Vehicle} from '$lib/model/Vehicle';
-
+    import {onMount} from "svelte";
+    
+    let id;
+    let vehicle: Vehicle | null = null;
+    
+     onMount(async () => {
+        vehicle = await repo.getVehicle(id);
+    });
     let vehicle1: Vehicle = {
         "id": "7befc065-2e0b-4066-89f6-536bcbea24b4",
         "name_vehicle": "Chevrolet Malibu Black 2023",
