@@ -3,10 +3,11 @@
     import VehicleDropdown from "$lib/components/VehicleDropdown.svelte";
     export let onBookVehicle: (vehicleId: string) => void;
     export let vehicle: Vehicle;
+    export let showDropdown: boolean = true;
 </script>
 
 <div class="flex flex-col items-center p-6">
-    <VehicleDropdown onSelectVehicle={(v) => vehicle = v}/>
+    <VehicleDropdown onSelectVehicle={(v) => vehicle = v} {showDropdown}/>
 
     <div class="w-50 h-32 overflow-hidden">
         <img src={vehicle.image} alt={vehicle.name_vehicle} class="w-full h-full mb-6"/>

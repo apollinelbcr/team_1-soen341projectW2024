@@ -6,6 +6,7 @@
      let vehicles: Vehicle[];
      let selectedVehicle: Vehicle;
     export let onSelectVehicle: (vehicle: Vehicle) => void;
+    export let showDropdown: boolean = true;
 
     onMount(async () => {
         vehicles = await repo.getVehicles();
@@ -14,7 +15,7 @@
     });
 </script>
 
-<div class="relative mb-4">
+<div class="relative mb-4" class:invisible={!showDropdown}>
     <select
             bind:value={selectedVehicle}
             on:change={() => onSelectVehicle(selectedVehicle)}

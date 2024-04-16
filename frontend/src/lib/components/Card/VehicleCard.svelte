@@ -39,7 +39,10 @@
                 <p class="text-xl font-bold">CA ${vehicle?.price}</p>
                 <p class="text-xs">total</p>
             </div>
+            <div class="flex flex-col gap-y-2 items-center">
             <a href="" on:click|preventDefault={() => goto(`/reserve?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '->' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})} class="bg-blue-500 text-white px-5 py-2 rounded-full w-24">Reserve</a>
+            <a href="" on:click|preventDefault={() => goto(`/compare?id=${vehicle?.id}&d=${pickupDate}, ${pickupTime} to ${dropOffDate}, ${dropOffTime}&l=${pickupLocation} ${dropOffLocation ? '->' : ''} ${dropOffLocation ?? ''}`, {invalidateAll: true})} class="text-blue-400 underline">Compare</a>
+            </div>
         </div>
     </div>
 
