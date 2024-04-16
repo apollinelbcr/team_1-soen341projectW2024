@@ -492,8 +492,8 @@
                 />
                 <div class="flex items-center justify-between"
                 >
-                    <p>Car rental fee x 1 day</p>
-                    <p>CA ${basePrice}</p>
+                    <p>Car rental fee x {calculateDaysBetween($dates)} day</p>
+                    <p>CA ${calculateDaysBetween($dates) * Number(basePrice)}</p>
                 </div>
                 {#if extras}
                 {#each extras as extra}

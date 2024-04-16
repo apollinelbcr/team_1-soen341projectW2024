@@ -154,8 +154,8 @@
                 </div>
                 <div class="mb-4">
                     <div class="flex justify-between items-center">
-                        <div>Car rental fee x 1 day</div>
-                        <div>CA ${vehicle?.price}</div>
+                        <div>Car rental fee x {calculateDaysBetween($dates)} day</div>
+                        <div>CA ${calculateDaysBetween($dates) * Number(basePrice)}</div>
                     </div>
                     {#each selectedExtras as extra}
                         <div class="flex justify-between items-center mt-2">
